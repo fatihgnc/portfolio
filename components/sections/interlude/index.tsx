@@ -10,9 +10,17 @@ export default function Interlude() {
   return (
     <Reveal>
       <div className="grid grid-cols-1 gap-[clamp(18px,4vw,64px)] border-b border-line py-[clamp(38px,7vh,84px)] min-[900px]:grid-cols-[1.05fr_1fr]">
-        <p className="m-0 font-mono text-label uppercase text-accent">
-          {t.interludeLabel}
-        </p>
+        <div className="min-w-0">
+          <p className="m-0 font-mono text-label uppercase text-accent">
+            {t.interludeLabel}
+          </p>
+          {/* fx katmanı bu yuvaya tel-kafes gövdeyi çizer */}
+          <div
+            data-fx-bridge
+            aria-hidden
+            className="mt-5 hidden h-[clamp(120px,18vh,190px)] min-[900px]:block"
+          />
+        </div>
         <div className="min-w-0">
           <p className="m-0 max-w-[34ch] font-display text-[clamp(24px,3.2vw,42px)] font-bold leading-[1.1] tracking-[-0.02em] [text-wrap:pretty]">
             {t.interlude}

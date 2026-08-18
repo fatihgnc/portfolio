@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties, ReactNode } from "react";
+import { useCallback, useRef, type CSSProperties, type PointerEvent, type ReactNode } from "react";
 
 import { useSiteState } from "@/components/providers/site-state";
 import Reveal from "@/components/ui/reveal-text";
@@ -33,6 +33,39 @@ export default function ProjectCase({
   const content = data.meta[lang];
   const flipped = index % 2 === 1;
   const tilt = TILT[index % TILT.length];
+  const shotRef = useRef<HTMLDivElement>(null);
+
+  // imleci takip eden 3B eğim — dar ekranda ve reduced motion'da kapalı
+  const onPointerMove = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      const el = shotRef.current;
+      if (!el) return;
+      if (
+        window.innerWidth < 900 ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        return;
+      }
+
+      const r = el.getBoundingClientRect();
+      const px = (event.clientX - r.left) / r.width - 0.5;
+      const py = (event.clientY - r.top) / r.height - 0.5;
+
+      el.style.transition = "transform .12s linear, border-color .4s ease";
+      el.style.transform =
+        `perspective(900px) rotate(${tilt}) rotateY(${(px * 11).toFixed(2)}deg)` +
+        ` rotateX(${(-py * 8).toFixed(2)}deg) translateZ(14px)`;
+    },
+    [tilt],
+  );
+
+  const onPointerLeave = useCallback(() => {
+    const el = shotRef.current;
+    if (!el) return;
+    el.style.transition =
+      "transform .55s cubic-bezier(.2,.7,.3,1), border-color .4s ease";
+    el.style.transform = "";
+  }, []);
 
   return (
     <Reveal>
@@ -79,7 +112,10 @@ export default function ProjectCase({
         </div>
 
         <div
-          className={`flex aspect-[4/3] min-w-0 items-end rounded-md border border-line bg-card p-4 transition-[transform,border-color] duration-[400ms] ease-[cubic-bezier(.2,.7,.3,1)] [transform:rotate(var(--tilt))] hover:border-accent hover:[transform:rotate(0deg)_scale(1.02)] ${
+          ref={shotRef}
+          onPointerMove={onPointerMove}
+          onPointerLeave={onPointerLeave}
+          className={`flex aspect-[4/3] min-w-0 items-end rounded-md border border-line bg-card p-4 [transform-style:preserve-3d] transition-[transform,border-color] duration-[400ms] ease-[cubic-bezier(.2,.7,.3,1)] [transform:rotate(var(--tilt))] hover:border-accent ${
             flipped ? "min-[900px]:order-1" : ""
           }`}
           style={

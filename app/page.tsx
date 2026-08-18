@@ -4,6 +4,7 @@ import Experience from "@/components/sections/experience";
 import Intro from "@/components/sections/intro";
 import Work from "@/components/sections/work";
 import type { ProjectCaseData } from "@/components/sections/project-case";
+import FxCanvas from "@/components/ui/fx-canvas";
 import Marquee from "@/components/ui/marquee";
 import MdxBody from "@/components/ui/mdx-body";
 import PointerGlow from "@/components/ui/pointer-glow";
@@ -29,6 +30,7 @@ export default async function Page() {
 
   return (
     <SmoothScroll>
+      <FxCanvas />
       <PointerGlow />
       <ScrollProgress />
       <Sidebar />
