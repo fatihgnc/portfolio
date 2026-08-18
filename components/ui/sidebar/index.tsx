@@ -152,7 +152,7 @@ export default function Sidebar() {
         <div className="flex flex-col gap-px pb-4">
           {social.map((item) => (
             <a
-              key={item.label}
+              key={item.icon}
               href={item.href}
               download={item.download}
               target="_blank"
@@ -163,7 +163,7 @@ export default function Sidebar() {
               <span className="flex h-[22px] w-[22px] flex-none items-center justify-center rounded-md border border-line text-mut">
                 <Icon name={item.icon} size={12} />
               </span>
-              <span className="min-w-0 flex-1 truncate">{item.label}</span>
+              <span className="min-w-0 flex-1 truncate">{item.label[lang]}</span>
               <span aria-hidden className="flex-none text-xs text-mut">
                 {item.download ? "↓" : "↗"}
               </span>

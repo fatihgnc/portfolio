@@ -69,7 +69,8 @@ export const nav: NavItem[] = [
 
 export type SocialLink = {
   icon: IconName;
-  label: string;
+  /** dile göre değişebilen ad — marka adları iki dilde de aynı yazılır */
+  label: Record<Lang, string>;
   value: Record<Lang, string>;
   href: string;
   /** dolu ise indirme */
@@ -80,31 +81,31 @@ export type SocialLink = {
 export const social: SocialLink[] = [
   {
     icon: "github",
-    label: "GitHub",
+    label: { tr: "GitHub", en: "GitHub" },
     value: { tr: "fatihgnc", en: "fatihgnc" },
     href: "https://github.com/fatihgnc",
   },
   {
     icon: "linkedin",
-    label: "LinkedIn",
+    label: { tr: "LinkedIn", en: "LinkedIn" },
     value: { tr: "in/fatihgnc", en: "in/fatihgnc" },
     href: "https://linkedin.com/in/fatihgnc",
   },
   {
     icon: "appstore",
-    label: "App Store",
+    label: { tr: "App Store", en: "App Store" },
     value: { tr: "SecretMap", en: "SecretMap" },
     href: "#",
   },
   {
     icon: "mail",
-    label: "E-posta",
+    label: { tr: "E-posta", en: "Email" },
     value: { tr: "fatihgnc.dev@gmail.com", en: "fatihgnc.dev@gmail.com" },
     href: "mailto:fatihgnc.dev@gmail.com",
   },
   {
     icon: "cv",
-    label: "CV",
+    label: { tr: "CV", en: "CV" },
     value: { tr: "PDF olarak indir", en: "download as PDF" },
     href: "/fatih-genc-cv.pdf",
     download: "Fatih-Genc-Frontend-Developer-CV.pdf",
