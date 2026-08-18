@@ -35,7 +35,7 @@ export default async function Page() {
 
       <main className="ml-[var(--sb)]">
         <Intro />
-        <Marquee text={site.ticker} />
+        <Marquee items={site.ticker} />
         <Work cases={cases} />
         <Experience />
         <About />

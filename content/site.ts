@@ -107,8 +107,18 @@ const links: SiteLink[] = [
 export const site = {
   name: "Fatih Genç",
   email: "fatihgnc.dev@gmail.com",
-  ticker:
-    "SECRETMAP · MAMAMIX · SWIFT · SWIFTUI · NEXT.JS · TYPESCRIPT · SUPABASE · MAPKIT · ",
+  /** kayan şeritteki terimler */
+  ticker: [
+    "React",
+    "React Native",
+    "Next.js",
+    "Tailwind",
+    "Node.js",
+    "MongoDB",
+    "Supabase",
+    "Claude Code",
+    "Cursor",
+  ],
   links,
   tools: [
     { label: "interface", items: "React · Next.js · TypeScript · Tailwind" },
