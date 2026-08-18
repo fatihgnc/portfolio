@@ -143,7 +143,7 @@ export const copy = {
     status: [
       { k: "SecretMap", v: "App Store review'da" },
       { k: "secretmap.dev", v: "yayında" },
-      { k: "mamamix.com.tr", v: "teslim edildi" },
+      { k: "mamamix.com.tr", v: "test aşamasında" },
     ],
     workLabel: "işler",
     workTitle: "Üç şey yaptım, üçü de yayında.",
@@ -236,7 +236,7 @@ export const copy = {
     status: [
       { k: "SecretMap", v: "in App Store review" },
       { k: "secretmap.dev", v: "live" },
-      { k: "mamamix.com.tr", v: "delivered" },
+      { k: "mamamix.com.tr", v: "in testing" },
     ],
     workLabel: "work",
     workTitle: "Three things built, three things shipped.",
