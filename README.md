@@ -1,6 +1,6 @@
 # portfolio
 
-Fatih Genç — kişisel portfolyo. Tek sayfa, iki dil (TR/EN), koyu/açık tema.
+Fatih Genç — kişisel portfolyo. Tek sayfa, İngilizce, koyu/açık tema.
 Claude Design'daki onaylanmış tasarımın (`Portfolyo-Gunluk.dc.html`) Next.js
 implementasyonu.
 
@@ -36,13 +36,13 @@ app/
   page.tsx              → tek sayfa akışı; MDX gövdeleri sunucuda render edilir
   globals.css           → tema token'ları, grain, MDX tipografisi
 content/
-  site.ts               → arayüz metinleri, linkler, araçlar (tr/en)
+  site.ts               → arayüz metinleri, linkler, araçlar
   projects/
-    secret-map.{tr,en}.mdx
-    mamamix.{tr,en}.mdx
-    secretmap-dev.{tr,en}.mdx
+    secret-map.mdx
+    mamamix.mdx
+    secretmap-dev.mdx
 components/
-  providers/site-state/ → dil + tema durumu (localStorage)
+  providers/site-state/ → tema + çekmece durumu (localStorage)
   sections/
     intro/              → açılış (parallax başlık, İstanbul saati, durum listesi)
     work/               → işler akışı, ara not araya girer
@@ -60,8 +60,7 @@ components/
     mdx-body/           → MDX gövdesini sunucuda render eder
     icons/              → paylaşılan SVG ikon seti
     icon-links/         → footer'daki ikon şeridi
-    sidebar/            → kimlik, bölüm gezinmesi (1–5), linkler, TR/EN + tema
-    lang-switch/        → TR / EN geçişi
+    sidebar/            → kimlik, bölüm gezinmesi (1–5), linkler, tema
     theme-toggle/       → koyu / açık tema anahtarı
     site-header/        → yalnızca dar ekran: isim + çekmece düğmesi
     fx-canvas/          → arka plan noktaları + tel kafes gövde (three.js)
@@ -76,17 +75,16 @@ yapılır (`@/components/sections/intro`).
 
 - **Case study'ler:** `content/projects/*.mdx`. Frontmatter alanları
   (`order`, `title`, `meta`, `one`, `stack`, `link`, `href`, `shot`) karta;
-  gövde metni kartın küçük puntolu paragrafına gider. Her projenin `.tr` ve
-  `.en` dosyası birlikte tutulur, dil değişimi anlıktır.
+  gövde metni kartın küçük puntolu paragrafına gider.
 - **Sıralama:** `lib/mdx.ts` içindeki `PROJECT_SLUGS`.
-- **Deneyim:** `content/site.ts` içindeki `jobs` dizisi (tr/en ayrı).
+- **Deneyim:** `content/site.ts` içindeki `jobs` dizisi.
 - **Profil fotoğrafı:** `public/profile.jpg` (sidebar'da 38×38, yuvarlak).
 - **CV:** `public/fatih-genc-cv.pdf`. Link `content/site.ts` → `links`
   içinde; `download` alanı dolu olan link indirme olarak davranır.
 - **Linkler:** iki liste var. `links` footer'daki ikon şeridini,
   `social` sidebar'daki listeyi besler. İkon adları
-  `components/ui/icons` içindeki setten gelir; erişilebilirlik metinleri her
-  dilde `iconLabels` içinde.
+  `components/ui/icons` içindeki setten gelir; erişilebilirlik metinleri
+  `iconLabels` içinde.
 - **Diğer tüm metinler:** `content/site.ts`.
 - **Renkler:** `app/globals.css` içindeki `:root` / `:root[data-theme="light"]`
   token'ları. Accent tek yerde: `--ac`.

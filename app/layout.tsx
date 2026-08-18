@@ -31,12 +31,12 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: `${site.name} — frontend / indie developer`,
   description:
-    "Dört yıl frontend, bir yıl kendi ürünlerim. SecretMap, mamamix ve secretmap.dev — İstanbul.",
+    "Four years of frontend, one year of my own products. SecretMap, mamamix and secretmap.dev — Istanbul.",
   metadataBase: new URL("https://fatihgnc.dev"),
   openGraph: {
     title: `${site.name} — frontend / indie developer`,
     description:
-      "Dört yıl frontend, bir yıl kendi ürünlerim. SecretMap, mamamix ve secretmap.dev.",
+      "Four years of frontend, one year of my own products. SecretMap, mamamix and secretmap.dev.",
     type: "website",
   },
 };
@@ -47,8 +47,8 @@ export const viewport: Viewport = {
   themeColor: "#0c0c0e",
 };
 
-/** İlk boyamadan önce kayıtlı tema/dili uygular — tema zıplaması olmasın. */
-const themeScript = `(function(){try{var t=localStorage.getItem("pf-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;}var l=localStorage.getItem("pf-lang");if(l==="tr"||l==="en"){document.documentElement.lang=l;}}catch(e){}})();`;
+/** İlk boyamadan önce kayıtlı temayı uygular — tema zıplaması olmasın. */
+const themeScript = `(function(){try{var t=localStorage.getItem("pf-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -57,7 +57,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="tr"
+      lang="en"
       data-theme="dark"
       className={`${syne.variable} ${instrument.variable} ${mono.variable}`}
       suppressHydrationWarning

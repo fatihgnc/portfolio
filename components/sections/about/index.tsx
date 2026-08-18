@@ -6,8 +6,8 @@ import { site } from "@/content/site";
 
 /** Kısa, samimi hakkımda — stack ayrı bir grid değil, metnin devamı. */
 export default function About() {
-  const { lang, t } = useSiteState();
-  const tools = site.tools[lang];
+  const { t } = useSiteState();
+  const tools = site.tools;
 
   return (
     <section

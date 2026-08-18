@@ -18,14 +18,11 @@ import { getProjects } from "@/lib/mdx";
 export default async function Page() {
   const projects = await getProjects();
 
-  // MDX gövdeleri sunucuda render edilir, istemci sadece dili seçer.
-  const cases: ProjectCaseData[] = projects.map(({ slug, tr, en }) => ({
-    slug,
-    meta: { tr, en },
-    body: {
-      tr: <MdxBody source={tr.source} />,
-      en: <MdxBody source={en.source} />,
-    },
+  // MDX gövdeleri sunucuda render edilir.
+  const cases: ProjectCaseData[] = projects.map((project) => ({
+    slug: project.slug,
+    meta: project,
+    body: <MdxBody source={project.source} />,
   }));
 
   return (

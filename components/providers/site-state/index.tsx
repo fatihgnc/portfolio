@@ -10,20 +10,17 @@ import {
   type ReactNode,
 } from "react";
 
-import { copy, type Copy, type Lang, type Theme } from "@/content/site";
+import { copy, type Copy, type Theme } from "@/content/site";
 
-export const LANG_KEY = "pf-lang";
 export const THEME_KEY = "pf-theme";
 
 type SiteState = {
-  lang: Lang;
   theme: Theme;
   t: Copy;
   /** ilk render'dan sonra true — hydration'a bağlı değerler için */
   ready: boolean;
   /** dar ekranda sidebar çekmecesi açık mı */
   navOpen: boolean;
-  setLang: (lang: Lang) => void;
   toggleTheme: () => void;
   setNavOpen: (open: boolean) => void;
 };
@@ -35,16 +32,12 @@ function applyTheme(theme: Theme) {
 }
 
 export function SiteStateProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("tr");
   const [theme, setTheme] = useState<Theme>("dark");
   const [ready, setReady] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     try {
-      const storedLang = localStorage.getItem(LANG_KEY);
-      if (storedLang === "tr" || storedLang === "en") setLangState(storedLang);
-
       const storedTheme = localStorage.getItem(THEME_KEY);
       if (storedTheme === "dark" || storedTheme === "light") {
         setTheme(storedTheme);
@@ -54,16 +47,6 @@ export function SiteStateProvider({ children }: { children: ReactNode }) {
       /* private mode — varsayılanlarla devam */
     }
     setReady(true);
-  }, []);
-
-  const setLang = useCallback((next: Lang) => {
-    setLangState(next);
-    document.documentElement.lang = next;
-    try {
-      localStorage.setItem(LANG_KEY, next);
-    } catch {
-      /* yoksay */
-    }
   }, []);
 
   const toggleTheme = useCallback(() => {
@@ -90,17 +73,8 @@ export function SiteStateProvider({ children }: { children: ReactNode }) {
   }, [navOpen]);
 
   const value = useMemo<SiteState>(
-    () => ({
-      lang,
-      theme,
-      t: copy[lang],
-      ready,
-      navOpen,
-      setLang,
-      toggleTheme,
-      setNavOpen,
-    }),
-    [lang, theme, ready, navOpen, setLang, toggleTheme],
+    () => ({ theme, t: copy, ready, navOpen, toggleTheme, setNavOpen }),
+    [theme, ready, navOpen, toggleTheme],
   );
 
   return (

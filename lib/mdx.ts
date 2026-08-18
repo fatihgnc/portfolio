@@ -3,8 +3,6 @@ import path from "node:path";
 
 import matter from "gray-matter";
 
-import { LANGS, type Lang } from "@/content/site";
-
 const PROJECTS_DIR = path.join(process.cwd(), "content", "projects");
 
 /** Case study'lerin sayfadaki sırası — dosya adı (slug) ile. */
@@ -29,7 +27,7 @@ export type ProjectMeta = {
 /** Frontmatter + gövde kaynağı; gövde sunucuda MDX olarak render edilir. */
 export type ProjectDoc = ProjectMeta & { source: string };
 
-export type Project = { slug: ProjectSlug } & Record<Lang, ProjectDoc>;
+export type Project = { slug: ProjectSlug } & ProjectDoc;
 
 function toMeta(data: Record<string, unknown>, file: string): ProjectMeta {
   const stack = data.stack;
@@ -55,25 +53,20 @@ function toMeta(data: Record<string, unknown>, file: string): ProjectMeta {
   };
 }
 
-async function readProjectDoc(
-  slug: ProjectSlug,
-  lang: Lang,
-): Promise<ProjectDoc> {
-  const file = `${slug}.${lang}.mdx`;
+async function readProjectDoc(slug: ProjectSlug): Promise<ProjectDoc> {
+  const file = `${slug}.mdx`;
   const raw = await fs.readFile(path.join(PROJECTS_DIR, file), "utf8");
   const { content, data } = matter(raw);
 
   return { ...toMeta(data, file), source: content };
 }
 
-/** Tüm case study'leri iki dilde birden okur — dil değişimi istemcide anlık. */
+/** Tüm case study'leri okur. */
 export async function getProjects(): Promise<Project[]> {
   return Promise.all(
-    PROJECT_SLUGS.map(async (slug) => {
-      const [tr, en] = await Promise.all(
-        LANGS.map((lang) => readProjectDoc(slug, lang)),
-      );
-      return { slug, tr: tr!, en: en! };
-    }),
+    PROJECT_SLUGS.map(async (slug) => ({
+      slug,
+      ...(await readProjectDoc(slug)),
+    })),
   );
 }

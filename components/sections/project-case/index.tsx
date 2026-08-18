@@ -4,14 +4,13 @@ import { useCallback, useRef, type CSSProperties, type PointerEvent, type ReactN
 
 import { useSiteState } from "@/components/providers/site-state";
 import Reveal from "@/components/ui/reveal-text";
-import type { Lang } from "@/content/site";
 import type { ProjectMeta } from "@/lib/mdx";
 
-/** Sunucuda hazırlanan case study verisi: iki dilde meta + MDX gövdesi. */
+/** Sunucuda hazırlanan case study verisi: meta + render edilmiş MDX gövdesi. */
 export type ProjectCaseData = {
   slug: string;
-  meta: Record<Lang, ProjectMeta>;
-  body: Record<Lang, ReactNode>;
+  meta: ProjectMeta;
+  body: ReactNode;
 };
 
 type ProjectCaseProps = {
@@ -29,8 +28,8 @@ export default function ProjectCase({
   index,
   last = false,
 }: ProjectCaseProps) {
-  const { lang, t } = useSiteState();
-  const content = data.meta[lang];
+  const { t } = useSiteState();
+  const content = data.meta;
   const flipped = index % 2 === 1;
   const tilt = TILT[index % TILT.length];
   const shotRef = useRef<HTMLDivElement>(null);
@@ -88,7 +87,7 @@ export default function ProjectCase({
             {content.one}
           </p>
 
-          <div className="mt-3">{data.body[lang]}</div>
+          <div className="mt-3">{data.body}</div>
 
           <div className="mt-5 flex flex-wrap gap-[7px]">
             {content.stack.map((tool) => (

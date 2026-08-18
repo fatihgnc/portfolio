@@ -23,7 +23,9 @@ export default function Intro() {
       ref={ref}
       className="relative z-[1] flex min-h-[100svh] flex-col justify-end px-gut pb-[clamp(20px,4vh,40px)] pt-[120px]"
     >
+      {/* Türkçe özel ad: sayfa dili en olsa da "Fatih" → "FATİH" olsun */}
       <motion.h1
+        lang="tr"
         style={reduced ? undefined : { y: titleY }}
         className="mt-[clamp(14px,3vh,34px)] max-w-full pb-[0.16em] font-display text-hero font-extrabold uppercase"
       >

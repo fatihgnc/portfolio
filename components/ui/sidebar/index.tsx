@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import { useSiteState } from "@/components/providers/site-state";
 import Icon from "@/components/ui/icons";
-import LangSwitch from "@/components/ui/lang-switch";
 import ThemeToggle from "@/components/ui/theme-toggle";
 import { nav, site, social } from "@/content/site";
 import { scrollToSection } from "@/lib/scroll";
@@ -45,7 +44,7 @@ function useActiveSection() {
 }
 
 export default function Sidebar() {
-  const { lang, t, navOpen, setNavOpen } = useSiteState();
+  const { t, navOpen, setNavOpen } = useSiteState();
   const active = useActiveSection();
 
   const go = useCallback(
@@ -109,11 +108,7 @@ export default function Sidebar() {
             <span className="font-display text-[15px] font-bold tracking-[-0.01em]">
               {site.name}
             </span>
-            {/* İngilizce terim: TR modunda "i" → "İ" olmasın diye lang="en" */}
-            <span
-              lang="en"
-              className="font-mono text-[10px] uppercase leading-[1.5] tracking-[0.1em] text-mut"
-            >
+            <span className="font-mono text-[10px] uppercase leading-[1.5] tracking-[0.1em] text-mut">
               {t.role}
             </span>
           </span>
@@ -136,7 +131,7 @@ export default function Sidebar() {
                   on ? "bg-accent text-ink" : "text-fg hover:bg-soft"
                 }`}
               >
-                <span>{item.label[lang]}</span>
+                <span>{item.label}</span>
                 <span
                   className={`min-w-5 flex-none rounded-[5px] border px-[5px] py-[2px] text-center font-mono text-[10px] ${
                     on ? "border-black/30 text-ink" : "border-line text-mut"
@@ -163,21 +158,20 @@ export default function Sidebar() {
               download={item.download}
               target="_blank"
               rel="noopener noreferrer"
-              title={item.value[lang]}
+              title={item.value}
               className="flex items-center gap-[10px] rounded-[9px] px-3 py-2 text-[13px] text-fg transition-colors duration-200 hover:bg-soft"
             >
               <span className="flex h-[22px] w-[22px] flex-none items-center justify-center rounded-md border border-line text-mut">
                 <Icon name={item.icon} size={12} />
               </span>
-              <span className="min-w-0 flex-1 truncate">{item.label[lang]}</span>
+              <span className="min-w-0 flex-1 truncate">{item.label}</span>
               <span aria-hidden className="flex-none text-xs text-mut">
                 {item.download ? "↓" : "↗"}
               </span>
             </a>
           ))}
         </div>
-        <div className="mt-auto flex items-center justify-between gap-3 border-t border-line px-3 pt-4">
-          <LangSwitch />
+        <div className="mt-auto flex items-center justify-end border-t border-line px-3 pt-4">
           <ThemeToggle />
         </div>
       </aside>
