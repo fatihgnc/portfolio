@@ -112,6 +112,7 @@ export const site = {
     "React",
     "React Native",
     "Next.js",
+    "TypeScript",
     "Tailwind",
     "Node.js",
     "MongoDB",
@@ -122,7 +123,7 @@ export const site = {
   links,
   /** hakkımda bölümündeki gruplar — şeritle aynı araçlar */
   tools: [
-    { label: "interface", items: "React · Next.js · Tailwind" },
+    { label: "interface", items: "React · Next.js · TypeScript · Tailwind" },
     { label: "mobile", items: "React Native" },
     { label: "backend", items: "Node.js · MongoDB · Supabase" },
     { label: "desk", items: "Claude Code · Cursor" },
