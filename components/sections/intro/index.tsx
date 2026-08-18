@@ -54,6 +54,17 @@ export default function Intro() {
           <p className="m-0 max-w-[46ch] flex-[1_1_320px] text-hero-sub [text-wrap:pretty]">
             {t.heroSub}
           </p>
+          <ul className="m-0 grid flex-[0_1_340px] list-none gap-[7px] p-0">
+            {t.status.map((item) => (
+              <li
+                key={item.k}
+                className="flex justify-between gap-[18px] font-mono text-xs text-mut"
+              >
+                <span className="text-fg">{item.k}</span>
+                <span>{item.v}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </motion.div>
     </section>
