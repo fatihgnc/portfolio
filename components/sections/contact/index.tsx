@@ -4,7 +4,7 @@ import { useRef, useState, type FormEvent } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { useSiteState } from "@/components/providers/site-state";
-import IconLinks from "@/components/ui/icon-links";
+import IconLinks, { LinkDot } from "@/components/ui/icon-links";
 import { site } from "@/content/site";
 
 const fieldClass =
@@ -145,8 +145,9 @@ export default function Contact() {
         </div>
       </div>
 
-      <footer className="mt-[clamp(46px,9vh,92px)] flex flex-wrap items-center justify-between gap-x-7 gap-y-4 border-t border-line pt-[18px] font-mono text-[10.5px] uppercase tracking-[0.16em] text-mut">
+      <footer className="mt-[clamp(46px,9vh,92px)] flex flex-wrap items-center justify-center gap-3 border-t border-line pt-[18px] font-mono text-[10.5px] uppercase tracking-[0.16em] text-mut">
         <IconLinks size={17} />
+        <LinkDot />
         <span>{t.footerB}</span>
       </footer>
     </section>

@@ -18,19 +18,30 @@ const ICONS: Partial<Record<LinkIcon, ReactNode>> = {
   ),
 };
 
+/** Linkler arasındaki nokta ayraç. */
+export function LinkDot() {
+  return (
+    <span aria-hidden className="select-none text-mut opacity-50">
+      ·
+    </span>
+  );
+}
+
 type IconLinksProps = {
   /** ikon kenar uzunluğu (px) */
   size?: number;
   className?: string;
 };
 
-/** github · linkedin · cv · app store — metin yerine ikon şeridi. */
+/** github · linkedin · app store · cv — ikon (ve CV için metin) şeridi. */
 export default function IconLinks({ size = 16, className }: IconLinksProps) {
   const { t } = useSiteState();
   const links = site.links.filter((link) => link.icon);
 
   return (
-    <div className={`flex items-center gap-3 min-[520px]:gap-[14px] ${className ?? ""}`}>
+    <div
+      className={`flex items-center gap-3 min-[520px]:gap-[14px] ${className ?? ""}`}
+    >
       {links.map((link) => {
         const icon = link.icon as LinkIcon;
         const label = t.iconLabels[icon];
