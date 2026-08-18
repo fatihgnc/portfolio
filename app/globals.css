@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------
+   Tasarım token'ları — koyu tema varsayılan, açık tema data-theme ile
+   --------------------------------------------------------------- */
+:root {
+  --ac: #ff4a17;
+  --bg: #0c0c0e;
+  --fg: #f3f1ea;
+  --mut: #8b8b95;
+  --line: rgba(255, 255, 255, 0.14);
+  --card: #141418;
+  --soft: rgba(255, 255, 255, 0.045);
+  --veil: rgba(12, 12, 14, 0.62);
+  --glow: 0.17;
+  --grain: 0.055;
+  --mx: 60%;
+  --my: 22%;
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: #f0eee7;
+  --fg: #141418;
+  --mut: #6b6b74;
+  --line: rgba(0, 0, 0, 0.16);
+  --card: #faf9f5;
+  --soft: rgba(0, 0, 0, 0.05);
+  --veil: rgba(240, 238, 231, 0.7);
+  --glow: 0.22;
+  --grain: 0.09;
+  color-scheme: light;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--line);
+  }
+
+  html {
+    background: var(--bg);
+    max-width: 100%;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  /* film grain */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: -50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: var(--grain);
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
+  }
+
+  a {
+    color: var(--ac);
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--ac);
+    color: #0c0c0e;
+  }
+
+  input,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--mut);
+    opacity: 0.55;
+  }
+
+  input:focus,
+  textarea:focus {
+    outline: none;
+    border-bottom-color: var(--ac);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ac);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* MDX case study gövdesi — tasarımdaki ikincil paragraf ritmi */
+  .case-body p {
+    margin: 12px 0 0;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--mut);
+    max-width: 44ch;
+    text-wrap: pretty;
+  }
+
+  .case-body p:first-child {
+    margin-top: 0;
+  }
+
+  .case-body strong {
+    color: var(--fg);
+    font-weight: 500;
+  }
+
+  .case-body a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
