@@ -20,8 +20,9 @@ export default function ThemeToggle() {
         className="absolute left-[2px] top-[2px] h-[22px] w-[22px] rounded-full bg-accent transition-transform duration-[340ms] ease-[cubic-bezier(.3,1.5,.5,1)]"
         style={{ transform: `translateX(${dark ? 30 : 0}px)` }}
       />
+      {/* ikon yuvaları knob ile birebir aynı kutuda: sol 2px, 22x22 */}
       <span
-        className={`relative z-[2] flex w-7 items-center justify-center transition-colors ${
+        className={`absolute left-[2px] top-[2px] z-[2] flex h-[22px] w-[22px] items-center justify-center transition-colors ${
           dark ? "text-mut" : "text-ink"
         }`}
       >
@@ -35,7 +36,7 @@ export default function ThemeToggle() {
         </svg>
       </span>
       <span
-        className={`relative z-[2] flex w-7 items-center justify-center transition-colors ${
+        className={`absolute left-[32px] top-[2px] z-[2] flex h-[22px] w-[22px] items-center justify-center transition-colors ${
           dark ? "text-ink" : "text-mut"
         }`}
       >
