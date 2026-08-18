@@ -5,7 +5,7 @@ import type { Config } from "tailwindcss";
  * (100vw - sidebar). Aksi hâlde büyük başlıklar içeriği taşırıyor.
  */
 const CW = (factor: number, min: number, max: number) =>
-  `clamp(${min}px, calc((100vw - var(--sb)) * ${factor}), ${max}px)`;
+  `clamp(${min}px, calc((100vw - var(--sb) - 2 * var(--gut)) * ${factor}), ${max}px)`;
 
 const config: Config = {
   content: [
@@ -37,19 +37,19 @@ const config: Config = {
       },
       fontSize: {
         // tipografi ölçeği — tasarımdaki clamp() değerleri
-        hero: [CW(0.152, 48, 250), { lineHeight: "0.84", letterSpacing: "-0.035em" }],
-        "section-title": [CW(0.044, 26, 62), { lineHeight: "1.02", letterSpacing: "-0.03em" }],
-        "project-title": [CW(0.054, 30, 82), { lineHeight: "0.95", letterSpacing: "-0.04em" }],
-        "contact-title": [CW(0.08, 40, 118), { lineHeight: "0.92", letterSpacing: "-0.045em" }],
-        "about-title": [CW(0.042, 28, 58), { lineHeight: "1.02", letterSpacing: "-0.03em" }],
-        "job-title": [CW(0.032, 22, 46), { lineHeight: "1.05", letterSpacing: "-0.03em" }],
+        hero: [CW(0.19, 48, 340), { lineHeight: "0.84", letterSpacing: "-0.035em" }],
+        "section-title": [CW(0.047, 26, 62), { lineHeight: "1.02", letterSpacing: "-0.03em" }],
+        "project-title": [CW(0.058, 30, 82), { lineHeight: "0.95", letterSpacing: "-0.04em" }],
+        "contact-title": [CW(0.086, 40, 118), { lineHeight: "0.92", letterSpacing: "-0.045em" }],
+        "about-title": [CW(0.045, 28, 58), { lineHeight: "1.02", letterSpacing: "-0.03em" }],
+        "job-title": [CW(0.034, 22, 46), { lineHeight: "1.05", letterSpacing: "-0.03em" }],
         lead: ["clamp(17px, 1.7vw, 24px)", { lineHeight: "1.4" }],
         "hero-sub": ["clamp(16px, 1.5vw, 21px)", { lineHeight: "1.5" }],
         label: ["11px", { lineHeight: "1.4", letterSpacing: "0.2em" }],
         "label-sm": ["10.5px", { lineHeight: "1.4", letterSpacing: "0.18em" }],
       },
       spacing: {
-        gut: "clamp(16px, 4vw, 44px)",
+        gut: "var(--gut)",
         band: "clamp(60px, 12vh, 130px)",
       },
       keyframes: {

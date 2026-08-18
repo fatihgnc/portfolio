@@ -134,6 +134,7 @@ export const copy = {
   role: "frontend & indie mobile developer",
   heroL1: "Fatih",
   heroL2: "Genç",
+  alias: "aka “fato”",
   heroSub:
     "For four years I built other people's products. Last year I started building my own.",
   status: [

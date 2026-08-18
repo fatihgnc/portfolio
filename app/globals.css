@@ -21,6 +21,8 @@
   --my: 22%;
   /* sidebar genişliği — tipografi ölçeği ve içerik payı buna bakar */
   --sb: 0px;
+  /* bölüm iç boşluğu; tipografi ölçeği de bunu düşer */
+  --gut: clamp(16px, 4vw, 44px);
   color-scheme: dark;
 }
 

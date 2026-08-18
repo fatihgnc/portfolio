@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { useSiteState } from "@/components/providers/site-state";
+import TerminalCard from "@/components/ui/terminal-card";
 
 /** Açılış: ortalanmış hero değil, aşağı hizalı kişisel bir giriş. */
 export default function Intro() {
@@ -17,12 +18,21 @@ export default function Intro() {
   });
   const titleY = useTransform(scrollYProgress, [0, 1], [0, 110]);
   const subY = useTransform(scrollYProgress, [0, 1], [0, 44]);
+  const termY = useTransform(scrollYProgress, [0, 1], [0, 150]);
 
   return (
     <section
       ref={ref}
       className="relative z-[1] flex min-h-[100svh] flex-col justify-end px-gut pb-[clamp(20px,4vh,40px)] pt-[120px]"
     >
+      {/* durum penceresi üst kenarı tutar, isim alt kenarı */}
+      <motion.div
+        style={reduced ? undefined : { y: termY }}
+        className="mb-auto flex justify-end"
+      >
+        <TerminalCard />
+      </motion.div>
+
       {/* Türkçe özel ad: sayfa dili en olsa da "Fatih" → "FATİH" olsun */}
       <motion.h1
         lang="tr"
@@ -35,24 +45,16 @@ export default function Intro() {
         </span>
       </motion.h1>
 
-      <motion.div
-        style={reduced ? undefined : { y: subY }}
-        className="mt-[clamp(24px,5vh,52px)] flex flex-wrap items-end justify-between gap-x-12 gap-y-6 border-t border-line pt-[22px]"
-      >
-        <p className="m-0 max-w-[46ch] flex-[1_1_320px] text-hero-sub [text-wrap:pretty]">
-          {t.heroSub}
+      <motion.div style={reduced ? undefined : { y: subY }}>
+        <p className="m-0 mt-[clamp(10px,1.5vh,18px)] font-mono text-[13px] uppercase tracking-[0.22em] text-mut">
+          {t.alias}
         </p>
-        <ul className="m-0 grid flex-[0_1_340px] list-none gap-[7px] p-0">
-          {t.status.map((item) => (
-            <li
-              key={item.k}
-              className="flex justify-between gap-[18px] font-mono text-xs text-mut"
-            >
-              <span className="text-fg">{item.k}</span>
-              <span>{item.v}</span>
-            </li>
-          ))}
-        </ul>
+
+        <div className="mt-[clamp(20px,4vh,44px)] flex flex-wrap items-end justify-between gap-x-12 gap-y-6 border-t border-line pt-[22px]">
+          <p className="m-0 max-w-[46ch] flex-[1_1_320px] text-hero-sub [text-wrap:pretty]">
+            {t.heroSub}
+          </p>
+        </div>
       </motion.div>
     </section>
   );
