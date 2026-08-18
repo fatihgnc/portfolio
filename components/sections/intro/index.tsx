@@ -1,35 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 
 import { useSiteState } from "@/components/providers/site-state";
 
-function useIstanbulClock() {
-  const [clock, setClock] = useState("");
-
-  useEffect(() => {
-    const read = () =>
-      setClock(
-        new Date().toLocaleTimeString("tr-TR", {
-          timeZone: "Europe/Istanbul",
-          hour: "2-digit",
-          minute: "2-digit",
-        }),
-      );
-
-    read();
-    const id = setInterval(read, 30_000);
-    return () => clearInterval(id);
-  }, []);
-
-  return clock;
-}
-
 /** Açılış: ortalanmış hero değil, aşağı hizalı kişisel bir giriş. */
 export default function Intro() {
   const ref = useRef<HTMLElement>(null);
-  const clock = useIstanbulClock();
   const { t } = useSiteState();
   const reduced = useReducedMotion();
 
@@ -45,16 +23,6 @@ export default function Intro() {
       ref={ref}
       className="relative z-[1] flex min-h-[100svh] flex-col justify-end px-gut pb-[clamp(20px,4vh,40px)] pt-[120px]"
     >
-      <div className="flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
-        <p className="m-0 font-mono text-label uppercase text-accent">
-          {t.kicker}
-        </p>
-        <p className="m-0 font-mono text-label uppercase text-mut">
-          {clock}
-          <span className="animate-blink text-accent">_</span>
-        </p>
-      </div>
-
       <motion.h1
         style={reduced ? undefined : { y: titleY }}
         className="mt-[clamp(14px,3vh,34px)] max-w-full pb-[0.16em] font-display text-hero font-extrabold uppercase"
