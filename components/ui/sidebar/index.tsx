@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 
 import { useSiteState } from "@/components/providers/site-state";
 import Icon from "@/components/ui/icons";
@@ -96,9 +97,14 @@ export default function Sidebar() {
         }`}
       >
         <div className="flex items-center gap-[11px] px-1 pb-5">
-          <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-full border border-accent font-display text-[13px] font-bold tracking-[-0.02em] text-accent">
-            FG
-          </span>
+          <Image
+            src="/profile.jpg"
+            alt={site.name}
+            width={38}
+            height={38}
+            priority
+            className="h-[38px] w-[38px] flex-none rounded-full border border-accent object-cover"
+          />
           <span className="flex min-w-0 flex-col gap-[2px]">
             <span className="font-display text-[15px] font-bold tracking-[-0.01em]">
               {site.name}

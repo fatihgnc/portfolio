@@ -80,6 +80,7 @@ yapılır (`@/components/sections/intro`).
   `.en` dosyası birlikte tutulur, dil değişimi anlıktır.
 - **Sıralama:** `lib/mdx.ts` içindeki `PROJECT_SLUGS`.
 - **Deneyim:** `content/site.ts` içindeki `jobs` dizisi (tr/en ayrı).
+- **Profil fotoğrafı:** `public/profile.jpg` (sidebar'da 38×38, yuvarlak).
 - **CV:** `public/fatih-genc-cv.pdf`. Link `content/site.ts` → `links`
   içinde; `download` alanı dolu olan link indirme olarak davranır.
 - **Linkler:** iki liste var. `links` footer'daki ikon şeridini,
