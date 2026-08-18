@@ -46,7 +46,7 @@ export default function Intro() {
       </motion.h1>
 
       <motion.div style={reduced ? undefined : { y: subY }}>
-        <p className="m-0 mt-[clamp(10px,1.5vh,18px)] font-mono text-[13px] uppercase tracking-[0.22em] text-mut">
+        <p className="m-0 mt-[clamp(10px,1.5vh,18px)] font-mono text-[13px] uppercase tracking-[0.22em] text-accent">
           {t.alias}
         </p>
 
