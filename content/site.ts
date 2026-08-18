@@ -120,11 +120,12 @@ export const site = {
     "Cursor",
   ],
   links,
+  /** hakkımda bölümündeki gruplar — şeritle aynı araçlar */
   tools: [
-    { label: "interface", items: "React · Next.js · TypeScript · Tailwind" },
-    { label: "mobile", items: "Swift · SwiftUI · MapKit · CoreLocation" },
-    { label: "backend", items: "Supabase · Postgres · next-intl" },
-    { label: "desk", items: "VS Code · Xcode · Figma · Claude Code · Vercel" },
+    { label: "interface", items: "React · Next.js · Tailwind" },
+    { label: "mobile", items: "React Native" },
+    { label: "backend", items: "Node.js · MongoDB · Supabase" },
+    { label: "desk", items: "Claude Code · Cursor" },
   ],
 } as const;
 
