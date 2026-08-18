@@ -100,10 +100,10 @@ export default function Sidebar() {
           <Image
             src="/profile.jpg"
             alt={site.name}
-            width={38}
-            height={38}
+            width={52}
+            height={52}
             priority
-            className="h-[38px] w-[38px] flex-none rounded-full border border-accent object-cover"
+            className="h-[52px] w-[52px] flex-none rounded-full object-cover"
           />
           <span className="flex min-w-0 flex-col gap-[2px]">
             <span className="font-display text-[15px] font-bold tracking-[-0.01em]">
