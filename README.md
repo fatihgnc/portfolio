@@ -78,7 +78,10 @@ yapılır (`@/components/sections/intro`).
   gövde metni kartın küçük puntolu paragrafına gider.
 - **Sıralama:** `lib/mdx.ts` içindeki `PROJECT_SLUGS`.
 - **Deneyim:** `content/site.ts` içindeki `jobs` dizisi.
-- **Profil fotoğrafı:** `public/profile.jpg` (sidebar'da 38×38, yuvarlak).
+- **Profil fotoğrafı:** `public/profile.jpg` (sidebar'da yuvarlak).
+- **Proje ekran görüntüleri:** `public/shots/` altına koyup MDX frontmatter'a
+  `image: /shots/dosya.png` eklemek yeterli; alan boşsa kart yer tutucu metni
+  gösterir.
 - **CV:** `public/fatih-genc-cv.pdf`. Link `content/site.ts` → `links`
   içinde; `download` alanı dolu olan link indirme olarak davranır.
 - **Linkler:** iki liste var. `links` footer'daki ikon şeridini,

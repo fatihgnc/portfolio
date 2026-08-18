@@ -22,6 +22,8 @@ export type ProjectMeta = {
   href: string;
   /** görsel yerine geçen not */
   shot: string;
+  /** varsa kartta gösterilen ekran görüntüsü (public altındaki yol) */
+  image?: string;
 };
 
 /** Frontmatter + gövde kaynağı; gövde sunucuda MDX olarak render edilir. */
@@ -41,6 +43,11 @@ function toMeta(data: Record<string, unknown>, file: string): ProjectMeta {
     }
   }
 
+  const image = data.image;
+  if (image !== undefined && typeof image !== "string") {
+    throw new Error(`${file}: frontmatter "image" bir yol olmalı`);
+  }
+
   return {
     order: data.order as string,
     title: data.title as string,
@@ -50,6 +57,7 @@ function toMeta(data: Record<string, unknown>, file: string): ProjectMeta {
     link: data.link as string,
     href: data.href as string,
     shot: data.shot as string,
+    ...(image ? { image } : {}),
   };
 }
 

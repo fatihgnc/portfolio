@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useRef, type CSSProperties, type PointerEvent, type ReactNode } from "react";
+import Image from "next/image";
 
 import { useSiteState } from "@/components/providers/site-state";
 import Reveal from "@/components/ui/reveal-text";
@@ -114,7 +115,7 @@ export default function ProjectCase({
           ref={shotRef}
           onPointerMove={onPointerMove}
           onPointerLeave={onPointerLeave}
-          className={`flex aspect-[4/3] min-w-0 items-end rounded-md border border-line bg-card p-4 [transform-style:preserve-3d] transition-[transform,border-color] duration-[400ms] ease-[cubic-bezier(.2,.7,.3,1)] [transform:rotate(var(--tilt))] hover:border-accent ${
+          className={`relative flex aspect-[4/3] min-w-0 items-end overflow-hidden rounded-md border border-line bg-card p-4 [transform-style:preserve-3d] transition-[transform,border-color] duration-[400ms] ease-[cubic-bezier(.2,.7,.3,1)] [transform:rotate(var(--tilt))] hover:border-accent ${
             flipped ? "min-[900px]:order-1" : ""
           }`}
           style={
@@ -125,9 +126,19 @@ export default function ProjectCase({
             } as CSSProperties
           }
         >
-          <span className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-mut">
-            {content.shot} — {t.shotHint}
-          </span>
+          {content.image ? (
+            <Image
+              src={content.image}
+              alt={`${content.title} — ${content.shot}`}
+              fill
+              sizes="(min-width: 900px) 45vw, 92vw"
+              className="object-cover"
+            />
+          ) : (
+            <span className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-mut">
+              {content.shot} — {t.shotHint}
+            </span>
+          )}
         </div>
       </article>
     </Reveal>
