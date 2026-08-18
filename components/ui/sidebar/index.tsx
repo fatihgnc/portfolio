@@ -3,6 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { useSiteState } from "@/components/providers/site-state";
+import Icon from "@/components/ui/icons";
+import LangSwitch from "@/components/ui/lang-switch";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { nav, site, social } from "@/content/site";
 import { scrollToSection } from "@/lib/scroll";
 
@@ -100,8 +103,12 @@ export default function Sidebar() {
             <span className="font-display text-[15px] font-bold tracking-[-0.01em]">
               {site.name}
             </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-mut">
-              {t.sidebarRole}
+            {/* İngilizce terim: TR modunda "i" → "İ" olmasın diye lang="en" */}
+            <span
+              lang="en"
+              className="font-mono text-[10px] uppercase leading-[1.5] tracking-[0.1em] text-mut"
+            >
+              {t.role}
             </span>
           </span>
         </div>
@@ -142,7 +149,7 @@ export default function Sidebar() {
           {t.onlineLabel}
         </p>
 
-        <div className="flex flex-col gap-px pb-2">
+        <div className="flex flex-col gap-px pb-4">
           {social.map((item) => (
             <a
               key={item.label}
@@ -153,15 +160,19 @@ export default function Sidebar() {
               title={item.value[lang]}
               className="flex items-center gap-[10px] rounded-[9px] px-3 py-2 text-[13px] text-fg transition-colors duration-200 hover:bg-soft"
             >
-              <span className="flex h-[22px] w-[22px] flex-none items-center justify-center rounded-md border border-line font-mono text-[9px] text-mut">
-                {item.mono}
+              <span className="flex h-[22px] w-[22px] flex-none items-center justify-center rounded-md border border-line text-mut">
+                <Icon name={item.icon} size={12} />
               </span>
               <span className="min-w-0 flex-1 truncate">{item.label}</span>
               <span aria-hidden className="flex-none text-xs text-mut">
-                ↗
+                {item.download ? "↓" : "↗"}
               </span>
             </a>
           ))}
+        </div>
+        <div className="mt-auto flex items-center justify-between gap-3 border-t border-line px-3 pt-4">
+          <LangSwitch />
+          <ThemeToggle />
         </div>
       </aside>
     </>

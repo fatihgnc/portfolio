@@ -3,12 +3,12 @@
  * geri kalan arayüz metinleri burada — iki dil, tek kaynak.
  */
 
+import type { IconName } from "@/components/ui/icons";
+
 export const LANGS = ["tr", "en"] as const;
 export type Lang = (typeof LANGS)[number];
 
 export type Theme = "dark" | "light";
-
-export type LinkIcon = "github" | "linkedin" | "cv" | "appstore";
 
 export type SiteLink = {
   label: Record<Lang, string>;
@@ -17,7 +17,7 @@ export type SiteLink = {
   /** dolu ise link indirme olarak davranır; değer indirilen dosya adıdır */
   download?: string;
   /** ikon şeridindeki görsel */
-  icon?: LinkIcon;
+  icon?: IconName;
   /** ikon şeridinde ikon yerine bu metin gösterilir (ör. "CV") */
   iconText?: string;
 };
@@ -68,8 +68,7 @@ export const nav: NavItem[] = [
 ];
 
 export type SocialLink = {
-  /** kutucuktaki kısa kod */
-  mono: string;
+  icon: IconName;
   label: string;
   value: Record<Lang, string>;
   href: string;
@@ -80,49 +79,31 @@ export type SocialLink = {
 /** Sidebar'daki bağlantı listesi. */
 export const social: SocialLink[] = [
   {
-    mono: "GH",
+    icon: "github",
     label: "GitHub",
     value: { tr: "fatihgnc", en: "fatihgnc" },
     href: "https://github.com/fatihgnc",
   },
   {
-    mono: "IN",
+    icon: "linkedin",
     label: "LinkedIn",
     value: { tr: "in/fatihgnc", en: "in/fatihgnc" },
     href: "https://linkedin.com/in/fatihgnc",
   },
   {
-    mono: "X",
-    label: "X (Twitter)",
-    value: { tr: "@fuckthisiat", en: "@fuckthisiat" },
-    href: "https://x.com/fuckthisiat",
-  },
-  {
-    mono: "AS",
+    icon: "appstore",
     label: "App Store",
     value: { tr: "SecretMap", en: "SecretMap" },
     href: "#",
   },
   {
-    mono: "MX",
-    label: "mamamix",
-    value: { tr: "mamamix.com.tr", en: "mamamix.com.tr" },
-    href: "https://mamamix.com.tr",
-  },
-  {
-    mono: "CAL",
-    label: "Cal.com",
-    value: { tr: "görüşme ayarla", en: "book a call" },
-    href: "#",
-  },
-  {
-    mono: "@",
+    icon: "mail",
     label: "E-posta",
     value: { tr: "fatihgnc.dev@gmail.com", en: "fatihgnc.dev@gmail.com" },
     href: "mailto:fatihgnc.dev@gmail.com",
   },
   {
-    mono: "CV",
+    icon: "cv",
     label: "CV",
     value: { tr: "PDF olarak indir", en: "download as PDF" },
     href: "/fatih-genc-cv.pdf",
@@ -155,7 +136,6 @@ export const site = {
 export const copy = {
   tr: {
     role: "frontend & indie mobile developer",
-    kicker: "müsait",
     heroL1: "Fatih",
     heroL2: "Genç",
     heroSub:
@@ -232,13 +212,13 @@ export const copy = {
     sentBody:
       "Açılmadıysa doğrudan fatihgnc.dev@gmail.com adresine yazabilirsin.",
     again: "yeni mesaj",
-    sidebarRole: "Frontend Developer",
     onlineLabel: "çevrimiçi",
     navLabel: "sayfa",
     menuLabel: "menü",
     iconLabels: {
       github: "GitHub profilim",
       linkedin: "LinkedIn profilim",
+      mail: "Bana e-posta gönder",
       cv: "CV'mi indir (PDF)",
       appstore: "App Store'da SecretMap",
     },
@@ -249,7 +229,6 @@ export const copy = {
   },
   en: {
     role: "frontend & indie mobile developer",
-    kicker: "available",
     heroL1: "Fatih",
     heroL2: "Genç",
     heroSub:
@@ -325,13 +304,13 @@ export const copy = {
     sentTitle: "Your mail app is open.",
     sentBody: "If it didn't open, write to fatihgnc.dev@gmail.com directly.",
     again: "new message",
-    sidebarRole: "Frontend Developer",
     onlineLabel: "online",
     navLabel: "page",
     menuLabel: "menu",
     iconLabels: {
       github: "My GitHub profile",
       linkedin: "My LinkedIn profile",
+      mail: "Send me an e-mail",
       cv: "Download my CV (PDF)",
       appstore: "SecretMap on the App Store",
     },

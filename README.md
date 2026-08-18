@@ -58,8 +58,13 @@ components/
     pointer-glow/       → imleci takip eden accent parıltı
     marquee/            → eğik kayan şerit
     mdx-body/           → MDX gövdesini sunucuda render eder
-    icon-links/         → github · linkedin · cv · app store ikon şeridi
-    site-header/        → isim, ikon şeridi, TR/EN, tema anahtarı
+    icons/              → paylaşılan SVG ikon seti
+    icon-links/         → footer'daki ikon şeridi
+    sidebar/            → kimlik, bölüm gezinmesi (1–5), linkler, TR/EN + tema
+    lang-switch/        → TR / EN geçişi
+    theme-toggle/       → koyu / açık tema anahtarı
+    site-header/        → yalnızca dar ekran: isim + çekmece düğmesi
+    fx-canvas/          → arka plan noktaları + tel kafes gövde (three.js)
 lib/
   mdx.ts                → MDX okuma/frontmatter yardımcıları
 ```
@@ -77,10 +82,10 @@ yapılır (`@/components/sections/intro`).
 - **Deneyim:** `content/site.ts` içindeki `jobs` dizisi (tr/en ayrı).
 - **CV:** `public/fatih-genc-cv.pdf`. Link `content/site.ts` → `links`
   içinde; `download` alanı dolu olan link indirme olarak davranır.
-- **Linkler:** `content/site.ts` → `links`. `icon` alanı dolu olanlar
-  (github, linkedin, cv, app store) header ve footer'daki ikon şeridinde;
-  `icon`'suz olanlar iletişim bölümündeki metin listesinde görünür. İkonların
-  erişilebilirlik metinleri her dilde `iconLabels` içinde.
+- **Linkler:** iki liste var. `links` footer'daki ikon şeridini,
+  `social` sidebar'daki listeyi besler. İkon adları
+  `components/ui/icons` içindeki setten gelir; erişilebilirlik metinleri her
+  dilde `iconLabels` içinde.
 - **Diğer tüm metinler:** `content/site.ts`.
 - **Renkler:** `app/globals.css` içindeki `:root` / `:root[data-theme="light"]`
   token'ları. Accent tek yerde: `--ac`.
