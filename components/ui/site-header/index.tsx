@@ -33,12 +33,12 @@ function LangLink({ code, label }: { code: Lang; label: string }) {
 }
 
 export default function SiteHeader() {
-  const { t, theme, toggleTheme } = useSiteState();
+  const { t, theme, toggleTheme, setNavOpen } = useSiteState();
   const dark = theme === "dark";
   const themeLabel = dark ? t.themeToLight : t.themeToDark;
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-4 border-b border-line bg-veil px-gut py-[14px] font-mono text-label uppercase text-fg backdrop-blur-[14px]">
+    <header className="fixed right-0 top-0 z-50 left-[var(--sb)] flex items-center justify-between gap-4 border-b border-line bg-veil px-gut py-[14px] font-mono text-label uppercase text-fg backdrop-blur-[14px]">
       <span className="whitespace-nowrap font-medium">{site.name}</span>
 
       <div className="flex items-center gap-[14px]">
@@ -49,7 +49,7 @@ export default function SiteHeader() {
 
         <Rule className="hidden min-[900px]:block" />
 
-        <IconLinks size={15} />
+        <IconLinks size={15} className="hidden min-[520px]:flex" />
 
         <Rule className="hidden min-[520px]:block" />
 
@@ -99,6 +99,17 @@ export default function SiteHeader() {
               <path d="M20.8 13.4A8.6 8.6 0 1 1 10.6 3.2a6.7 6.7 0 0 0 10.2 10.2z" />
             </svg>
           </span>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setNavOpen(true)}
+          aria-label={t.menuLabel}
+          title={t.menuLabel}
+          className="flex cursor-pointer flex-col gap-1 rounded-lg border border-line bg-transparent px-[10px] py-[9px] min-[900px]:hidden"
+        >
+          <span aria-hidden className="block h-[1.5px] w-4 bg-fg" />
+          <span aria-hidden className="block h-[1.5px] w-4 bg-fg" />
         </button>
       </div>
     </header>

@@ -21,8 +21,11 @@ type SiteState = {
   t: Copy;
   /** ilk render'dan sonra true — hydration'a bağlı değerler için */
   ready: boolean;
+  /** dar ekranda sidebar çekmecesi açık mı */
+  navOpen: boolean;
   setLang: (lang: Lang) => void;
   toggleTheme: () => void;
+  setNavOpen: (open: boolean) => void;
 };
 
 const SiteStateContext = createContext<SiteState | null>(null);
@@ -35,6 +38,7 @@ export function SiteStateProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("tr");
   const [theme, setTheme] = useState<Theme>("dark");
   const [ready, setReady] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     try {
@@ -75,9 +79,28 @@ export function SiteStateProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
+  // çekmece açıkken arka plan kaymasın
+  useEffect(() => {
+    if (!navOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [navOpen]);
+
   const value = useMemo<SiteState>(
-    () => ({ lang, theme, t: copy[lang], ready, setLang, toggleTheme }),
-    [lang, theme, ready, setLang, toggleTheme],
+    () => ({
+      lang,
+      theme,
+      t: copy[lang],
+      ready,
+      navOpen,
+      setLang,
+      toggleTheme,
+      setNavOpen,
+    }),
+    [lang, theme, ready, navOpen, setLang, toggleTheme],
   );
 
   return (

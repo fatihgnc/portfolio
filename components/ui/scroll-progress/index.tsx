@@ -9,7 +9,7 @@ export default function ScrollProgress() {
   return (
     <motion.div
       aria-hidden
-      className="fixed left-0 top-0 z-[60] h-[2px] w-full origin-left bg-accent"
+      className="fixed left-[var(--sb)] right-0 top-0 z-[60] h-[2px] w-auto origin-left bg-accent"
       style={{ scaleX: scrollYProgress }}
     />
   );

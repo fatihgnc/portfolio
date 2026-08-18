@@ -3,6 +3,8 @@
 import { useEffect, type ReactNode } from "react";
 import Lenis from "lenis";
 
+import { setLenis } from "@/lib/scroll";
+
 /** Sayfaya hikâye akışı hissi veren yumuşak scroll sarmalayıcısı. */
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -14,6 +16,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
       touchMultiplier: 1.6,
     });
 
+    setLenis(lenis);
+
     let frame = requestAnimationFrame(function loop(time: number) {
       lenis.raf(time);
       frame = requestAnimationFrame(loop);
@@ -21,6 +25,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
 
     return () => {
       cancelAnimationFrame(frame);
+      setLenis(null);
       lenis.destroy();
     };
   }, []);

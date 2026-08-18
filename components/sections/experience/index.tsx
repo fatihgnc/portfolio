@@ -42,7 +42,7 @@ export default function Experience() {
             </div>
 
             <div className="min-w-0">
-              <h3 className="m-0 font-display text-[clamp(24px,3.2vw,46px)] font-bold leading-[1.05] tracking-[-0.03em] [overflow-wrap:break-word]">
+              <h3 className="m-0 font-display text-job-title font-bold [overflow-wrap:break-word]">
                 {job.co}
               </h3>
               <p className="mt-3 max-w-[46ch] text-[clamp(15px,1.3vw,19px)] leading-[1.5] [text-wrap:pretty]">

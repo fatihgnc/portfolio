@@ -20,7 +20,7 @@ export default function About() {
         </p>
 
         <div className="grid grid-cols-1 gap-[clamp(26px,5vw,80px)] min-[900px]:grid-cols-[1fr_1.15fr]">
-          <h2 className="m-0 font-display text-[clamp(30px,4.2vw,58px)] font-bold leading-[1.02] tracking-[-0.03em] [text-wrap:pretty]">
+          <h2 className="m-0 font-display text-about-title font-bold [text-wrap:pretty]">
             {t.aboutTitle}
           </h2>
 

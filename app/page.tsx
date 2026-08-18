@@ -8,6 +8,7 @@ import Marquee from "@/components/ui/marquee";
 import MdxBody from "@/components/ui/mdx-body";
 import PointerGlow from "@/components/ui/pointer-glow";
 import ScrollProgress from "@/components/ui/scroll-progress";
+import Sidebar from "@/components/ui/sidebar";
 import SiteHeader from "@/components/ui/site-header";
 import SmoothScroll from "@/components/ui/smooth-scroll";
 import { site } from "@/content/site";
@@ -30,9 +31,10 @@ export default async function Page() {
     <SmoothScroll>
       <PointerGlow />
       <ScrollProgress />
+      <Sidebar />
       <SiteHeader />
 
-      <main>
+      <main className="ml-[var(--sb)]">
         <Intro />
         <Marquee text={site.ticker} />
         <Work cases={cases} />

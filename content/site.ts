@@ -51,6 +51,85 @@ const links: SiteLink[] = [
   },
 ];
 
+export type NavItem = {
+  /** bölüm id'si; "top" sayfa başı demek */
+  id: "top" | "work" | "experience" | "about" | "contact";
+  /** klavye kısayolu */
+  key: string;
+  label: Record<Lang, string>;
+};
+
+export const nav: NavItem[] = [
+  { id: "top", key: "1", label: { tr: "Başlangıç", en: "Start" } },
+  { id: "work", key: "2", label: { tr: "İşler", en: "Work" } },
+  { id: "experience", key: "3", label: { tr: "Deneyim", en: "Experience" } },
+  { id: "about", key: "4", label: { tr: "Arka plan", en: "Background" } },
+  { id: "contact", key: "5", label: { tr: "İletişim", en: "Contact" } },
+];
+
+export type SocialLink = {
+  /** kutucuktaki kısa kod */
+  mono: string;
+  label: string;
+  value: Record<Lang, string>;
+  href: string;
+  /** dolu ise indirme */
+  download?: string;
+};
+
+/** Sidebar'daki bağlantı listesi. */
+export const social: SocialLink[] = [
+  {
+    mono: "GH",
+    label: "GitHub",
+    value: { tr: "fatihgnc", en: "fatihgnc" },
+    href: "https://github.com/fatihgnc",
+  },
+  {
+    mono: "IN",
+    label: "LinkedIn",
+    value: { tr: "in/fatihgnc", en: "in/fatihgnc" },
+    href: "https://linkedin.com/in/fatihgnc",
+  },
+  {
+    mono: "X",
+    label: "X (Twitter)",
+    value: { tr: "@fuckthisiat", en: "@fuckthisiat" },
+    href: "https://x.com/fuckthisiat",
+  },
+  {
+    mono: "AS",
+    label: "App Store",
+    value: { tr: "SecretMap", en: "SecretMap" },
+    href: "#",
+  },
+  {
+    mono: "MX",
+    label: "mamamix",
+    value: { tr: "mamamix.com.tr", en: "mamamix.com.tr" },
+    href: "https://mamamix.com.tr",
+  },
+  {
+    mono: "CAL",
+    label: "Cal.com",
+    value: { tr: "görüşme ayarla", en: "book a call" },
+    href: "#",
+  },
+  {
+    mono: "@",
+    label: "E-posta",
+    value: { tr: "fatihgnc.dev@gmail.com", en: "fatihgnc.dev@gmail.com" },
+    href: "mailto:fatihgnc.dev@gmail.com",
+  },
+  {
+    mono: "CV",
+    label: "CV",
+    value: { tr: "PDF olarak indir", en: "download as PDF" },
+    href: "/fatih-genc-cv.pdf",
+    download: "Fatih-Genc-Frontend-Developer-CV.pdf",
+  },
+];
+
 export const site = {
   name: "Fatih Genç",
   email: "fatihgnc.dev@gmail.com",
@@ -153,6 +232,10 @@ export const copy = {
     sentBody:
       "Açılmadıysa doğrudan fatihgnc.dev@gmail.com adresine yazabilirsin.",
     again: "yeni mesaj",
+    sidebarRole: "Frontend Developer",
+    onlineLabel: "çevrimiçi",
+    navLabel: "sayfa",
+    menuLabel: "menü",
     iconLabels: {
       github: "GitHub profilim",
       linkedin: "LinkedIn profilim",
@@ -242,6 +325,10 @@ export const copy = {
     sentTitle: "Your mail app is open.",
     sentBody: "If it didn't open, write to fatihgnc.dev@gmail.com directly.",
     again: "new message",
+    sidebarRole: "Frontend Developer",
+    onlineLabel: "online",
+    navLabel: "page",
+    menuLabel: "menu",
     iconLabels: {
       github: "My GitHub profile",
       linkedin: "My LinkedIn profile",

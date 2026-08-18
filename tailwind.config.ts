@@ -1,5 +1,12 @@
 import type { Config } from "tailwindcss";
 
+/**
+ * Sidebar açıkken tipografi viewport'a değil, içerik genişliğine göre ölçeklenir
+ * (100vw - sidebar). Aksi hâlde büyük başlıklar içeriği taşırıyor.
+ */
+const CW = (factor: number, min: number, max: number) =>
+  `clamp(${min}px, calc((100vw - var(--sb)) * ${factor}), ${max}px)`;
+
 const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
@@ -30,10 +37,12 @@ const config: Config = {
       },
       fontSize: {
         // tipografi ölçeği — tasarımdaki clamp() değerleri
-        hero: ["clamp(58px, 15.5vw, 250px)", { lineHeight: "0.84", letterSpacing: "-0.035em" }],
-        "section-title": ["clamp(28px, 4.4vw, 62px)", { lineHeight: "1.02", letterSpacing: "-0.03em" }],
-        "project-title": ["clamp(34px, 5.4vw, 82px)", { lineHeight: "0.95", letterSpacing: "-0.04em" }],
-        "contact-title": ["clamp(44px, 8vw, 118px)", { lineHeight: "0.92", letterSpacing: "-0.045em" }],
+        hero: [CW(0.152, 48, 250), { lineHeight: "0.84", letterSpacing: "-0.035em" }],
+        "section-title": [CW(0.044, 26, 62), { lineHeight: "1.02", letterSpacing: "-0.03em" }],
+        "project-title": [CW(0.054, 30, 82), { lineHeight: "0.95", letterSpacing: "-0.04em" }],
+        "contact-title": [CW(0.08, 40, 118), { lineHeight: "0.92", letterSpacing: "-0.045em" }],
+        "about-title": [CW(0.042, 28, 58), { lineHeight: "1.02", letterSpacing: "-0.03em" }],
+        "job-title": [CW(0.032, 22, 46), { lineHeight: "1.05", letterSpacing: "-0.03em" }],
         lead: ["clamp(17px, 1.7vw, 24px)", { lineHeight: "1.4" }],
         "hero-sub": ["clamp(16px, 1.5vw, 21px)", { lineHeight: "1.5" }],
         label: ["11px", { lineHeight: "1.4", letterSpacing: "0.2em" }],

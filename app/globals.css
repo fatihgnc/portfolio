@@ -12,13 +12,22 @@
   --mut: #8b8b95;
   --line: rgba(255, 255, 255, 0.14);
   --card: #141418;
+  --sbbg: #101014;
   --soft: rgba(255, 255, 255, 0.045);
   --veil: rgba(12, 12, 14, 0.62);
   --glow: 0.17;
   --grain: 0.055;
   --mx: 60%;
   --my: 22%;
+  /* sidebar genişliği — tipografi ölçeği ve içerik payı buna bakar */
+  --sb: 0px;
   color-scheme: dark;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --sb: 272px;
+  }
 }
 
 :root[data-theme="light"] {
@@ -27,6 +36,7 @@
   --mut: #6b6b74;
   --line: rgba(0, 0, 0, 0.16);
   --card: #faf9f5;
+  --sbbg: #f7f5ef;
   --soft: rgba(0, 0, 0, 0.05);
   --veil: rgba(240, 238, 231, 0.7);
   --glow: 0.22;
