@@ -10,19 +10,46 @@ type Line = { kind: "in" | "out" | "dim"; text: string };
 
 const PROMPT = "fato@portfolio:~$";
 
+/** Komut listesi: hem `help` çıktısı hem Tab tamamlama buradan üretilir. */
+const COMMANDS: { name: string; help: string }[] = [
+  { name: "help", help: "this list" },
+  { name: "whoami", help: "who is typing" },
+  { name: "status", help: "what is live right now" },
+  { name: "stack", help: "tools I work with" },
+  { name: "work", help: "the three shipped things" },
+  { name: "contact", help: "how to reach me" },
+  { name: "cv", help: "open my CV" },
+  { name: "go", help: "jump: go work | experience | about | contact" },
+  { name: "theme", help: "flip dark / light" },
+  { name: "clear", help: "wipe the screen" },
+];
+
+const SECTIONS = nav.map((item) => item.id);
+
 /** İki sütunlu çıktı — sağ sütun hizalansın diye tek satırda birleştirilir. */
 function pad(left: string, right: string, width = 22) {
   return `${left.padEnd(width, " ")}${right}`;
 }
 
+/** Adayların ortak ön eki; Tab yarım tamamlama da yapabilsin diye. */
+function commonPrefix(values: string[]) {
+  if (!values.length) return "";
+  return values.reduce((prefix, value) => {
+    let i = 0;
+    while (i < prefix.length && prefix[i] === value[i]) i++;
+    return prefix.slice(0, i);
+  });
+}
+
 export default function TerminalCard({ className }: { className?: string }) {
   const { t, theme, toggleTheme } = useSiteState();
   const [lines, setLines] = useState<Line[]>([
-    { kind: "dim", text: 'type "help" to see what this thing knows' },
+    { kind: "dim", text: 'type "help" — tab completes' },
   ]);
   const [value, setValue] = useState("");
   const [history, setHistory] = useState<string[]>([]);
   const [cursor, setCursor] = useState(-1);
+  const [focused, setFocused] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
@@ -39,18 +66,10 @@ export default function TerminalCard({ className }: { className?: string }) {
 
       switch (command) {
         case "help":
-          return [
-            { kind: "out", text: pad("help", "this list") },
-            { kind: "out", text: pad("whoami", "who is typing") },
-            { kind: "out", text: pad("status", "what is live right now") },
-            { kind: "out", text: pad("stack", "tools I work with") },
-            { kind: "out", text: pad("work", "the three shipped things") },
-            { kind: "out", text: pad("contact", "how to reach me") },
-            { kind: "out", text: pad("cv", "open my CV") },
-            { kind: "out", text: pad("go <section>", "jump: work, experience, about, contact") },
-            { kind: "out", text: pad("theme", "flip dark / light") },
-            { kind: "out", text: pad("clear", "wipe the screen") },
-          ];
+          return COMMANDS.map((item) => ({
+            kind: "out" as const,
+            text: pad(item.name, item.help, 10),
+          }));
 
         case "whoami":
           return [
@@ -94,18 +113,19 @@ export default function TerminalCard({ className }: { className?: string }) {
         }
 
         case "go": {
-          const target = args[0];
-          const hit = nav.find((item) => item.id === target);
+          const hit = nav.find((item) => item.id === args[0]);
           if (!hit) {
             return [
               {
                 kind: "out",
-                text: `go: unknown section "${args[0] ?? ""}" — try work, experience, about, contact`,
+                text: `go: unknown section "${args[0] ?? ""}" — try ${SECTIONS.join(", ")}`,
               },
             ];
           }
           scrollToSection(hit.id, -12);
-          return [{ kind: "dim", text: `scrolling to ${hit.label.toLowerCase()}` }];
+          return [
+            { kind: "dim", text: `scrolling to ${hit.label.toLowerCase()}` },
+          ];
         }
 
         case "theme":
@@ -118,8 +138,6 @@ export default function TerminalCard({ className }: { className?: string }) {
           ];
 
         case "clear":
-          return [];
-
         case "":
           return [];
 
@@ -154,7 +172,39 @@ export default function TerminalCard({ className }: { className?: string }) {
     setLines((prev) => [...prev, { kind: "in", text: raw }, ...output]);
   };
 
+  /** Tab: ilk kelimede komutu, "go " sonrasında bölüm adını tamamlar. */
+  const complete = () => {
+    const parts = value.split(/\s+/);
+    const editing = (parts[parts.length - 1] ?? "").toLowerCase();
+    const pool =
+      parts.length === 1
+        ? COMMANDS.map((item) => item.name)
+        : parts[0]?.toLowerCase() === "go"
+          ? SECTIONS
+          : [];
+
+    const matches = pool.filter((name) => name.startsWith(editing));
+    if (!matches.length) return;
+
+    const completed = matches.length === 1 ? matches[0]! : commonPrefix(matches);
+    parts[parts.length - 1] = completed;
+
+    // tek eşleşme "go" ise argüman yazılabilsin diye boşluk bırak
+    const joined = parts.join(" ");
+    setValue(matches.length === 1 && completed === "go" ? `${joined} ` : joined);
+
+    if (matches.length > 1) {
+      setLines((prev) => [...prev, { kind: "dim", text: matches.join("  ") }]);
+    }
+  };
+
   const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      complete();
+      return;
+    }
+
     if (event.key !== "ArrowUp" && event.key !== "ArrowDown") return;
     if (!history.length) return;
 
@@ -217,18 +267,36 @@ export default function TerminalCard({ className }: { className?: string }) {
         <span aria-hidden className="text-accent">
           $
         </span>
-        <input
-          ref={inputRef}
-          value={value}
-          onChange={(event) => setValue(event.target.value)}
-          onKeyDown={onKeyDown}
-          spellCheck={false}
-          autoComplete="off"
-          aria-label="terminal"
-          placeholder="help"
-          // iOS 16px altındaki alanlara odaklanınca sayfayı yakınlaştırıyor
-          className="w-full border-0 bg-transparent p-0 text-[16px] focus:outline-none min-[520px]:text-[12.5px]"
-        />
+
+        {/* yazılan metnin görünmez kopyası; imleç onun ucunda yanıp söner */}
+        <span className="relative min-w-0 flex-1">
+          <input
+            ref={inputRef}
+            value={value}
+            onChange={(event) => setValue(event.target.value)}
+            onKeyDown={onKeyDown}
+            onFocus={() => setFocused(true)}
+            onBlur={() => setFocused(false)}
+            spellCheck={false}
+            autoComplete="off"
+            aria-label="terminal"
+            // iOS 16px altındaki alanlara odaklanınca sayfayı yakınlaştırıyor
+            className="w-full border-0 bg-transparent p-0 text-[16px] caret-transparent focus:outline-none min-[520px]:text-[12.5px]"
+          />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-0 flex items-center whitespace-pre text-[16px] text-transparent min-[520px]:text-[12.5px]"
+          >
+            {value}
+            <span
+              className={
+                focused ? "animate-blink text-accent" : "text-mut opacity-40"
+              }
+            >
+              ▍
+            </span>
+          </span>
+        </span>
       </form>
     </div>
   );
