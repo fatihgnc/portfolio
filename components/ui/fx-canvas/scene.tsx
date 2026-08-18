@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import * as THREE from "three";
 
-import { BG_FRAG, BG_VERT, GHOST_FRAG, GHOST_VERT } from "./shaders";
+import { BG_FRAG, BG_VERT } from "./shaders";
 
 /** Bu genişliğin altında efekt hiç açılmaz. */
 const MIN_WIDTH = 900;
@@ -15,46 +15,10 @@ function cssVar(name: string, fallback: string) {
   return value || fallback;
 }
 
-/** Hero satırlarını canvas'a yazıp doku üretir. */
-function heroTexture(lines: string[]) {
-  const W = 1024;
-  const H = 560;
-  const canvas = document.createElement("canvas");
-  canvas.width = W;
-  canvas.height = H;
-
-  const ctx = canvas.getContext("2d");
-  if (ctx) {
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = "#fff";
-    ctx.textAlign = "left";
-    ctx.textBaseline = "alphabetic";
-
-    const base = 250;
-    const pad = 8;
-
-    lines.forEach((line, index) => {
-      let size = base;
-      ctx.font = "800 " + size + "px Syne, sans-serif";
-      while (ctx.measureText(line).width > W - pad * 2 && size > 40) {
-        size -= 8;
-        ctx.font = "800 " + size + "px Syne, sans-serif";
-      }
-      ctx.fillText(line, pad, H * 0.44 + index * (H * 0.44) - 10);
-    });
-  }
-
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.minFilter = THREE.LinearFilter;
-  texture.generateMipmaps = false;
-  return texture;
-}
-
 /**
  * Tasarımdaki fx.js'in portu: arka planda gürültü + imleçten kaçan nokta
- * ızgarası, hero yazısının deforme olan yankısı ve projeler arasında dönen
- * tel-kafes gövde. Dar ekranda, reduced motion'da veya data-fx="off" iken
- * hiç başlamaz.
+ * ızgarası ve projeler arasında dönen tel-kafes gövde. Dar ekranda, reduced
+ * motion'da veya data-fx="off" iken hiç başlamaz.
  */
 export default function FxScene() {
   useEffect(() => {
@@ -64,9 +28,6 @@ export default function FxScene() {
     const tooSmall = () => window.innerWidth < MIN_WIDTH;
 
     if (fxOff() || tooSmall() || reduced.matches) return;
-
-    const h1 = document.querySelector("h1");
-    if (!h1) return;
 
     let renderer: THREE.WebGLRenderer;
     try {
@@ -129,48 +90,7 @@ export default function FxScene() {
     });
     bgScene.add(new THREE.Mesh(bgGeo, bgMat));
 
-    /* 2 — hero yazısının deforme yankısı */
-    const heroScene = new THREE.Scene();
-    const heroCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 10);
-    heroCam.position.z = 2;
-
-    const readLines = () =>
-      Array.from(h1.querySelectorAll("span"))
-        .map((span) => (span.textContent || "").trim())
-        .filter(Boolean);
-
-    let lines = readLines();
-    const ghostUniforms = {
-      uTex: { value: heroTexture(lines) },
-      uAcc: { value: new THREE.Color("#ff4a17") },
-      uOpacity: { value: 0 },
-      uTime: { value: 0 },
-      uScroll: { value: 0 },
-      uAmp: { value: 1 },
-      uMouse: { value: new THREE.Vector2(0, 0) },
-    };
-    const ghostGeo = new THREE.PlaneGeometry(2, 2, 84, 44);
-    const ghostMat = new THREE.ShaderMaterial({
-      vertexShader: GHOST_VERT,
-      fragmentShader: GHOST_FRAG,
-      uniforms: ghostUniforms,
-      transparent: true,
-      depthTest: false,
-      depthWrite: false,
-    });
-    const ghost = new THREE.Mesh(ghostGeo, ghostMat);
-    heroScene.add(ghost);
-
-    // fontlar yüklendikten sonra dokuyu tazele
-    if (document.fonts) {
-      document.fonts.ready.then(() => {
-        lines = readLines();
-        ghostUniforms.uTex.value.dispose();
-        ghostUniforms.uTex.value = heroTexture(lines);
-      });
-    }
-
-    /* 3 — iki proje arasındaki tel-kafes gövde */
+    /* 2 — iki proje arasındaki tel-kafes gövde */
     const objScene = new THREE.Scene();
     const objCam = new THREE.PerspectiveCamera(38, 1, 0.1, 40);
     objCam.position.z = 5.2;
@@ -226,7 +146,6 @@ export default function FxScene() {
     let raf = 0;
     let frame = 0;
     let last = 0;
-    let textKey = lines.join("|");
     canvas.style.opacity = "1";
 
     const loop = (now: number) => {
@@ -251,13 +170,6 @@ export default function FxScene() {
         state.acc.set(cssVar("--ac", "#ff4a17"));
         const bg = new THREE.Color(cssVar("--bg", "#0c0c0e"));
         state.tdark = bg.getHSL({ h: 0, s: 0, l: 0 }).l > 0.5 ? 0 : 1;
-
-        const key = readLines().join("|");
-        if (key && key !== textKey) {
-          textKey = key;
-          ghostUniforms.uTex.value.dispose();
-          ghostUniforms.uTex.value = heroTexture(readLines());
-        }
       }
       state.dark += (state.tdark - state.dark) * 0.12;
 
@@ -272,25 +184,7 @@ export default function FxScene() {
       renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
       renderer.render(bgScene, flatCam);
 
-      const vw = window.innerWidth;
       const vh = window.innerHeight;
-
-      /* hero yankısı, DOM başlığının canlı konumuna oturur */
-      const r = h1.getBoundingClientRect();
-      if (r.bottom > -80 && r.top < vh + 80 && r.width > 10) {
-        ghost.position.set(
-          ((r.left + r.width / 2) / vw) * 2 - 1 + 0.006,
-          -(((r.top + r.height / 2) / vh) * 2 - 1) - 0.004,
-          0,
-        );
-        ghost.scale.set(r.width / vw, r.height / vh, 1);
-        ghostUniforms.uTime.value += dt;
-        ghostUniforms.uScroll.value = state.scroll * 6;
-        ghostUniforms.uMouse.value.set(state.mx * 2 - 1, state.my * 2 - 1);
-        ghostUniforms.uAcc.value.copy(state.acc);
-        ghostUniforms.uOpacity.value = 0.3 + state.dark * 0.16;
-        renderer.render(heroScene, heroCam);
-      }
 
       /* gövde, yalnızca yuvası ekrandayken */
       const slot = document.querySelector("[data-fx-bridge]");
@@ -320,11 +214,8 @@ export default function FxScene() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("scroll", onScroll, { capture: true });
-      ghostUniforms.uTex.value.dispose();
       bgGeo.dispose();
       bgMat.dispose();
-      ghostGeo.dispose();
-      ghostMat.dispose();
       edges.geometry.dispose();
       edges.material.dispose();
       solid.geometry.dispose();

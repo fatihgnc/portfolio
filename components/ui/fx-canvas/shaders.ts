@@ -59,30 +59,3 @@ void main(){
 
   gl_FragColor = vec4(col, clamp(a, 0.0, 0.5));
 }`;
-
-/** Hero yazısının deforme olan yankısı. */
-export const GHOST_VERT = /* glsl */ `
-varying vec2 vUv;
-uniform float uTime, uScroll, uAmp;
-uniform vec2 uMouse;
-void main(){
-  vUv = uv;
-  vec3 pos = position;
-  float w = sin(pos.x * 2.6 + uTime * 0.7) * cos(pos.y * 3.1 - uTime * 0.5);
-  float pull = 1.0 - clamp(length(pos.xy - vec2(uMouse.x * 1.6, uMouse.y * 0.9)) * 0.7, 0.0, 1.0);
-  pos.x += (w * 0.02 + pull * 0.05 * uMouse.x) * uAmp;
-  pos.y += (w * 0.012 - uScroll * 0.06 + pull * 0.03) * uAmp;
-  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-}`;
-
-export const GHOST_FRAG = /* glsl */ `
-precision mediump float;
-varying vec2 vUv;
-uniform sampler2D uTex;
-uniform vec3 uAcc;
-uniform float uOpacity;
-void main(){
-  float m = texture2D(uTex, vUv).a;
-  if(m < 0.02) discard;
-  gl_FragColor = vec4(uAcc, m * uOpacity);
-}`;
