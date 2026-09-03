@@ -70,7 +70,8 @@ export type Messages = {
   skip: string;
   navLabel: string;
   nav: { home: string; projects: string; experience: string; contact: string };
-  online: string;
+  /** heading above the GitHub / LinkedIn / e-mail / CV list */
+  linksLabel: string;
   menu: string;
   closeMenu: string;
   localeLabel: string;
@@ -145,7 +146,7 @@ export const messages: Record<Locale, Messages> = {
       experience: 'Experience',
       contact: 'Contact',
     },
-    online: 'Online',
+    linksLabel: 'Links',
     menu: 'Open menu',
     closeMenu: 'Close menu',
     localeLabel: 'Language',
@@ -227,7 +228,7 @@ export const messages: Record<Locale, Messages> = {
       experience: 'Deneyim',
       contact: 'İletişim',
     },
-    online: 'Çevrimiçi',
+    linksLabel: 'Bağlantılar',
     menu: 'Menüyü aç',
     closeMenu: 'Menüyü kapat',
     localeLabel: 'Dil',
@@ -719,7 +720,7 @@ export type SidebarCopy = Pick<
   Messages,
   | 'navLabel'
   | 'nav'
-  | 'online'
+  | 'linksLabel'
   | 'menu'
   | 'links'
   | 'external'
@@ -732,7 +733,7 @@ export function sidebarCopy(locale: Locale): SidebarCopy {
   return {
     navLabel: t.navLabel,
     nav: t.nav,
-    online: t.online,
+    linksLabel: t.linksLabel,
     menu: t.menu,
     links: t.links,
     external: t.external,

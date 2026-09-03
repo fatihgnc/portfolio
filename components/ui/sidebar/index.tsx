@@ -106,7 +106,7 @@ function SidebarBody({
   const { theme, toggleTheme } = useTheme();
   const active = useActiveSection(spy);
 
-  const online = [
+  const links = [
     { label: copy.links.github, href: identity.github, Icon: IconBrandGithub, external: true },
     {
       label: copy.links.linkedin,
@@ -181,9 +181,9 @@ function SidebarBody({
 
       <Separator className="my-3" />
 
-      <p className="px-2.5 pb-1 text-sm text-muted-foreground">{copy.online}</p>
+      <p className="px-2.5 pb-1 text-sm text-muted-foreground">{copy.linksLabel}</p>
       <ul className="flex flex-col gap-1">
-        {online.map(({ label, href, Icon, external, nofollow }) => (
+        {links.map(({ label, href, Icon, external, nofollow }) => (
           <li key={href}>
             <a
               href={href}
