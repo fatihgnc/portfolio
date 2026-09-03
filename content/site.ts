@@ -162,7 +162,7 @@ export const messages: Record<Locale, Messages> = {
     about: {
       employedLabel: '2022 – 2025 · Full-time',
       employed:
-        'Three and a half years building frontends with React, Next.js and TypeScript at startups and enterprise companies, mostly on SaaS products. Mostly I was taking products from zero to shipped: standing up the codebase, choosing the state and data layers, and carrying features through to release.',
+        'Three and a half years building interfaces with React, Next.js and TypeScript at startups and enterprise companies, mostly on SaaS products. Mostly I was taking products from zero to shipped: standing up the codebase, choosing the state and data layers, and carrying features through to release.',
       indieLabel: '2026 – · Independent',
       indie:
         'Since mid-2026 I have been building my own products: design, frontend, data pipelines, deployment. I have shipped five of them so far: four websites and one iOS app. All of them are free. Alongside them I built one website as freelance work for a client.',
