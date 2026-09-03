@@ -4,7 +4,6 @@ import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 
-import { useSiteState } from "@/components/providers/site-state";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,7 +11,7 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { Locale, Shot } from "@/content/site";
+import type { Locale, Messages, Shot } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -20,11 +19,11 @@ type Props = {
   name: string;
   shots: Shot[];
   locale: Locale;
+  copy: Messages["gallery"];
 };
 
 /** Project screenshots: a thumbnail strip that opens a lightbox. */
-export default function ProjectGallery({ name, shots, locale }: Props) {
-  const { t } = useSiteState();
+export default function ProjectGallery({ name, shots, locale, copy }: Props) {
   // `index` is kept until the close animation ends so the image leaves with the lightbox.
   const [index, setIndex] = useState(0);
   const [open, setOpen] = useState(false);
@@ -57,18 +56,20 @@ export default function ProjectGallery({ name, shots, locale }: Props) {
 
   return (
     <>
-      <ul className="shot-list" aria-label={`${name} — ${t.gallery.label}`}>
+      <ul className="shot-list" aria-label={`${name} — ${copy.label}`}>
         {shots.map((shot, i) => (
           <li key={shot.src}>
             <button
               type="button"
               className={cn("shot-thumb", shot.portrait && "is-portrait")}
               onClick={() => show(i)}
-              aria-label={`${t.gallery.open}: ${shot.alt[locale]}`}
+              aria-label={`${copy.open}: ${shot.alt[locale]}`}
             >
+              {/* The alt carries the description for image search; the button's
+                  own label repeats it for screen readers. */}
               <Image
                 src={shot.src}
-                alt=""
+                alt={shot.alt[locale]}
                 width={shot.width}
                 height={shot.height}
                 sizes="(max-width: 640px) 45vw, 220px"
@@ -86,7 +87,7 @@ export default function ProjectGallery({ name, shots, locale }: Props) {
           showCloseButton
         >
           <DialogTitle className="sr-only">{name}</DialogTitle>
-          <DialogDescription className="sr-only">{t.gallery.hint}</DialogDescription>
+          <DialogDescription className="sr-only">{copy.hint}</DialogDescription>
 
           {current ? (
             <figure className="lightbox-figure">
@@ -110,7 +111,7 @@ export default function ProjectGallery({ name, shots, locale }: Props) {
                       variant="ghost"
                       size="icon-sm"
                       onClick={() => step(-1)}
-                      aria-label={t.gallery.prev}
+                      aria-label={copy.prev}
                     >
                       <IconChevronLeft />
                     </Button>
@@ -121,7 +122,7 @@ export default function ProjectGallery({ name, shots, locale }: Props) {
                       variant="ghost"
                       size="icon-sm"
                       onClick={() => step(1)}
-                      aria-label={t.gallery.next}
+                      aria-label={copy.next}
                     >
                       <IconChevronRight />
                     </Button>

@@ -745,3 +745,148 @@
   }
 }
 
+
+/* ---- project cards: name links through to the project page ---- */
+.project-name a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-name a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.project-more {
+  margin-top: 18px;
+  font-size: 15px;
+}
+
+.project-more a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted-foreground);
+  text-decoration-color: var(--border);
+}
+
+.project-more a:hover {
+  color: var(--primary);
+}
+
+/* ---------------------------------------------------------------
+   project page
+   --------------------------------------------------------------- */
+.crumbs {
+  margin-bottom: 32px;
+  font-size: 14px;
+  color: var(--muted-foreground);
+}
+
+.crumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.crumbs li + li::before {
+  content: "/";
+  margin-right: 8px;
+  color: var(--border);
+}
+
+.crumbs a {
+  color: var(--muted-foreground);
+  text-decoration-color: var(--border);
+}
+
+.crumbs a:hover {
+  color: var(--primary);
+}
+
+.project-page section {
+  margin-bottom: 72px;
+}
+
+.project-head {
+  margin-bottom: 28px;
+}
+
+.project-kicker {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.project-title {
+  margin: 0 0 16px;
+  font-size: clamp(40px, 6vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: normal;
+  font-variation-settings: "opsz" 72, "wdth" 80, "wght" 750;
+  text-wrap: balance;
+}
+
+.project-lede {
+  margin: 0 0 18px;
+  max-width: 62ch;
+  font-size: clamp(17px, 2vw, 19px);
+  line-height: 1.55;
+  color: var(--muted-foreground);
+  text-wrap: pretty;
+}
+
+.project-visit {
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.project-visit a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.other-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.other-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px;
+  margin-left: -16px;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: background-color 0.15s;
+}
+
+.other-list a:hover {
+  background: var(--accent);
+}
+
+.other-name {
+  font-size: 17px;
+  font-variation-settings: "opsz" 20, "wdth" 100, "wght" 600;
+}
+
+.other-tagline {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted-foreground);
+  text-wrap: pretty;
+}

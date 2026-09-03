@@ -3,13 +3,12 @@
 import { IconCopy, IconCopyCheck } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 
-import { useSiteState } from "@/components/providers/site-state";
 import { Button } from "@/components/ui/button";
-import { identity } from "@/content/site";
+
+type Props = { email: string; copy: string; copied: string };
 
 /** Copies the e-mail to the clipboard and shows "Copied" for 1.8 s. */
-export default function CopyEmail() {
-  const { t } = useSiteState();
+export default function CopyEmail({ email, copy, copied: copiedLabel }: Props) {
   const [copied, setCopied] = useState(false);
   const timer = useRef<number | undefined>(undefined);
 
@@ -22,24 +21,26 @@ export default function CopyEmail() {
       timer.current = window.setTimeout(() => setCopied(false), 1800);
     };
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(identity.email).then(done, done);
+      navigator.clipboard.writeText(email).then(done, done);
     } else {
       done();
     }
   };
+
+  const label = copied ? copiedLabel : copy;
 
   return (
     <Button
       variant="ghost"
       size="icon-sm"
       onClick={onCopy}
-      aria-label={copied ? t.contact.copied : t.contact.copy}
-      title={copied ? t.contact.copied : t.contact.copy}
+      aria-label={label}
+      title={label}
       className="self-center text-muted-foreground hover:text-primary [&_svg]:!size-[18px]"
     >
       {copied ? <IconCopyCheck /> : <IconCopy />}
       <span className="sr-only" aria-live="polite">
-        {copied ? t.contact.copied : t.contact.copy}
+        {label}
       </span>
     </Button>
   );

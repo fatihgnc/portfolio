@@ -7,21 +7,65 @@ export type Theme = "dark" | "light";
 export type Locale = "en" | "tr";
 
 export const LOCALES: Locale[] = ["en", "tr"];
+export const DEFAULT_LOCALE: Locale = "en";
+
+/** Canonical origin. No trailing slash. */
+export const SITE_URL = "https://fatihgenc.dev";
 
 export const identity = {
   name: "Fatih Genç",
+  givenName: "Fatih",
+  familyName: "Genç",
+  jobTitle: "Frontend Developer",
   email: "fathgnc.dev@gmail.com",
   phone: "+90 555 892 77 66",
   phoneHref: "tel:+905558927766",
+  phoneE164: "+905558927766",
   github: "https://github.com/fatihgnc",
   githubLabel: "github.com/fatihgnc",
   linkedin: "https://www.linkedin.com/in/fatihgeencc/",
   linkedinLabel: "linkedin.com/in/fatihgeencc",
   cv: "/fatih-genc-cv.pdf",
   cvFile: "fatih-genc-cv.pdf",
+  photo: "/profile.jpg",
+  locality: "Manisa",
+  country: "TR",
+  university: "Manisa Celal Bayar University",
 } as const;
 
+/**
+ * URL shape per locale. English is the default locale and lives at the root;
+ * Turkish is prefixed and uses a translated segment for the project pages.
+ */
+export const paths = {
+  home: (locale: Locale) => (locale === "en" ? "/" : "/tr"),
+  /** a section of the home page, linked from anywhere */
+  section: (locale: Locale, id: string) => (locale === "en" ? `/#${id}` : `/tr#${id}`),
+  project: (locale: Locale, slug: string) =>
+    locale === "en" ? `/projects/${slug}` : `/tr/projeler/${slug}`,
+};
+
 export type Messages = {
+  /** copy that only ever reaches <head> */
+  meta: {
+    title: string;
+    description: string;
+    ogDescription: string;
+    /** used as "<project> — <tail>" on project pages */
+    projectTitleTail: string;
+  };
+  /** the per-project page */
+  project: {
+    kicker: string;
+    home: string;
+    back: string;
+    visitWeb: string;
+    visitIos: string;
+    overview: string;
+    stack: string;
+    screenshots: string;
+    other: string;
+  };
   skip: string;
   navLabel: string;
   nav: { home: string; projects: string; experience: string; contact: string };
@@ -43,7 +87,14 @@ export type Messages = {
     stackLead: string;
     stack: string;
   };
-  projects: { h: string; intro: string; live: string; platform: { web: string; ios: string } };
+  projects: {
+    h: string;
+    intro: string;
+    live: string;
+    /** link from a home card to the project page */
+    more: string;
+    platform: { web: string; ios: string };
+  };
   gallery: { label: string; open: string; prev: string; next: string; hint: string };
   experience: { h: string; present: string };
   contact: {
@@ -60,6 +111,25 @@ export type Messages = {
 
 export const messages: Record<Locale, Messages> = {
   en: {
+    meta: {
+      title: "Fatih Genç — Frontend Developer",
+      description:
+        "Frontend developer in Manisa, Turkey building production frontends with React, Next.js and TypeScript. Five products live: an iOS app and four websites.",
+      ogDescription:
+        "React, Next.js and TypeScript. Five products shipped solo since early 2026 — an iOS app and four websites, all live and free.",
+      projectTitleTail: "Fatih Genç",
+    },
+    project: {
+      kicker: "Project",
+      home: "Home",
+      back: "All projects",
+      visitWeb: "Visit the site",
+      visitIos: "View on the App Store",
+      overview: "About the project",
+      stack: "Built with",
+      screenshots: "Screenshots",
+      other: "Other projects",
+    },
     skip: "Skip to content",
     navLabel: "Site",
     nav: { home: "Home", projects: "Projects", experience: "Experience", contact: "Contact" },
@@ -93,6 +163,7 @@ export const messages: Record<Locale, Messages> = {
       h: "Projects",
       intro: "Four websites and one iOS app, all live, all free, designed, built and shipped solo since early 2026.",
       live: "Live",
+      more: "Project page",
       platform: { web: "Web", ios: "iOS" },
     },
     gallery: {
@@ -115,6 +186,25 @@ export const messages: Record<Locale, Messages> = {
     footer: "Fatih Genç, 2026",
   },
   tr: {
+    meta: {
+      title: "Fatih Genç — Frontend Developer",
+      description:
+        "Manisa'da yaşayan frontend developer. React, Next.js ve TypeScript ile production frontend'ler geliştiriyorum. Beş ürün yayında: bir iOS uygulaması ve dört web sitesi.",
+      ogDescription:
+        "React, Next.js ve TypeScript. 2026 başından beri tek başıma yayına aldığım beş ürün: bir iOS uygulaması ve dört web sitesi, hepsi ücretsiz.",
+      projectTitleTail: "Fatih Genç",
+    },
+    project: {
+      kicker: "Proje",
+      home: "Ana sayfa",
+      back: "Tüm projeler",
+      visitWeb: "Siteyi ziyaret et",
+      visitIos: "App Store'da gör",
+      overview: "Proje hakkında",
+      stack: "Kullanılan teknolojiler",
+      screenshots: "Ekran görüntüleri",
+      other: "Diğer projeler",
+    },
     skip: "İçeriğe geç",
     navLabel: "Site",
     nav: { home: "Ana sayfa", projects: "Projeler", experience: "Deneyim", contact: "İletişim" },
@@ -148,6 +238,7 @@ export const messages: Record<Locale, Messages> = {
       h: "Projeler",
       intro: "Dört web sitesi ve bir iOS uygulaması; hepsi yayında, hepsi ücretsiz, 2026 başından beri tek başıma tasarlanıp geliştirildi ve yayına alındı.",
       live: "Yayında",
+      more: "Proje sayfası",
       platform: { web: "Web", ios: "iOS" },
     },
     gallery: {
@@ -182,7 +273,10 @@ export type Shot = {
 };
 
 export type Project = {
+  /** anchor id on the home page */
   id: string;
+  /** URL segment of the project page */
+  slug: string;
   name: string;
   /** link label */
   url: string;
@@ -190,6 +284,8 @@ export type Project = {
   href?: string;
   platform: "web" | "ios";
   stack: string;
+  /** one line; the meta description and OG subtitle of the project page */
+  tagline: Record<Locale, string>;
   description: Record<Locale, string>;
   shots: Shot[];
 };
@@ -197,11 +293,16 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "p-secretmap-ios",
+    slug: "secretmap-ios",
     name: "SecretMap",
     url: "App Store",
     href: "https://apps.apple.com/us/app/secretmap-share-anonymously/id6799620743",
     platform: "ios",
     stack: "React Native, TypeScript, Supabase",
+    tagline: {
+      en: "An iOS app for dropping an anonymous secret on the world map. No profile, no followers, no trackers.",
+      tr: "Dünya haritasına anonim bir sır bırakmak için iOS uygulaması. Profil yok, takipçi yok, tracker yok.",
+    },
     description: {
       en: "An iOS app where you write a secret, drop it on the world map and walk away. No profile, no followers, no notifications, no ads, no trackers; Sign in with Apple is the only door. Coordinates are rounded on the phone before anything is sent, so the map only ever knows \"somewhere near Lisbon\". The only reply anyone can give is \"same\".",
       tr: "Bir sır yazıp dünya haritasına bırakıp uzaklaştığınız bir iOS uygulaması. Profil, takipçi, bildirim, reklam ve tracker yok; tek giriş kapısı Sign in with Apple. Koordinatlar telefondan çıkmadan yuvarlanır, harita yalnızca \"Lizbon yakınlarında bir yer\" bilir. Verilebilecek tek yanıt \"bende de\".",
@@ -231,10 +332,15 @@ export const projects: Project[] = [
   },
   {
     id: "p-secretmap-web",
+    slug: "secretmap",
     name: "secretmap.dev",
     url: "secretmap.dev",
     platform: "web",
     stack: "Next.js, TypeScript",
+    tagline: {
+      en: "The landing page for SecretMap: one screen, an FAQ and an App Store button, built with Next.js.",
+      tr: "SecretMap'in açılış sayfası: tek ekran, FAQ ve App Store butonu; Next.js ile geliştirildi.",
+    },
     description: {
       en: "The landing page for the SecretMap app. One screen that says what the app is, what it never collects and how the three steps work, with an FAQ and an App Store button.",
       tr: "SecretMap uygulamasının açılış sayfası. Uygulamanın ne olduğunu, neyi asla toplamadığını ve üç adımın nasıl işlediğini anlatan tek ekran; FAQ ve App Store butonu ile.",
@@ -262,10 +368,15 @@ export const projects: Project[] = [
   },
   {
     id: "p-eczane",
+    slug: "acik-eczane-var-mi",
     platform: "web",
     name: "Açık Eczane Var mı",
     url: "acikeczanevarmi.com",
     stack: "Next.js, TypeScript, Tailwind CSS, Supabase, GitHub Actions, PWA",
+    tagline: {
+      en: "Which pharmacy is on duty tonight in Northern Cyprus — nearest first, on a map, embeddable as a widget.",
+      tr: "Kuzey Kıbrıs'ta bu gece hangi eczane nöbetçi — haritada en yakından, widget olarak gömülebilir.",
+    },
     description: {
       en: "Which pharmacy is on duty tonight in Northern Cyprus. Nearest first, on a map, with one-tap call and directions. It also embeds into any news site as an iframe widget with a chosen accent colour, so local outlets show the roster without maintaining it themselves.",
       tr: "Bu gece Kuzey Kıbrıs'ta hangi eczane nöbetçi. Harita üzerinde en yakından başlayarak, tek dokunuşla arama ve yol tarifi. İstenen accent rengiyle iframe widget olarak her haber sitesine gömülebiliyor; yerel yayınlar listeyi kendileri güncellemeden gösterebiliyor.",
@@ -302,10 +413,15 @@ export const projects: Project[] = [
   },
   {
     id: "p-kesinti",
+    slug: "kesinti-mi-var",
     platform: "web",
     name: "Kesinti mi Var",
     url: "kesintimivar.com",
     stack: "Next.js, TypeScript, Tailwind CSS, Supabase, GitHub Actions",
+    tagline: {
+      en: "A live power outage map of Northern Cyprus, built from five local news sources, with RSS and calendar feeds.",
+      tr: "Kuzey Kıbrıs'ın canlı elektrik kesintisi haritası; beş yerel haber kaynağından, RSS ve takvim akışlarıyla.",
+    },
     description: {
       en: "Is the power out in my area, and when does it come back? A live outage map of Northern Cyprus with every settlement as a dot. The utility publishes nothing usable, so the site reads five local news outlets instead and turns their announcements into one structured record per outage, with an RSS feed and a subscribable calendar for every district.",
       tr: "Bölgemde elektrik kesik mi, ne zaman gelir? Kuzey Kıbrıs'ın canlı kesinti haritası; her yerleşim bir nokta. Kurum işe yarar bir şey yayımlamadığı için site beş yerel haber kaynağını okur ve duyuruları her kesinti için tek bir structured kayda çevirir; her ilçe için RSS feed'i ve subscribe edilebilir takvim sunar.",
@@ -333,10 +449,15 @@ export const projects: Project[] = [
   },
   {
     id: "p-mevzuat",
+    slug: "mevzuat-kibris",
     platform: "web",
     name: "Mevzuat Kıbrıs",
     url: "mevzuatkibris.com",
     stack: "Next.js, TypeScript, Tailwind CSS, Supabase, Resend, GitHub Actions",
+    tagline: {
+      en: "24,000 KKTC Official Gazette records, split out of PDFs and made full-text searchable in Turkish.",
+      tr: "KKTC Resmî Gazete'den ayrıştırılmış 24.000 kayıt, Türkçe full-text aranabilir hâlde.",
+    },
     description: {
       en: "The KKTC Official Gazette is published only as PDF. This crawls every issue since 2020, splits it into individual records and makes 24,000 of them full-text searchable in Turkish. Anyone can follow a topic, institution or company by e-mail or RSS and get notified the moment a new record matches.",
       tr: "KKTC Resmî Gazete yalnızca PDF olarak yayımlanıyor. Bu site 2020'den bu yana her sayıyı tarar, tek tek kayıtlara böler ve 24.000 kaydı Türkçe full-text aranabilir hâle getirir. Herkes bir konuyu, kurumu veya şirketi e-posta ya da RSS ile takip edip yeni bir kayıt eşleştiği anda haber alabilir.",
@@ -516,4 +637,43 @@ export function formatMonth(iso: string, locale: Locale): string | null {
   if (!iso) return null;
   const [y, m] = iso.split("-");
   return `${MONTHS[locale][Number(m) - 1]} ${y}`;
+}
+
+export function projectBySlug(slug: string): Project | undefined {
+  return projects.find((p) => p.slug === slug);
+}
+
+/** The address the project actually lives at. */
+export function projectHref(p: Project): string {
+  return p.href ?? `https://${p.url}`;
+}
+
+/** "A, B, C." -> ["A", "B", "C"] */
+export function stackList(stack: string): string[] {
+  return stack
+    .replace(/\.$/, "")
+    .split(",")
+    .map((x) => x.trim())
+    .filter(Boolean);
+}
+
+/** The slice of copy the (client) sidebar needs; keeps the rest off the wire. */
+export type SidebarCopy = Pick<
+  Messages,
+  "navLabel" | "nav" | "online" | "menu" | "links" | "external" | "localeLabel" | "themeLabel"
+> & { role: string };
+
+export function sidebarCopy(locale: Locale): SidebarCopy {
+  const t = messages[locale];
+  return {
+    navLabel: t.navLabel,
+    nav: t.nav,
+    online: t.online,
+    menu: t.menu,
+    links: t.links,
+    external: t.external,
+    localeLabel: t.localeLabel,
+    themeLabel: t.themeLabel,
+    role: t.hero.role,
+  };
 }
