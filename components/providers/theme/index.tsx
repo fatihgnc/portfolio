@@ -18,9 +18,9 @@ const Ctx = createContext<ThemeState | null>(null);
  * so that every page renders in one language on the server.
  */
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // The server always renders dark; the boot script in the root layout applies
+  // The server always renders light; the boot script in the root layout applies
   // the stored value before first paint, and this catches up on hydration.
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
     try {
@@ -38,7 +38,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const toggleTheme = useCallback(() => {
     setTheme((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
+      const next = prev === "light" ? "dark" : "light";
       try {
         localStorage.setItem(THEME_KEY, next);
       } catch {

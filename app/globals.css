@@ -40,7 +40,9 @@
 
 /* ---------------------------------------------------------------
    Design tokens from Portfolio.dc.html, using shadcn names.
-   Dark theme is the default; light theme via html[data-theme="light"].
+   The base set below is the dark palette, alongside the theme-independent
+   layout and typography tokens; html[data-theme="light"] overrides the
+   colours. The document renders light by default (see components/root-shell).
    --------------------------------------------------------------- */
 :root {
   --radius: 0.5rem;

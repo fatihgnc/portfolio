@@ -27,7 +27,7 @@ export default function RootShell({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={locale} data-theme="dark" className={bricolage.variable} suppressHydrationWarning>
+    <html lang={locale} data-theme="light" className={bricolage.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
