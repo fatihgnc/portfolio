@@ -203,9 +203,9 @@ export const messages: Record<Locale, Messages> = {
     meta: {
       title: 'Fatih Genç — Frontend Developer',
       description:
-        "Manisa'da frontend developer. React, Next.js ve TypeScript ile AI entegre arayüzler geliştiriyorum. Beş ürünüm yayında: bir iOS uygulaması, dört web sitesi.",
+        "Manisa'da frontend developer. React, Next.js ve TypeScript ile AI entegre arayüzler geliştiriyorum. Beş projem yayında: bir iOS uygulaması, dört web sitesi.",
       ogDescription:
-        "React, Next.js ve TypeScript. 2026'nın ortalarından beri tek başıma yayına aldığım beş ürün: bir iOS uygulaması ve dört web sitesi, hepsi ücretsiz.",
+        "React, Next.js ve TypeScript. 2026'nın ortalarından beri tek başıma yayına aldığım beş proje: bir iOS uygulaması ve dört web sitesi, hepsi ücretsiz.",
       projectTitleTail: 'Fatih Genç',
     },
     project: {
@@ -243,17 +243,17 @@ export const messages: Record<Locale, Messages> = {
       role: 'Frontend Developer',
       location: 'Manisa, Türkiye',
       positioning:
-        "React, Next.js ve TypeScript ile AI entegre bir şekilde arayüzler geliştiriyorum; 2026'nın ortalarından beri kendi ürünlerimi tasarlayıp yayına alıyorum.",
+        "React, Next.js ve TypeScript ile AI entegre bir şekilde arayüzler geliştiriyorum; 2026'nın ortalarından beri kendi projelerimi tasarlayıp yayına alıyorum.",
     },
     about: {
       employedLabel: '2022 – 2025 · Tam zamanlı',
       employed:
-        "Üç buçuk yıl boyunca startup ve kurumsal firmalarda React, Next.js ve TypeScript ile çoğu SaaS olmak üzere önyüzler geliştirdim. Çoğunlukla ürünleri sıfırdan yayına çıkarmakla uğraştım: codebase'i oluşturmak, state ve veri katmanlarını seçmek, özellikleri release'e kadar götürmek.",
+        "Üç buçuk yıl boyunca startup ve kurumsal firmalarda React, Next.js ve TypeScript ile çoğu SaaS olmak üzere arayüzler geliştirdim. Çoğunlukla projeleri sıfırdan yayına çıkarmakla uğraştım: codebase'i oluşturmak, state ve veri katmanlarını seçmek, özellikleri release'e kadar götürmek.",
       indieLabel: '2026 – · Bağımsız',
       indie:
-        "2026'nın ortalarından beri kendi ürünlerimi geliştiriyorum: tasarım, frontend, data pipeline'ları, deploy. Şimdiye kadar beş projeyi yayına aldım: dört web sitesi ve bir iOS uygulaması. Hepsi ücretsiz. Bunların yanında bir müşteri için freelance olarak bir web sitesi yaptım.",
+        "2026'nın ortalarından beri kendi projelerimi geliştiriyorum: tasarım, arayüz, data pipeline'ları, deploy. Şimdiye kadar beş projeyi yayına aldım: dört web sitesi ve bir iOS uygulaması. Hepsi ücretsiz. Bunların yanında bir müşteri için freelance olarak bir web sitesi yaptım.",
       now: 'Şu anda bunlara ek olarak yeni fikirler üzerinde çalışıyorum.',
-      ai: "AI, workflow'umun günlük bir parçası; ara sıra denediğim bir şey değil. Günümüzde AI'dan kaçış mümkün değil dolayısıyla ben de çalışma hayatıma entegre ettim. Dolayısıyla Claude Code ve Cursor'ı sürekli kullanıyor, yeni çıkanları yakından takip ediyorum: scaffolding, refactor, bilmediğim bir API'yi hızlı okumak, test yazmak ve kodu review etmek hep bunlardan geçiyor. Kullandığım her tool gibi kullanıyorum, bilinen kısımlarda hızlanıp bilinmeyen kısımlara daha çok zaman ayırabilmek adına; mimari ve review bende kalıyor, okumadığım kod asla yayında olmuyor.",
+      ai: "AI, workflow'umun günlük bir parçası; ara sıra denediğim bir şey değil. Günümüzde AI'dan kaçış mümkün değil dolayısıyla ben de çalışma hayatıma entegre ettim ve Claude Code ve Cursor'ı bu yüzden sürekli kullanıyor, yeni çıkanları yakından takip ediyorum: scaffolding, refactor, bilmediğim bir API'yi hızlı okumak, test yazmak ve kodu review etmek hep bunlardan geçiyor. Kullandığım her tool gibi kullanıyorum, bilinen kısımlarda hızlanıp bilinmeyen kısımlara daha çok zaman ayırabilmek adına; mimari ve review bende kalıyor, okumadığım kod asla yayında olmuyor.",
       stackLead: 'Kullandığım teknolojiler',
       stack:
         'React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Claude Code, Cursor.',
@@ -597,10 +597,10 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
       title: 'Bağımsız çalışma',
       org: 'Manisa',
       bullets: [
-        "2026'nın ortalarından beri tek başıma beş ürün yayına aldım: dört public web sitesi (nöbetçi eczaneler, elektrik kesintileri, Resmî Gazete) ve bir iOS uygulaması; hepsi ücretsiz, hepsi yayında.",
-        "Her katman bende: tasarım, frontend, GitHub Actions üzerinde data pipeline'ları, Supabase backend'leri, deploy ve monitoring.",
+        "2026'nın ortalarından beri tek başıma beş proje yayına aldım: dört public web sitesi (nöbetçi eczaneler, elektrik kesintileri, Resmî Gazete) ve bir iOS uygulaması; hepsi ücretsiz, hepsi yayında.",
+        "Her katman bende: tasarım, arayüz, GitHub Actions üzerinde data pipeline'ları, Supabase backend'leri, deploy ve monitoring.",
         'Bir müşteri için freelance olarak bir web sitesi yaptım.',
-        'Şu anda yayındaki ürünleri ayakta tutarken yeni fikirler üzerinde çalışıyorum.',
+        'Şu anda yayındaki projeleri ayakta tutarken yeni fikirler üzerinde çalışıyorum.',
       ],
     },
     {
@@ -622,7 +622,7 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
       org: 'Adsby',
       place: 'İstanbul, uzaktan',
       bullets: [
-        "Google Ads alternatifi olarak konumlanan ücretli reklam platformunun frontend'ini React ve TypeScript ile sıfırdan kurup yönettim.",
+        "Google Ads alternatifi olarak konumlanan ücretli reklam platformunun arayüzünü React ve TypeScript ile sıfırdan kurup yönettim.",
         'Projeler arasında Redux ve Zustand; veri için RTK Query ve React Query; rol bazlı yetkilendirme ve Stripe abonelikleri.',
         "chart.js dashboard'ları, Sentry ve New Relic izleme, Next.js landing sayfaları.",
       ],
