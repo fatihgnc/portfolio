@@ -3,34 +3,34 @@
  * two themes; all copy lives here and the UI only picks by `locale`.
  */
 
-export type Theme = "dark" | "light";
-export type Locale = "en" | "tr";
+export type Theme = 'dark' | 'light';
+export type Locale = 'en' | 'tr';
 
-export const LOCALES: Locale[] = ["en", "tr"];
-export const DEFAULT_LOCALE: Locale = "en";
+export const LOCALES: Locale[] = ['en', 'tr'];
+export const DEFAULT_LOCALE: Locale = 'en';
 
 /** Canonical origin. No trailing slash. */
-export const SITE_URL = "https://fatihgenc.dev";
+export const SITE_URL = 'https://fatihgenc.dev';
 
 export const identity = {
-  name: "Fatih Genç",
-  givenName: "Fatih",
-  familyName: "Genç",
-  jobTitle: "Frontend Developer",
-  email: "fathgnc.dev@gmail.com",
-  phone: "+90 555 892 77 66",
-  phoneHref: "tel:+905558927766",
-  phoneE164: "+905558927766",
-  github: "https://github.com/fatihgnc",
-  githubLabel: "github.com/fatihgnc",
-  linkedin: "https://www.linkedin.com/in/fatihgeencc/",
-  linkedinLabel: "linkedin.com/in/fatihgeencc",
-  cv: "/fatih-genc-cv.pdf",
-  cvFile: "fatih-genc-cv.pdf",
-  photo: "/profile.jpg",
-  locality: "Manisa",
-  country: "TR",
-  university: "Manisa Celal Bayar University",
+  name: 'Fatih Genç',
+  givenName: 'Fatih',
+  familyName: 'Genç',
+  jobTitle: 'Frontend Developer',
+  email: 'fathgnc.dev@gmail.com',
+  phone: '+90 555 892 77 66',
+  phoneHref: 'tel:+905558927766',
+  phoneE164: '+905558927766',
+  github: 'https://github.com/fatihgnc',
+  githubLabel: 'github.com/fatihgnc',
+  linkedin: 'https://www.linkedin.com/in/fatihgeencc/',
+  linkedinLabel: 'linkedin.com/in/fatihgeencc',
+  cv: '/fatih-genc-cv.pdf',
+  cvFile: 'fatih-genc-cv.pdf',
+  photo: '/profile.jpg',
+  locality: 'Manisa',
+  country: 'TR',
+  university: 'Manisa Celal Bayar University',
 } as const;
 
 /**
@@ -38,11 +38,12 @@ export const identity = {
  * Turkish is prefixed and uses a translated segment for the project pages.
  */
 export const paths = {
-  home: (locale: Locale) => (locale === "en" ? "/" : "/tr"),
+  home: (locale: Locale) => (locale === 'en' ? '/' : '/tr'),
   /** a section of the home page, linked from anywhere */
-  section: (locale: Locale, id: string) => (locale === "en" ? `/#${id}` : `/tr#${id}`),
+  section: (locale: Locale, id: string) =>
+    locale === 'en' ? `/#${id}` : `/tr#${id}`,
   project: (locale: Locale, slug: string) =>
-    locale === "en" ? `/projects/${slug}` : `/tr/projeler/${slug}`,
+    locale === 'en' ? `/projects/${slug}` : `/tr/projeler/${slug}`,
 };
 
 export type Messages = {
@@ -95,7 +96,13 @@ export type Messages = {
     more: string;
     platform: { web: string; ios: string };
   };
-  gallery: { label: string; open: string; prev: string; next: string; hint: string };
+  gallery: {
+    label: string;
+    open: string;
+    prev: string;
+    next: string;
+    hint: string;
+  };
   experience: { h: string; present: string };
   contact: {
     h: string;
@@ -112,153 +119,172 @@ export type Messages = {
 export const messages: Record<Locale, Messages> = {
   en: {
     meta: {
-      title: "Fatih Genç — Frontend Developer",
+      title: 'Fatih Genç — Frontend Developer',
       description:
-        "Frontend developer in Manisa, Turkey building production frontends with React, Next.js and TypeScript. Five products live: an iOS app and four websites.",
+        'Frontend developer in Manisa, Turkey. I build interfaces with React, Next.js and TypeScript, AI in the workflow. Five products live: an iOS app, four websites.',
       ogDescription:
-        "React, Next.js and TypeScript. Five products shipped solo since early 2026 — an iOS app and four websites, all live and free.",
-      projectTitleTail: "Fatih Genç",
+        'React, Next.js and TypeScript. Five products shipped solo since mid-2026 — an iOS app and four websites, all live and free.',
+      projectTitleTail: 'Fatih Genç',
     },
     project: {
-      kicker: "Project",
-      home: "Home",
-      back: "All projects",
-      visitWeb: "Visit the site",
-      visitIos: "View on the App Store",
-      overview: "About the project",
-      stack: "Built with",
-      screenshots: "Screenshots",
-      other: "Other projects",
+      kicker: 'Project',
+      home: 'Home',
+      back: 'All projects',
+      visitWeb: 'Visit the site',
+      visitIos: 'View on the App Store',
+      overview: 'About the project',
+      stack: 'Built with',
+      screenshots: 'Screenshots',
+      other: 'Other projects',
     },
-    skip: "Skip to content",
-    navLabel: "Site",
-    nav: { home: "Home", projects: "Projects", experience: "Experience", contact: "Contact" },
-    online: "Online",
-    menu: "Open menu",
-    closeMenu: "Close menu",
-    localeLabel: "Language",
-    themeLabel: "Dark theme",
-    links: { github: "GitHub", linkedin: "LinkedIn", email: "Email", cv: "CV" },
-    external: "(opens in a new tab)",
+    skip: 'Skip to content',
+    navLabel: 'Site',
+    nav: {
+      home: 'Home',
+      projects: 'Projects',
+      experience: 'Experience',
+      contact: 'Contact',
+    },
+    online: 'Online',
+    menu: 'Open menu',
+    closeMenu: 'Close menu',
+    localeLabel: 'Language',
+    themeLabel: 'Dark theme',
+    links: { github: 'GitHub', linkedin: 'LinkedIn', email: 'Email', cv: 'CV' },
+    external: '(opens in a new tab)',
     hero: {
-      role: "Frontend Developer",
-      location: "Manisa, Turkey",
+      role: 'Frontend Developer',
+      location: 'Manisa, Turkey',
       positioning:
-        "I build production frontends with React, Next.js and TypeScript, and since early 2026 I have been shipping my own products end to end.",
+        'I build interfaces with React, Next.js and TypeScript, with AI in the workflow, and since mid-2026 I have been designing and shipping my own products.',
     },
     about: {
-      employedLabel: "2022 – 2025 · Employed",
+      employedLabel: '2022 – 2025 · Full-time',
       employed:
-        "Three and a half years building production frontends with React, Next.js and TypeScript in SaaS and enterprise teams. Most of that work was taking products from zero to shipped: standing up the codebase, choosing the state and data layers, and carrying features through to release.",
-      indieLabel: "2026 – · Independent",
+        'Three and a half years building frontends with React, Next.js and TypeScript at startups and enterprise companies, mostly on SaaS products. Mostly I was taking products from zero to shipped: standing up the codebase, choosing the state and data layers, and carrying features through to release.',
+      indieLabel: '2026 – · Independent',
       indie:
-        "Since early 2026 I have been building my own products end to end: design, frontend, data pipelines, deployment. Five of them are live so far: four websites and one iOS app. All of them are free, and all of them answer a real daily question. Alongside them I built one website as freelance work for a client.",
-      now: "Right now I am working on new ideas alongside them.",
-      ai: "AI is a daily part of my workflow, not an occasional experiment. I use Claude Code and Cursor constantly and keep up with what is new: scaffolding, refactors, reading unfamiliar APIs, writing tests and reviewing my own code all go through them. I treat it the way I treat any tool, to move faster on the parts that are known so there is more time for the parts that are not; architecture and review stay with me, and code I have not read does not ship.",
-      stackLead: "Working with",
+        'Since mid-2026 I have been building my own products: design, frontend, data pipelines, deployment. I have shipped five of them so far: four websites and one iOS app. All of them are free. Alongside them I built one website as freelance work for a client.',
+      now: 'Right now I am working on new ideas on top of these.',
+      ai: 'AI is a daily part of my workflow, not an occasional experiment. There is no getting away from it now, so I brought it into how I work. That means Claude Code and Cursor constantly, and keeping up with what is new: scaffolding, refactors, reading an API I do not know, writing tests and reviewing code all go through them. I use it like every other tool I reach for, to move faster on the parts that are known so there is more time for the parts that are not; architecture and review stay with me, and code I have not read never goes live.',
+      stackLead: 'Technologies I work with',
       stack:
-        "React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Claude Code, Cursor.",
+        'React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Claude Code, Cursor.',
     },
     projects: {
-      h: "Projects",
-      intro: "Four websites and one iOS app, all live, all free, designed, built and shipped solo since early 2026.",
-      live: "Live",
-      more: "Project page",
-      platform: { web: "Web", ios: "iOS" },
+      h: 'Projects',
+      intro:
+        'Four websites and one iOS app, all live, all free; I designed, built and shipped every one of them solo since mid-2026.',
+      live: 'Live',
+      more: 'Project page',
+      platform: { web: 'Web', ios: 'iOS' },
     },
     gallery: {
-      label: "screenshots",
-      open: "Open screenshot",
-      prev: "Previous screenshot",
-      next: "Next screenshot",
-      hint: "Use the arrow keys to move between screenshots, Escape to close.",
+      label: 'screenshots',
+      open: 'Open screenshot',
+      prev: 'Previous screenshot',
+      next: 'Next screenshot',
+      hint: 'Use the arrow keys to move between screenshots, Escape to close.',
     },
-    experience: { h: "Experience", present: "Present" },
+    experience: { h: 'Experience', present: 'Present' },
     contact: {
-      h: "Contact",
-      intro: "Open to frontend roles, remote or in Turkey, and to freelance work. The fastest way to reach me is email.",
-      email: "Email",
-      phone: "Phone",
-      location: "Location",
-      copy: "Copy",
-      copied: "Copied",
+      h: 'Contact',
+      intro:
+        'Open to frontend roles, remote or in Turkey, and to freelance work. You can reach me through the details below.',
+      email: 'Email',
+      phone: 'Phone',
+      location: 'Location',
+      copy: 'Copy',
+      copied: 'Copied',
     },
-    footer: "Fatih Genç, 2026",
+    footer: 'Fatih Genç, 2026',
   },
   tr: {
     meta: {
-      title: "Fatih Genç — Frontend Developer",
+      title: 'Fatih Genç — Frontend Developer',
       description:
-        "Manisa'da yaşayan frontend developer. React, Next.js ve TypeScript ile production frontend'ler geliştiriyorum. Beş ürün yayında: bir iOS uygulaması ve dört web sitesi.",
+        "Manisa'da frontend developer. React, Next.js ve TypeScript ile AI entegre arayüzler geliştiriyorum. Beş ürünüm yayında: bir iOS uygulaması, dört web sitesi.",
       ogDescription:
-        "React, Next.js ve TypeScript. 2026 başından beri tek başıma yayına aldığım beş ürün: bir iOS uygulaması ve dört web sitesi, hepsi ücretsiz.",
-      projectTitleTail: "Fatih Genç",
+        "React, Next.js ve TypeScript. 2026'nın ortalarından beri tek başıma yayına aldığım beş ürün: bir iOS uygulaması ve dört web sitesi, hepsi ücretsiz.",
+      projectTitleTail: 'Fatih Genç',
     },
     project: {
-      kicker: "Proje",
-      home: "Ana sayfa",
-      back: "Tüm projeler",
-      visitWeb: "Siteyi ziyaret et",
+      kicker: 'Proje',
+      home: 'Ana sayfa',
+      back: 'Tüm projeler',
+      visitWeb: 'Siteyi ziyaret et',
       visitIos: "App Store'da gör",
-      overview: "Proje hakkında",
-      stack: "Kullanılan teknolojiler",
-      screenshots: "Ekran görüntüleri",
-      other: "Diğer projeler",
+      overview: 'Proje hakkında',
+      stack: 'Kullanılan teknolojiler',
+      screenshots: 'Ekran görüntüleri',
+      other: 'Diğer projeler',
     },
-    skip: "İçeriğe geç",
-    navLabel: "Site",
-    nav: { home: "Ana sayfa", projects: "Projeler", experience: "Deneyim", contact: "İletişim" },
-    online: "Çevrimiçi",
-    menu: "Menüyü aç",
-    closeMenu: "Menüyü kapat",
-    localeLabel: "Dil",
-    themeLabel: "Koyu tema",
-    links: { github: "GitHub", linkedin: "LinkedIn", email: "E-posta", cv: "CV" },
-    external: "(yeni sekmede açılır)",
+    skip: 'İçeriğe geç',
+    navLabel: 'Site',
+    nav: {
+      home: 'Ana sayfa',
+      projects: 'Projeler',
+      experience: 'Deneyim',
+      contact: 'İletişim',
+    },
+    online: 'Çevrimiçi',
+    menu: 'Menüyü aç',
+    closeMenu: 'Menüyü kapat',
+    localeLabel: 'Dil',
+    themeLabel: 'Koyu tema',
+    links: {
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+      email: 'E-posta',
+      cv: 'CV',
+    },
+    external: '(yeni sekmede açılır)',
     hero: {
-      role: "Frontend Developer",
-      location: "Manisa, Türkiye",
+      role: 'Frontend Developer',
+      location: 'Manisa, Türkiye',
       positioning:
-        "React, Next.js ve TypeScript ile production frontend'ler geliştiriyorum; 2026 başından beri kendi ürünlerimi uçtan uca tasarlayıp yayına alıyorum.",
+        "React, Next.js ve TypeScript ile AI entegre bir şekilde arayüzler geliştiriyorum; 2026'nın ortalarından beri kendi ürünlerimi tasarlayıp yayına alıyorum.",
     },
     about: {
-      employedLabel: "2022 – 2025 · Maaşlı",
+      employedLabel: '2022 – 2025 · Tam zamanlı',
       employed:
-        "Üç buçuk yıl boyunca SaaS ve kurumsal ekiplerde React, Next.js ve TypeScript ile production frontend'ler geliştirdim. Bu işin büyük kısmı ürünleri sıfırdan yayına taşımaktı: kod tabanını kurmak, state ve veri katmanlarını seçmek, özellikleri release'e kadar götürmek.",
-      indieLabel: "2026 – · Bağımsız",
+        "Üç buçuk yıl boyunca startup ve kurumsal firmalarda React, Next.js ve TypeScript ile çoğu SaaS olmak üzere önyüzler geliştirdim. Çoğunlukla ürünleri sıfırdan yayına çıkarmakla uğraştım: codebase'i oluşturmak, state ve veri katmanlarını seçmek, özellikleri release'e kadar götürmek.",
+      indieLabel: '2026 – · Bağımsız',
       indie:
-        "2026 başından beri kendi ürünlerimi uçtan uca geliştiriyorum: tasarım, frontend, data pipeline'ları, deploy. Şimdiye kadar beşi yayında: dört web sitesi ve bir iOS uygulaması. Hepsi ücretsiz ve hepsi gerçek bir günlük soruya cevap veriyor. Bunların yanında bir müşteri için freelance olarak bir web sitesi yaptım.",
-      now: "Şu anda bunların yanında yeni fikirler üzerinde çalışıyorum.",
-      ai: "AI, workflow'umun günlük bir parçası; ara sıra denediğim bir şey değil. Claude Code ve Cursor'ı sürekli kullanıyor, yeni çıkanları yakından takip ediyorum: scaffolding, refactor, tanımadığım bir API'yi hızlı okumak, test yazmak ve kendi kodumu review etmek hep bunlardan geçiyor. Her araç gibi kullanıyorum, bilinen kısımlarda hızlanıp bilinmeyen kısımlara daha çok zaman ayırmak için; mimari ve review bende kalıyor, okumadığım kod yayına çıkmıyor.",
-      stackLead: "Kullandığım araçlar",
+        "2026'nın ortalarından beri kendi ürünlerimi geliştiriyorum: tasarım, frontend, data pipeline'ları, deploy. Şimdiye kadar beş projeyi yayına aldım: dört web sitesi ve bir iOS uygulaması. Hepsi ücretsiz. Bunların yanında bir müşteri için freelance olarak bir web sitesi yaptım.",
+      now: 'Şu anda bunlara ek olarak yeni fikirler üzerinde çalışıyorum.',
+      ai: "AI, workflow'umun günlük bir parçası; ara sıra denediğim bir şey değil. Günümüzde AI'dan kaçış mümkün değil dolayısıyla ben de çalışma hayatıma entegre ettim. Dolayısıyla Claude Code ve Cursor'ı sürekli kullanıyor, yeni çıkanları yakından takip ediyorum: scaffolding, refactor, bilmediğim bir API'yi hızlı okumak, test yazmak ve kodu review etmek hep bunlardan geçiyor. Kullandığım her tool gibi kullanıyorum, bilinen kısımlarda hızlanıp bilinmeyen kısımlara daha çok zaman ayırabilmek adına; mimari ve review bende kalıyor, okumadığım kod asla yayında olmuyor.",
+      stackLead: 'Kullandığım teknolojiler',
       stack:
-        "React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Claude Code, Cursor.",
+        'React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Claude Code, Cursor.',
     },
     projects: {
-      h: "Projeler",
-      intro: "Dört web sitesi ve bir iOS uygulaması; hepsi yayında, hepsi ücretsiz, 2026 başından beri tek başıma tasarlanıp geliştirildi ve yayına alındı.",
-      live: "Yayında",
-      more: "Proje sayfası",
-      platform: { web: "Web", ios: "iOS" },
+      h: 'Projeler',
+      intro:
+        "Dört web sitesi ve bir iOS uygulaması; hepsi yayında, hepsi ücretsiz, 2026'nın ortalarından beri tek başıma tasarlayıp geliştirdim ve yayına aldım.",
+      live: 'Yayında',
+      more: 'Proje sayfası',
+      platform: { web: 'Web', ios: 'iOS' },
     },
     gallery: {
-      label: "ekran görüntüleri",
-      open: "Ekran görüntüsünü aç",
-      prev: "Önceki ekran görüntüsü",
-      next: "Sonraki ekran görüntüsü",
-      hint: "Ok tuşlarıyla ekran görüntüleri arasında geçin, Escape ile kapatın.",
+      label: 'ekran görüntüleri',
+      open: 'Ekran görüntüsünü aç',
+      prev: 'Önceki ekran görüntüsü',
+      next: 'Sonraki ekran görüntüsü',
+      hint: 'Ok tuşlarıyla ekran görüntüleri arasında geçin, Escape ile kapatın.',
     },
-    experience: { h: "Deneyim", present: "Halen" },
+    experience: { h: 'Deneyim', present: 'Halen' },
     contact: {
-      h: "İletişim",
-      intro: "Uzaktan veya Türkiye içi frontend rollerine ve freelance işlere açığım. En hızlı yol e-posta.",
-      email: "E-posta",
-      phone: "Telefon",
-      location: "Konum",
-      copy: "Kopyala",
-      copied: "Kopyalandı",
+      h: 'İletişim',
+      intro:
+        'Uzaktan veya Türkiye içi frontend rollerine ve freelance işlere açığım. Aşağıdaki iletişim bilgileri üzerinden iletişime geçebilirsiniz.',
+      email: 'E-posta',
+      phone: 'Telefon',
+      location: 'Konum',
+      copy: 'Kopyala',
+      copied: 'Kopyalandı',
     },
-    footer: "Fatih Genç, 2026",
+    footer: 'Fatih Genç, 2026',
   },
 };
 
@@ -282,7 +308,7 @@ export type Project = {
   url: string;
   /** full address when `url` is not a domain */
   href?: string;
-  platform: "web" | "ios";
+  platform: 'web' | 'ios';
   stack: string;
   /** one line; the meta description and OG subtitle of the project page */
   tagline: Record<Locale, string>;
@@ -292,179 +318,180 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: "p-secretmap-ios",
-    slug: "secretmap-ios",
-    name: "SecretMap",
-    url: "App Store",
-    href: "https://apps.apple.com/us/app/secretmap-share-anonymously/id6799620743",
-    platform: "ios",
-    stack: "React Native, TypeScript, Supabase",
+    id: 'p-secretmap-ios',
+    slug: 'secretmap-ios',
+    name: 'SecretMap',
+    url: 'App Store',
+    href: 'https://apps.apple.com/us/app/secretmap-share-anonymously/id6799620743',
+    platform: 'ios',
+    stack: 'React Native, TypeScript, Supabase',
     tagline: {
-      en: "An iOS app for dropping an anonymous secret on the world map. No profile, no followers, no trackers.",
-      tr: "Dünya haritasına anonim bir sır bırakmak için iOS uygulaması. Profil yok, takipçi yok, tracker yok.",
+      en: 'An iOS app for dropping an anonymous secret on the world map. No profile, no followers, no trackers.',
+      tr: 'Dünya haritasına anonim bir sır bırakmak için iOS uygulaması. Profil yok, takipçi yok, tracker yok.',
     },
     description: {
-      en: "An iOS app where you write a secret, drop it on the world map and walk away. No profile, no followers, no notifications, no ads, no trackers; Sign in with Apple is the only door. Coordinates are rounded on the phone before anything is sent, so the map only ever knows \"somewhere near Lisbon\". The only reply anyone can give is \"same\".",
-      tr: "Bir sır yazıp dünya haritasına bırakıp uzaklaştığınız bir iOS uygulaması. Profil, takipçi, bildirim, reklam ve tracker yok; tek giriş kapısı Sign in with Apple. Koordinatlar telefondan çıkmadan yuvarlanır, harita yalnızca \"Lizbon yakınlarında bir yer\" bilir. Verilebilecek tek yanıt \"bende de\".",
+      en: 'An iOS app where you write a secret, drop it on the world map and walk away. No profile, no followers, no notifications, no ads, no trackers; Sign in with Apple is the only door. Coordinates are rounded on the phone before anything is sent, so the map only ever knows "somewhere near Lisbon". The only reply anyone can give is "same".',
+      tr: 'Bir sır yazıp dünya haritasına bırakıp uzaklaştığınız bir iOS uygulaması. Profil, takipçi, bildirim, reklam ve tracker yok; tek giriş kapısı Sign in with Apple. Koordinatlar telefondan çıkmadan yuvarlanır, harita yalnızca "Lizbon yakınlarında bir yer" bilir. Verilebilecek tek yanıt "bende de".',
     },
     shots: [
       {
-        src: "/shots/secret-map-ios/2.webp",
+        src: '/shots/secret-map-ios/2.webp',
         width: 736,
         height: 1600,
         portrait: true,
         alt: {
-          en: "World map with orange clusters showing how many secrets were dropped near each place; no exact locations.",
-          tr: "Her bölgeye bırakılan sır sayısını turuncu kümelerle gösteren dünya haritası; tam konum yok.",
+          en: 'World map with orange clusters showing how many secrets were dropped near each place; no exact locations.',
+          tr: 'Her bölgeye bırakılan sır sayısını turuncu kümelerle gösteren dünya haritası; tam konum yok.',
         },
       },
       {
-        src: "/shots/secret-map-ios/1.webp",
+        src: '/shots/secret-map-ios/1.webp',
         width: 736,
         height: 1600,
         portrait: true,
         alt: {
-          en: "A single secret opened from the map, with the only possible reply: Same.",
-          tr: "Haritadan açılmış tek bir sır ve verilebilecek tek yanıt: Bende de.",
+          en: 'A single secret opened from the map, with the only possible reply: Same.',
+          tr: 'Haritadan açılmış tek bir sır ve verilebilecek tek yanıt: Bende de.',
         },
       },
     ],
   },
   {
-    id: "p-secretmap-web",
-    slug: "secretmap",
-    name: "secretmap.dev",
-    url: "secretmap.dev",
-    platform: "web",
-    stack: "Next.js, TypeScript",
+    id: 'p-secretmap-web',
+    slug: 'secretmap',
+    name: 'secretmap.dev',
+    url: 'secretmap.dev',
+    platform: 'web',
+    stack: 'Next.js, TypeScript',
     tagline: {
-      en: "The landing page for SecretMap: one screen, an FAQ and an App Store button, built with Next.js.",
+      en: 'The landing page for SecretMap: one screen, an FAQ and an App Store button, built with Next.js.',
       tr: "SecretMap'in açılış sayfası: tek ekran, FAQ ve App Store butonu; Next.js ile geliştirildi.",
     },
     description: {
-      en: "The landing page for the SecretMap app. One screen that says what the app is, what it never collects and how the three steps work, with an FAQ and an App Store button.",
-      tr: "SecretMap uygulamasının açılış sayfası. Uygulamanın ne olduğunu, neyi asla toplamadığını ve üç adımın nasıl işlediğini anlatan tek ekran; FAQ ve App Store butonu ile.",
+      en: 'The landing page for the SecretMap app. One screen that says what the app is, what it never collects and how the three steps work, with an FAQ and an App Store button.',
+      tr: 'SecretMap uygulamasının açılış sayfası. Uygulamanın ne olduğunu, neyi asla toplamadığını ve üç adımın nasıl işlediğini anlatan tek ekran; FAQ ve App Store butonu ile.',
     },
     shots: [
       {
-        src: "/shots/secret-map-landing/1.webp",
+        src: '/shots/secret-map-landing/1.webp',
         width: 1600,
         height: 722,
         alt: {
-          en: "Landing page hero: black ground, orange accent and a single App Store button.",
-          tr: "Açılış sayfası: siyah zemin, turuncu vurgu ve tek bir App Store butonu.",
+          en: 'Landing page hero: black ground, orange accent and a single App Store button.',
+          tr: 'Açılış sayfası: siyah zemin, turuncu vurgu ve tek bir App Store butonu.',
         },
       },
       {
-        src: "/shots/secret-map-landing/2.webp",
+        src: '/shots/secret-map-landing/2.webp',
         width: 1600,
         height: 802,
         alt: {
           en: "Terms of use page with a numbered section index in the app's own typography.",
-          tr: "Uygulamanın kendi tipografisiyle numaralı bölüm dizinli kullanım koşulları sayfası.",
+          tr: 'Uygulamanın kendi tipografisiyle numaralı bölüm dizinli kullanım koşulları sayfası.',
         },
       },
     ],
   },
   {
-    id: "p-eczane",
-    slug: "acik-eczane-var-mi",
-    platform: "web",
-    name: "Açık Eczane Var mı",
-    url: "acikeczanevarmi.com",
-    stack: "Next.js, TypeScript, Tailwind CSS, Supabase, GitHub Actions, PWA",
+    id: 'p-eczane',
+    slug: 'acik-eczane-var-mi',
+    platform: 'web',
+    name: 'Açık Eczane Var mı',
+    url: 'acikeczanevarmi.com',
+    stack: 'Next.js, TypeScript, Tailwind CSS, Supabase, GitHub Actions, PWA',
     tagline: {
-      en: "Which pharmacy is on duty tonight in Northern Cyprus — nearest first, on a map, embeddable as a widget.",
+      en: 'Which pharmacy is on duty tonight in Northern Cyprus — nearest first, on a map, embeddable as a widget.',
       tr: "Kuzey Kıbrıs'ta bu gece hangi eczane nöbetçi — haritada en yakından, widget olarak gömülebilir.",
     },
     description: {
-      en: "Which pharmacy is on duty tonight in Northern Cyprus. Nearest first, on a map, with one-tap call and directions. It also embeds into any news site as an iframe widget with a chosen accent colour, so local outlets show the roster without maintaining it themselves.",
+      en: 'Which pharmacy is on duty tonight in Northern Cyprus. Nearest first, on a map, with one-tap call and directions. It also embeds into any news site as an iframe widget with a chosen accent colour, so local outlets show the roster without maintaining it themselves.',
       tr: "Bu gece Kuzey Kıbrıs'ta hangi eczane nöbetçi. Harita üzerinde en yakından başlayarak, tek dokunuşla arama ve yol tarifi. İstenen accent rengiyle iframe widget olarak her haber sitesine gömülebiliyor; yerel yayınlar listeyi kendileri güncellemeden gösterebiliyor.",
     },
     shots: [
       {
-        src: "/shots/nobetci-eczane/1.webp",
+        src: '/shots/nobetci-eczane/1.webp',
         width: 1600,
         height: 799,
         alt: {
           en: "Tonight's duty pharmacies on a map, nearest first, with call and directions buttons.",
-          tr: "Bu gecenin nöbetçi eczaneleri haritada, en yakından başlayarak, ara ve yol tarifi butonlarıyla.",
+          tr: 'Bu gecenin nöbetçi eczaneleri haritada, en yakından başlayarak, ara ve yol tarifi butonlarıyla.',
         },
       },
       {
-        src: "/shots/nobetci-eczane/3.webp",
+        src: '/shots/nobetci-eczane/3.webp',
         width: 1600,
         height: 801,
         alt: {
-          en: "Embed page: pick a region, language and accent colour and copy the iframe widget code.",
-          tr: "Gömme sayfası: bölge, dil ve accent rengi seçip iframe widget kodunu kopyala.",
+          en: 'Embed page: pick a region, language and accent colour and copy the iframe widget code.',
+          tr: 'Gömme sayfası: bölge, dil ve accent rengi seçip iframe widget kodunu kopyala.',
         },
       },
       {
-        src: "/shots/nobetci-eczane/2.webp",
+        src: '/shots/nobetci-eczane/2.webp',
         width: 1600,
         height: 796,
         alt: {
-          en: "Directory of all 432 registered pharmacies grouped by district.",
-          tr: "Kayıtlı 432 eczanenin ilçeye göre gruplanmış dizini.",
+          en: 'Directory of all 432 registered pharmacies grouped by district.',
+          tr: 'Kayıtlı 432 eczanenin ilçeye göre gruplanmış dizini.',
         },
       },
     ],
   },
   {
-    id: "p-kesinti",
-    slug: "kesinti-mi-var",
-    platform: "web",
-    name: "Kesinti mi Var",
-    url: "kesintimivar.com",
-    stack: "Next.js, TypeScript, Tailwind CSS, Supabase, GitHub Actions",
+    id: 'p-kesinti',
+    slug: 'kesinti-mi-var',
+    platform: 'web',
+    name: 'Kesinti mi Var',
+    url: 'kesintimivar.com',
+    stack: 'Next.js, TypeScript, Tailwind CSS, Supabase, GitHub Actions',
     tagline: {
-      en: "A live power outage map of Northern Cyprus, built from five local news sources, with RSS and calendar feeds.",
+      en: 'A live power outage map of Northern Cyprus, built from five local news sources, with RSS and calendar feeds.',
       tr: "Kuzey Kıbrıs'ın canlı elektrik kesintisi haritası; beş yerel haber kaynağından, RSS ve takvim akışlarıyla.",
     },
     description: {
-      en: "Is the power out in my area, and when does it come back? A live outage map of Northern Cyprus with every settlement as a dot. The utility publishes nothing usable, so the site reads five local news outlets instead and turns their announcements into one structured record per outage, with an RSS feed and a subscribable calendar for every district.",
+      en: 'Is the power out in my area, and when does it come back? A live outage map of Northern Cyprus with every settlement as a dot. The utility publishes nothing usable, so the site reads five local news outlets instead and turns their announcements into one structured record per outage, with an RSS feed and a subscribable calendar for every district.',
       tr: "Bölgemde elektrik kesik mi, ne zaman gelir? Kuzey Kıbrıs'ın canlı kesinti haritası; her yerleşim bir nokta. Kurum işe yarar bir şey yayımlamadığı için site beş yerel haber kaynağını okur ve duyuruları her kesinti için tek bir structured kayda çevirir; her ilçe için RSS feed'i ve subscribe edilebilir takvim sunar.",
     },
     shots: [
       {
-        src: "/shots/kesinti-mi-var/1.webp",
+        src: '/shots/kesinti-mi-var/1.webp',
         width: 1600,
         height: 799,
         alt: {
-          en: "Live outage map: every settlement a glowing dot, the one without power marked red.",
-          tr: "Canlı kesinti haritası: her yerleşim parlayan bir nokta, elektriği kesik olan kırmızı.",
+          en: 'Live outage map: every settlement a glowing dot, the one without power marked red.',
+          tr: 'Canlı kesinti haritası: her yerleşim parlayan bir nokta, elektriği kesik olan kırmızı.',
         },
       },
       {
-        src: "/shots/kesinti-mi-var/2.webp",
+        src: '/shots/kesinti-mi-var/2.webp',
         width: 1600,
         height: 801,
         alt: {
-          en: "Archive of past outages filtered by district and month, each card linking to its news source.",
-          tr: "İlçe ve aya göre filtrelenen geçmiş kesintiler arşivi; her kart haber kaynağına bağlanıyor.",
+          en: 'Archive of past outages filtered by district and month, each card linking to its news source.',
+          tr: 'İlçe ve aya göre filtrelenen geçmiş kesintiler arşivi; her kart haber kaynağına bağlanıyor.',
         },
       },
     ],
   },
   {
-    id: "p-mevzuat",
-    slug: "mevzuat-kibris",
-    platform: "web",
-    name: "Mevzuat Kıbrıs",
-    url: "mevzuatkibris.com",
-    stack: "Next.js, TypeScript, Tailwind CSS, Supabase, Resend, GitHub Actions",
+    id: 'p-mevzuat',
+    slug: 'mevzuat-kibris',
+    platform: 'web',
+    name: 'Mevzuat Kıbrıs',
+    url: 'mevzuatkibris.com',
+    stack:
+      'Next.js, TypeScript, Tailwind CSS, Supabase, Resend, GitHub Actions',
     tagline: {
-      en: "24,000 KKTC Official Gazette records, split out of PDFs and made full-text searchable in Turkish.",
+      en: '24,000 KKTC Official Gazette records, split out of PDFs and made full-text searchable in Turkish.',
       tr: "KKTC Resmî Gazete'den ayrıştırılmış 24.000 kayıt, Türkçe full-text aranabilir hâlde.",
     },
     description: {
-      en: "The KKTC Official Gazette is published only as PDF. This crawls every issue since 2020, splits it into individual records and makes 24,000 of them full-text searchable in Turkish. Anyone can follow a topic, institution or company by e-mail or RSS and get notified the moment a new record matches.",
+      en: 'The KKTC Official Gazette is published only as PDF. This crawls every issue since 2020, splits it into individual records and makes 24,000 of them full-text searchable in Turkish. Anyone can follow a topic, institution or company by e-mail or RSS and get notified the moment a new record matches.',
       tr: "KKTC Resmî Gazete yalnızca PDF olarak yayımlanıyor. Bu site 2020'den bu yana her sayıyı tarar, tek tek kayıtlara böler ve 24.000 kaydı Türkçe full-text aranabilir hâle getirir. Herkes bir konuyu, kurumu veya şirketi e-posta ya da RSS ile takip edip yeni bir kayıt eşleştiği anda haber alabilir.",
     },
     shots: [
       {
-        src: "/shots/mevzuat-kibris/1.webp",
+        src: '/shots/mevzuat-kibris/1.webp',
         width: 1600,
         height: 802,
         alt: {
@@ -473,12 +500,12 @@ export const projects: Project[] = [
         },
       },
       {
-        src: "/shots/mevzuat-kibris/2.webp",
+        src: '/shots/mevzuat-kibris/2.webp',
         width: 1600,
         height: 804,
         alt: {
-          en: "A single record page with the original gazette title, issue, institution and a link to the official PDF.",
-          tr: "Tek bir kayıt sayfası: gazetedeki orijinal başlık, sayı, kurum ve resmî PDF bağlantısı.",
+          en: 'A single record page with the original gazette title, issue, institution and a link to the official PDF.',
+          tr: 'Tek bir kayıt sayfası: gazetedeki orijinal başlık, sayı, kurum ve resmî PDF bağlantısı.',
         },
       },
     ],
@@ -499,143 +526,173 @@ export type ExperienceEntry = {
 export const experience: Record<Locale, ExperienceEntry[]> = {
   en: [
     {
-      start: "2026-03",
-      end: "",
-      title: "Independent work",
-      org: "Manisa",
+      start: '2026-06',
+      end: '',
+      title: 'Independent work',
+      org: 'Manisa',
       bullets: [
-        "Shipped five products solo since early 2026: four public websites (duty pharmacies, power outages, the Official Gazette) and one iOS app, all free and all live.",
-        "Own every layer: design, frontend, data pipelines on GitHub Actions, Supabase backends, deployment and monitoring.",
-        "Built one website as freelance work for a client.",
-        "Currently exploring new ideas while keeping the live products running.",
+        'Shipped five products solo since mid-2026: four public websites (duty pharmacies, power outages, the Official Gazette) and one iOS app, all free and all live.',
+        'Own every layer: design, frontend, data pipelines on GitHub Actions, Supabase backends, deployment and monitoring.',
+        'Built one website as freelance work for a client.',
+        'Currently exploring new ideas while keeping the live products running.',
       ],
     },
     {
-      start: "2026-01",
-      end: "2026-02",
-      title: "Frontend Developer",
-      org: "MLPCARE",
-      place: "Istanbul, remote",
+      start: '2026-01',
+      end: '2026-02',
+      title: 'Frontend Developer',
+      org: 'MLPCARE',
+      place: 'Istanbul, remote',
       bullets: [
-        "Built a purchase-request management application for hospital staff from scratch in Next.js and TypeScript.",
+        'Built a purchase-request management application for hospital staff from scratch in Next.js and TypeScript.',
         "Zustand for state, React Query over REST, inside the company's internal component library.",
-        "Agile delivery with Azure DevOps and GitHub Actions.",
+        'Agile delivery with Azure DevOps and GitHub Actions.',
       ],
     },
     {
-      start: "2024-01",
-      end: "2025-07",
-      title: "Frontend Developer",
-      org: "Adsby",
-      place: "Istanbul, remote",
+      start: '2024-01',
+      end: '2025-07',
+      title: 'Frontend Developer',
+      org: 'Adsby',
+      place: 'Istanbul, remote',
       bullets: [
-        "Led frontend on a paid advertising platform positioned as an alternative to Google Ads, built from scratch in React and TypeScript.",
-        "Redux and Zustand across projects; RTK Query and React Query for data; role-based authorization and Stripe subscriptions.",
-        "chart.js dashboards, Sentry and New Relic monitoring, Next.js landing pages.",
+        'Led frontend on a paid advertising platform positioned as an alternative to Google Ads, built from scratch in React and TypeScript.',
+        'Redux and Zustand across projects; RTK Query and React Query for data; role-based authorization and Stripe subscriptions.',
+        'chart.js dashboards, Sentry and New Relic monitoring, Next.js landing pages.',
       ],
     },
     {
-      start: "2022-06",
-      end: "2024-01",
-      title: "Frontend Developer",
-      org: "Codeventure Bilişim",
-      place: "Istanbul, remote",
+      start: '2022-06',
+      end: '2024-01',
+      title: 'Frontend Developer',
+      org: 'Codeventure Bilişim',
+      place: 'Istanbul, remote',
       bullets: [
-        "Built a real-time social platform in React and TypeScript over 1.5 years: socket.io group and direct messaging, a news feed with posting and commenting, and a permission system.",
-        "Also built backend services in Node.js, Express and MongoDB.",
+        'Built a real-time social platform in React and TypeScript over 1.5 years: socket.io group and direct messaging, a news feed with posting and commenting, and a permission system.',
+        'Also built backend services in Node.js, Express and MongoDB.',
       ],
     },
     {
-      start: "2022-01",
-      end: "2022-06",
-      title: "Backend Developer Intern",
-      org: "Codeventure Bilişim",
-      place: "Istanbul, remote",
-      bullets: ["Node.js, Express and MongoDB; built an accounting application to spec."],
+      start: '2022-01',
+      end: '2022-06',
+      title: 'Backend Developer Intern',
+      org: 'Codeventure Bilişim',
+      place: 'Istanbul, remote',
+      bullets: [
+        'Node.js, Express and MongoDB; built an accounting application to spec.',
+      ],
     },
     {
-      start: "2018-09",
-      end: "2022-06",
-      title: "BSc Software Engineering",
-      org: "Manisa Celal Bayar University",
-      bullets: ["Graduated 2022, GPA 3.48."],
+      start: '2018-09',
+      end: '2022-06',
+      title: 'BSc Software Engineering',
+      org: 'Manisa Celal Bayar University',
+      bullets: ['Graduated 2022, GPA 3.48.'],
     },
   ],
   tr: [
     {
-      start: "2026-03",
-      end: "",
-      title: "Bağımsız çalışma",
-      org: "Manisa",
+      start: '2026-06',
+      end: '',
+      title: 'Bağımsız çalışma',
+      org: 'Manisa',
       bullets: [
-        "2026 başından beri tek başıma beş ürün yayına aldım: dört public web sitesi (nöbetçi eczaneler, elektrik kesintileri, Resmî Gazete) ve bir iOS uygulaması; hepsi ücretsiz, hepsi yayında.",
+        "2026'nın ortalarından beri tek başıma beş ürün yayına aldım: dört public web sitesi (nöbetçi eczaneler, elektrik kesintileri, Resmî Gazete) ve bir iOS uygulaması; hepsi ücretsiz, hepsi yayında.",
         "Her katman bende: tasarım, frontend, GitHub Actions üzerinde data pipeline'ları, Supabase backend'leri, deploy ve monitoring.",
-        "Bir müşteri için freelance olarak bir web sitesi yaptım.",
-        "Şu anda yayındaki ürünleri ayakta tutarken yeni fikirler üzerinde çalışıyorum.",
+        'Bir müşteri için freelance olarak bir web sitesi yaptım.',
+        'Şu anda yayındaki ürünleri ayakta tutarken yeni fikirler üzerinde çalışıyorum.',
       ],
     },
     {
-      start: "2026-01",
-      end: "2026-02",
-      title: "Frontend Developer",
-      org: "MLPCARE",
-      place: "İstanbul, uzaktan",
+      start: '2026-01',
+      end: '2026-02',
+      title: 'Frontend Developer',
+      org: 'MLPCARE',
+      place: 'İstanbul, uzaktan',
       bullets: [
-        "Hastane personeli için satın alma talebi yönetim uygulamasını Next.js ve TypeScript ile sıfırdan geliştirdim.",
-        "State için Zustand, REST üzerinde React Query; şirketin dahili component kütüphanesi içinde çalıştım.",
-        "Azure DevOps ve GitHub Actions ile Agile süreç.",
+        'Hastane personeli için satın alma talebi yönetim uygulamasını Next.js ve TypeScript ile sıfırdan geliştirdim.',
+        'State için Zustand, REST üzerinde React Query; şirketin dahili component kütüphanesi içinde çalıştım.',
+        'Azure DevOps ve GitHub Actions ile Agile süreç.',
       ],
     },
     {
-      start: "2024-01",
-      end: "2025-07",
-      title: "Frontend Developer",
-      org: "Adsby",
-      place: "İstanbul, uzaktan",
+      start: '2024-01',
+      end: '2025-07',
+      title: 'Frontend Developer',
+      org: 'Adsby',
+      place: 'İstanbul, uzaktan',
       bullets: [
         "Google Ads alternatifi olarak konumlanan ücretli reklam platformunun frontend'ini React ve TypeScript ile sıfırdan kurup yönettim.",
-        "Projeler arasında Redux ve Zustand; veri için RTK Query ve React Query; rol bazlı yetkilendirme ve Stripe abonelikleri.",
+        'Projeler arasında Redux ve Zustand; veri için RTK Query ve React Query; rol bazlı yetkilendirme ve Stripe abonelikleri.',
         "chart.js dashboard'ları, Sentry ve New Relic izleme, Next.js landing sayfaları.",
       ],
     },
     {
-      start: "2022-06",
-      end: "2024-01",
-      title: "Frontend Developer",
-      org: "Codeventure Bilişim",
-      place: "İstanbul, uzaktan",
+      start: '2022-06',
+      end: '2024-01',
+      title: 'Frontend Developer',
+      org: 'Codeventure Bilişim',
+      place: 'İstanbul, uzaktan',
       bullets: [
-        "1,5 yıl boyunca React ve TypeScript ile gerçek zamanlı bir sosyal platform geliştirdim: socket.io ile grup ve birebir mesajlaşma, paylaşım ve yorum destekli akış, yetki sistemi.",
-        "Node.js, Express ve MongoDB ile backend servisleri de yazdım.",
+        '1,5 yıl boyunca React ve TypeScript ile gerçek zamanlı bir sosyal platform geliştirdim: socket.io ile grup ve birebir mesajlaşma, paylaşım ve yorum destekli akış, yetki sistemi.',
+        'Node.js, Express ve MongoDB ile backend servisleri de yazdım.',
       ],
     },
     {
-      start: "2022-01",
-      end: "2022-06",
-      title: "Backend Developer Stajyeri",
-      org: "Codeventure Bilişim",
-      place: "İstanbul, uzaktan",
-      bullets: ["Node.js, Express ve MongoDB; şartnameye göre bir muhasebe uygulaması geliştirdim."],
+      start: '2022-01',
+      end: '2022-06',
+      title: 'Backend Developer Stajyeri',
+      org: 'Codeventure Bilişim',
+      place: 'İstanbul, uzaktan',
+      bullets: [
+        'Node.js, Express ve MongoDB; şartnameye göre bir muhasebe uygulaması geliştirdim.',
+      ],
     },
     {
-      start: "2018-09",
-      end: "2022-06",
-      title: "Yazılım Mühendisliği Lisans",
-      org: "Manisa Celal Bayar Üniversitesi",
-      bullets: ["2022 mezunu, not ortalaması 3,48."],
+      start: '2018-09',
+      end: '2022-06',
+      title: 'Yazılım Mühendisliği Lisans',
+      org: 'Manisa Celal Bayar Üniversitesi',
+      bullets: ['2022 mezunu, not ortalaması 3,48.'],
     },
   ],
 };
 
 const MONTHS: Record<Locale, string[]> = {
-  en: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  tr: ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+  en: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
+  tr: [
+    'Oca',
+    'Şub',
+    'Mar',
+    'Nis',
+    'May',
+    'Haz',
+    'Tem',
+    'Ağu',
+    'Eyl',
+    'Eki',
+    'Kas',
+    'Ara',
+  ],
 };
 
 /** "2024-01" -> "Jan 2024" / "Oca 2024"; null for empty input. */
 export function formatMonth(iso: string, locale: Locale): string | null {
   if (!iso) return null;
-  const [y, m] = iso.split("-");
+  const [y, m] = iso.split('-');
   return `${MONTHS[locale][Number(m) - 1]} ${y}`;
 }
 
@@ -651,8 +708,8 @@ export function projectHref(p: Project): string {
 /** "A, B, C." -> ["A", "B", "C"] */
 export function stackList(stack: string): string[] {
   return stack
-    .replace(/\.$/, "")
-    .split(",")
+    .replace(/\.$/, '')
+    .split(',')
     .map((x) => x.trim())
     .filter(Boolean);
 }
@@ -660,7 +717,14 @@ export function stackList(stack: string): string[] {
 /** The slice of copy the (client) sidebar needs; keeps the rest off the wire. */
 export type SidebarCopy = Pick<
   Messages,
-  "navLabel" | "nav" | "online" | "menu" | "links" | "external" | "localeLabel" | "themeLabel"
+  | 'navLabel'
+  | 'nav'
+  | 'online'
+  | 'menu'
+  | 'links'
+  | 'external'
+  | 'localeLabel'
+  | 'themeLabel'
 > & { role: string };
 
 export function sidebarCopy(locale: Locale): SidebarCopy {
