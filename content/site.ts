@@ -360,7 +360,7 @@ export const projects: Project[] = [
   {
     id: 'p-secretmap-web',
     slug: 'secretmap',
-    name: 'secretmap.dev',
+    name: 'SecretMap Landing',
     url: 'secretmap.dev',
     platform: 'web',
     stack: 'Next.js, TypeScript',

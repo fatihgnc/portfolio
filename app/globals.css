@@ -760,6 +760,10 @@
   text-decoration-thickness: 1px;
 }
 
+.project-link {
+  text-decoration: none;
+}
+
 .project-more {
   margin-top: 18px;
   font-size: 15px;

@@ -27,7 +27,6 @@ export default function ProjectPage({
   const t = messages[locale];
   const home = paths.home(locale);
   const others = projects.filter((p) => p.slug !== project.slug);
-  const visit = project.platform === "ios" ? t.project.visitIos : t.project.visitWeb;
 
   return (
     <>
@@ -88,12 +87,6 @@ export default function ProjectPage({
             {t.project.overview}
           </h2>
           <p className="project-desc pretty">{project.description[locale]}</p>
-          <p className="project-visit">
-            <a href={projectHref(project)} target="_blank" rel="noopener noreferrer">
-              {visit}
-              <IconExternalLink aria-hidden="true" className="size-4" />
-            </a>
-          </p>
         </section>
 
         <section aria-labelledby="stack-h">
