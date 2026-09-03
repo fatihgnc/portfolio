@@ -327,12 +327,12 @@ export const projects: Project[] = [
     platform: 'ios',
     stack: 'React Native, TypeScript, Supabase',
     tagline: {
-      en: 'An iOS app for dropping an anonymous secret on the world map. No profile, no followers, no trackers.',
-      tr: 'Dünya haritasına anonim bir sır bırakmak için iOS uygulaması. Profil yok, takipçi yok, tracker yok.',
+      en: 'An iOS app where you drop a secret anonymously on the world map. No profile, no followers, no trackers.',
+      tr: 'Dünya haritasına anonim olarak sır bırakabildiğiniz bir iOS uygulaması. Profil yok, takipçi yok, tracker yok.',
     },
     description: {
-      en: 'An iOS app where you write a secret, drop it on the world map and walk away. No profile, no followers, no notifications, no ads, no trackers; Sign in with Apple is the only door. Coordinates are rounded on the phone before anything is sent, so the map only ever knows "somewhere near Lisbon". The only reply anyone can give is "same".',
-      tr: 'Bir sır yazıp dünya haritasına bırakıp uzaklaştığınız bir iOS uygulaması. Profil, takipçi, bildirim, reklam ve tracker yok; tek giriş kapısı Sign in with Apple. Koordinatlar telefondan çıkmadan yuvarlanır, harita yalnızca "Lizbon yakınlarında bir yer" bilir. Verilebilecek tek yanıt "bende de".',
+      en: 'An iOS app where you write a secret anonymously and leave it at the place you are standing. No profile, no followers, no notifications, no ads, no trackers; the only way in is Sign in with Apple. Your location is rounded to within a set number of kilometres before it leaves the phone, so the map only ever says something like "somewhere near Lisbon". There is one way to interact with a secret, and that is to say "SAME".',
+      tr: 'Anonim bir şekilde sır yazıp bulunduğunuz konuma bıraktığınız bir iOS uygulaması. Profil, takipçi, bildirim, reklam ve tracker yok; tek giriş: Sign in with Apple. Konum bilgisi telefondan çıkmadan belli bir KM\'ye yuvarlanır, harita yalnızca "Lizbon yakınlarında bir yer" gibi bir şey söyler. Tek etkileşim yolu var, o da: "BEN DE" demek.',
     },
     shots: [
       {
@@ -365,12 +365,12 @@ export const projects: Project[] = [
     platform: 'web',
     stack: 'Next.js, TypeScript',
     tagline: {
-      en: 'The landing page for SecretMap: one screen, an FAQ and an App Store button, built with Next.js.',
-      tr: "SecretMap'in açılış sayfası: tek ekran, FAQ ve App Store butonu; Next.js ile geliştirildi.",
+      en: 'The landing site for SecretMap: one screen explaining what the project does, built with Next.js.',
+      tr: "SecretMap'in landing sitesi: projenin ne yaptığını anlatan tek ekran; Next.js ile geliştirildi.",
     },
     description: {
-      en: 'The landing page for the SecretMap app. One screen that says what the app is, what it never collects and how the three steps work, with an FAQ and an App Store button.',
-      tr: 'SecretMap uygulamasının açılış sayfası. Uygulamanın ne olduğunu, neyi asla toplamadığını ve üç adımın nasıl işlediğini anlatan tek ekran; FAQ ve App Store butonu ile.',
+      en: 'The landing site for the SecretMap app. A page that says what the app was built for and how it is used.',
+      tr: 'SecretMap uygulamasının landing sitesi. Uygulamanın ne için yapıldığını, nasıl kullanıldığını anlatan sayfa.',
     },
     shots: [
       {
@@ -378,8 +378,8 @@ export const projects: Project[] = [
         width: 1600,
         height: 722,
         alt: {
-          en: 'Landing page hero: black ground, orange accent and a single App Store button.',
-          tr: 'Açılış sayfası: siyah zemin, turuncu vurgu ve tek bir App Store butonu.',
+          en: 'Landing page: dark ground and an orange accent.',
+          tr: 'Landing sayfası: koyu zemin ve turuncu vurgu.',
         },
       },
       {
@@ -387,8 +387,8 @@ export const projects: Project[] = [
         width: 1600,
         height: 802,
         alt: {
-          en: "Terms of use page with a numbered section index in the app's own typography.",
-          tr: 'Uygulamanın kendi tipografisiyle numaralı bölüm dizinli kullanım koşulları sayfası.',
+          en: "Terms of use page split into numbered sections, in the app's own typography.",
+          tr: 'Uygulamanın kendi tipografisiyle numaralı bölümlere ayrılmış kullanım koşulları sayfası.',
         },
       },
     ],
@@ -401,12 +401,12 @@ export const projects: Project[] = [
     url: 'acikeczanevarmi.com',
     stack: 'Next.js, TypeScript, Tailwind CSS, Supabase, GitHub Actions, PWA',
     tagline: {
-      en: 'Which pharmacy is on duty tonight in Northern Cyprus — nearest first, on a map, embeddable as a widget.',
-      tr: "Kuzey Kıbrıs'ta bu gece hangi eczane nöbetçi — haritada en yakından, widget olarak gömülebilir.",
+      en: 'Which pharmacy is on duty tonight in Northern Cyprus — see the nearest one on a map, embeddable as a widget.',
+      tr: "Kuzey Kıbrıs'ta bu gece hangi eczane nöbetçi — haritada en yakını görüntülenebilir, widget olarak gömülebilir.",
     },
     description: {
-      en: 'Which pharmacy is on duty tonight in Northern Cyprus. Nearest first, on a map, with one-tap call and directions. It also embeds into any news site as an iframe widget with a chosen accent colour, so local outlets show the roster without maintaining it themselves.',
-      tr: "Bu gece Kuzey Kıbrıs'ta hangi eczane nöbetçi. Harita üzerinde en yakından başlayarak, tek dokunuşla arama ve yol tarifi. İstenen accent rengiyle iframe widget olarak her haber sitesine gömülebiliyor; yerel yayınlar listeyi kendileri güncellemeden gösterebiliyor.",
+      en: 'Which pharmacy is on duty tonight in Northern Cyprus. One-tap call and directions straight from the map. It drops into any site as an iframe widget with a chosen accent colour.',
+      tr: "Bu gece Kuzey Kıbrıs'ta hangi eczane nöbetçi. Harita üzerinden tek dokunuşla arama ve yol tarifi. İstenen accent rengiyle iframe widget olarak her siteye entegre edilebilir.",
     },
     shots: [
       {
@@ -414,8 +414,8 @@ export const projects: Project[] = [
         width: 1600,
         height: 799,
         alt: {
-          en: "Tonight's duty pharmacies on a map, nearest first, with call and directions buttons.",
-          tr: 'Bu gecenin nöbetçi eczaneleri haritada, en yakından başlayarak, ara ve yol tarifi butonlarıyla.',
+          en: "Tonight's duty pharmacies on a map, with call and directions buttons.",
+          tr: 'Bu gecenin nöbetçi eczaneleri haritada, ara ve yol tarifi butonlarıyla.',
         },
       },
       {
@@ -423,8 +423,8 @@ export const projects: Project[] = [
         width: 1600,
         height: 801,
         alt: {
-          en: 'Embed page: pick a region, language and accent colour and copy the iframe widget code.',
-          tr: 'Gömme sayfası: bölge, dil ve accent rengi seçip iframe widget kodunu kopyala.',
+          en: 'Integration page: pick a region, language and accent colour and copy the iframe widget code.',
+          tr: 'Entegrasyon sayfası: bölge, dil ve accent rengi seçip iframe widget kodunu kopyala.',
         },
       },
       {
@@ -432,8 +432,8 @@ export const projects: Project[] = [
         width: 1600,
         height: 796,
         alt: {
-          en: 'Directory of all 432 registered pharmacies grouped by district.',
-          tr: 'Kayıtlı 432 eczanenin ilçeye göre gruplanmış dizini.',
+          en: 'List of all 432 registered pharmacies grouped by district.',
+          tr: 'Kayıtlı 432 eczanenin ilçeye göre gruplanmış listesi.',
         },
       },
     ],
@@ -450,8 +450,8 @@ export const projects: Project[] = [
       tr: "Kuzey Kıbrıs'ın canlı elektrik kesintisi haritası; beş yerel haber kaynağından, RSS ve takvim akışlarıyla.",
     },
     description: {
-      en: 'Is the power out in my area, and when does it come back? A live outage map of Northern Cyprus with every settlement as a dot. The utility publishes nothing usable, so the site reads five local news outlets instead and turns their announcements into one structured record per outage, with an RSS feed and a subscribable calendar for every district.',
-      tr: "Bölgemde elektrik kesik mi, ne zaman gelir? Kuzey Kıbrıs'ın canlı kesinti haritası; her yerleşim bir nokta. Kurum işe yarar bir şey yayımlamadığı için site beş yerel haber kaynağını okur ve duyuruları her kesinti için tek bir structured kayda çevirir; her ilçe için RSS feed'i ve subscribe edilebilir takvim sunar.",
+      en: 'Is the power out in my area, and when does it come back? A live outage map of Northern Cyprus where every dot is a settlement. The utility publishes nothing usable, so the site reads five local news outlets instead and turns their announcements into one structured record per outage, with an RSS feed and a subscribable calendar for every district.',
+      tr: "Bölgemde elektrik kesik mi, ne zaman gelir? Kuzey Kıbrıs'ın canlı kesinti haritası; her nokta bir yerleşim yeri. Kurum işe yarar bir şey yayımlamadığı için site beş yerel haber kaynağını okur ve duyuruları her kesinti için tek bir structured kayda çevirir; her ilçe için RSS feed'i ve subscribe edilebilir takvim sunar.",
     },
     shots: [
       {
@@ -459,8 +459,8 @@ export const projects: Project[] = [
         width: 1600,
         height: 799,
         alt: {
-          en: 'Live outage map: every settlement a glowing dot, the one without power marked red.',
-          tr: 'Canlı kesinti haritası: her yerleşim parlayan bir nokta, elektriği kesik olan kırmızı.',
+          en: 'Live outage map: every dot a settlement, the ones without power in red.',
+          tr: 'Canlı kesinti haritası: her nokta bir yerleşim yeri, elektriği kesik olanlar kırmızı.',
         },
       },
       {
@@ -483,12 +483,12 @@ export const projects: Project[] = [
     stack:
       'Next.js, TypeScript, Tailwind CSS, Supabase, Resend, GitHub Actions',
     tagline: {
-      en: '24,000 KKTC Official Gazette records, split out of PDFs and made full-text searchable in Turkish.',
-      tr: "KKTC Resmî Gazete'den ayrıştırılmış 24.000 kayıt, Türkçe full-text aranabilir hâlde.",
+      en: '24,000+ KKTC Official Gazette records, split out of PDFs and made full-text searchable in Turkish.',
+      tr: "KKTC Resmî Gazete'den ayrıştırılmış 24.000+ kayıt, Türkçe full-text aranabilir hâlde.",
     },
     description: {
-      en: 'The KKTC Official Gazette is published only as PDF. This crawls every issue since 2020, splits it into individual records and makes 24,000 of them full-text searchable in Turkish. Anyone can follow a topic, institution or company by e-mail or RSS and get notified the moment a new record matches.',
-      tr: "KKTC Resmî Gazete yalnızca PDF olarak yayımlanıyor. Bu site 2020'den bu yana her sayıyı tarar, tek tek kayıtlara böler ve 24.000 kaydı Türkçe full-text aranabilir hâle getirir. Herkes bir konuyu, kurumu veya şirketi e-posta ya da RSS ile takip edip yeni bir kayıt eşleştiği anda haber alabilir.",
+      en: 'The KKTC Official Gazette is published only as PDF. This crawls every issue since 2020, splits it into individual records and makes 24,000+ of them full-text searchable in Turkish. Anyone can follow a topic, institution or company by e-mail or RSS and get notified the moment a new record matches.',
+      tr: "KKTC Resmî Gazete yalnızca PDF olarak yayımlanıyor. Bu site 2020'den bu yana her sayıyı tarar, tek tek kayıtlara böler ve 24.000+ kaydı Türkçe full-text aranabilir hâle getirir. Herkes bir konuyu, kurumu veya şirketi e-posta ya da RSS ile takip edip yeni bir kayıt eşleştiği anda haber alabilir.",
     },
     shots: [
       {
@@ -623,7 +623,7 @@ export const experience: Record<Locale, ExperienceEntry[]> = {
       org: 'Adsby',
       place: 'İstanbul, uzaktan',
       bullets: [
-        "Google Ads alternatifi olarak konumlanan ücretli reklam platformunun arayüzünü React ve TypeScript ile sıfırdan kurup yönettim.",
+        'Google Ads alternatifi olarak konumlanan ücretli reklam platformunun arayüzünü React ve TypeScript ile sıfırdan kurup yönettim.',
         'Projeler arasında Redux ve Zustand; veri için RTK Query ve React Query; rol bazlı yetkilendirme ve Stripe abonelikleri.',
         "chart.js dashboard'ları, Sentry ve New Relic izleme, Next.js landing sayfaları.",
       ],
