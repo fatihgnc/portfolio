@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // BUILD_DIR selects a separate output folder so a production build does not
-  // clobber .next while the dev server is running.
-  distDir: process.env.BUILD_DIR || ".next",
+  images: {
+    // The gallery thumbnails ask for 85. Next 16 only serves the qualities
+    // listed here and silently coerces anything else to the nearest one.
+    qualities: [75, 85],
+  },
 };
 
 export default nextConfig;

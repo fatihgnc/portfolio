@@ -28,7 +28,15 @@ export default function RootShell({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={locale} data-theme="light" className={bricolage.variable} suppressHydrationWarning>
+    <html
+      lang={locale}
+      data-theme="light"
+      // globals.css sets scroll-behavior: smooth; without this Next 16 would
+      // animate the scroll on every route change instead of jumping to the top.
+      data-scroll-behavior="smooth"
+      className={bricolage.variable}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
