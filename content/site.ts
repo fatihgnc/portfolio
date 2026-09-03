@@ -168,7 +168,7 @@ export const messages: Record<Locale, Messages> = {
       ai: 'AI is a daily part of my workflow, not an occasional experiment. There is no getting away from it now, so I brought it into how I work. That means Claude Code and Cursor constantly, and keeping up with what is new: scaffolding, refactors, reading an API I do not know, writing tests and reviewing code all go through them. I use it like every other tool I reach for, to move faster on the parts that are known so there is more time for the parts that are not; architecture and review stay with me, and code I have not read never goes live.',
       stackLead: 'Technologies I work with',
       stack:
-        'React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Storybook, Vitest, Docker, Claude Code, Cursor.',
+        'React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Storybook, Vitest, Jest, Docker, Claude Code, Cursor.',
     },
     projects: {
       h: 'Projects',
@@ -254,7 +254,7 @@ export const messages: Record<Locale, Messages> = {
       ai: "AI, workflow'umun günlük bir parçası; ara sıra denediğim bir şey değil. Günümüzde AI'dan kaçış mümkün değil dolayısıyla ben de çalışma hayatıma entegre ettim ve Claude Code ve Cursor'ı bu yüzden sürekli kullanıyor, yeni çıkanları yakından takip ediyorum: scaffolding, refactor, bilmediğim bir API'yi hızlı okumak, test yazmak ve kodu review etmek hep bunlardan geçiyor. Kullandığım her tool gibi kullanıyorum, bilinen kısımlarda hızlanıp bilinmeyen kısımlara daha çok zaman ayırabilmek adına; mimari ve review bende kalıyor, okumadığım kod asla yayında olmuyor.",
       stackLead: 'Kullandığım teknolojiler',
       stack:
-        'React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Storybook, Vitest, Docker, Claude Code, Cursor.',
+        'React, React Native, Next.js, TypeScript, Tailwind CSS, Zustand, Redux, RTK Query, React Query, socket.io, chart.js, Node.js, Express, MongoDB, Supabase, Stripe, Resend, New Relic, GitHub Actions, Storybook, Vitest, Jest, Docker, Claude Code, Cursor.',
     },
     projects: {
       h: 'Projeler',
