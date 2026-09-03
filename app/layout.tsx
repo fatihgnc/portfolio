@@ -1,42 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { Instrument_Sans, JetBrains_Mono, Syne } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
 import { SiteStateProvider } from "@/components/providers/site-state";
-import { site } from "@/content/site";
+import { identity } from "@/content/site";
 
 import "./globals.css";
 
-const syne = Syne({
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-syne",
-  display: "swap",
-});
-
-const instrument = Instrument_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-instrument",
-  display: "swap",
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin", "latin-ext"],
+  weight: "variable",
+  axes: ["opsz", "wdth"],
+  variable: "--font-bricolage",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} — frontend / indie developer`,
+  title: `${identity.name} — Frontend Developer`,
   description:
-    "Four years of frontend, one year of my own products. SecretMap, mamamix and secretmap.dev — Istanbul.",
+    "Frontend developer building production frontends with React, Next.js and TypeScript. Four live products: secretmap.dev, acikeczanevarmi.com, kesintimivar.com, mevzuatkibris.com.",
   metadataBase: new URL("https://fatihgnc.dev"),
   openGraph: {
-    title: `${site.name} — frontend / indie developer`,
+    title: `${identity.name} — Frontend Developer`,
     description:
-      "Four years of frontend, one year of my own products. SecretMap, mamamix and secretmap.dev.",
+      "Frontend developer building production frontends with React, Next.js and TypeScript. Four live products.",
     type: "website",
   },
 };
@@ -44,11 +31,14 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0c0c0e",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0f141a" },
+    { media: "(prefers-color-scheme: light)", color: "#f9f9f8" },
+  ],
 };
 
-/** İlk boyamadan önce kayıtlı temayı uygular — tema zıplaması olmasın. */
-const themeScript = `(function(){try{var t=localStorage.getItem("pf-theme");if(t==="light"||t==="dark"){document.documentElement.dataset.theme=t;}}catch(e){}})();`;
+/** Applies the stored theme and locale before first paint to avoid a flash. */
+const bootScript = `(function(){try{var d=document.documentElement;var t=localStorage.getItem("pf-theme");if(t==="light"||t==="dark"){d.dataset.theme=t;d.style.colorScheme=t;}var l=localStorage.getItem("pf-locale");if(l==="en"||l==="tr"){d.lang=l;}}catch(e){}})();`;
 
 export default function RootLayout({
   children,
@@ -59,17 +49,13 @@ export default function RootLayout({
     <html
       lang="en"
       data-theme="dark"
-      className={`${syne.variable} ${instrument.variable} ${mono.variable}`}
+      className={bricolage.variable}
       suppressHydrationWarning
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <noscript>
-          {/* JS kapalıysa scroll reveal'lar açık kalsın */}
-          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
-        </noscript>
+        <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
-      <body className="font-sans">
+      <body>
         <SiteStateProvider>{children}</SiteStateProvider>
         <Analytics />
       </body>
