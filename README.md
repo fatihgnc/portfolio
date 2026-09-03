@@ -1,99 +1,66 @@
 # portfolio
 
-Fatih Genç — kişisel portfolyo. Tek sayfa, İngilizce, koyu/açık tema.
-Claude Design'daki onaylanmış tasarımın (`Portfolyo-Gunluk.dc.html`) Next.js
-implementasyonu.
+Fatih Genç's personal portfolio. A single page with a left sidebar, English and
+Turkish copy, dark and light themes. A Next.js implementation of the Claude
+Design layout (`Portfolio.dc.html`).
 
 ## Stack
 
-| Katman | Teknoloji |
+| Layer | Technology |
 |---|---|
-| Framework | Next.js 15 (App Router, SSG) |
-| Dil | TypeScript |
-| Styling | Tailwind CSS + CSS custom property token'ları |
-| Animasyon | Framer Motion (scroll reveal + parallax) |
-| Scroll | Lenis |
-| İçerik | next-mdx-remote (RSC) + gray-matter |
+| Framework | Next.js 15 (App Router, static) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 + shadcn/ui (base-nova style, Base UI) + design tokens in `app/globals.css` |
+| Icons | Tabler Icons |
 | Analytics | Vercel Analytics |
-| Font | Syne / Instrument Sans / JetBrains Mono (next/font) |
+| Font | Bricolage Grotesque via next/font (opsz / wdth / wght axes) |
 
-Backend yok — statik site.
+No backend; the site is fully static.
 
-## Komutlar
+## Scripts
 
 ```bash
-npm run dev        # geliştirme sunucusu
-npm run build      # prod build (statik export edilir)
-npm start          # prod sunucu
+npm run dev        # development server
+npm run build      # production build
+npm start          # production server
 npm run typecheck  # tsc --noEmit
 ```
 
-## Yapı
+## Structure
 
 ```
 app/
-  layout.tsx            → fontlar, metadata, tema önyükleme scripti, provider
-  page.tsx              → tek sayfa akışı; MDX gövdeleri sunucuda render edilir
-  globals.css           → tema token'ları, grain, MDX tipografisi
+  layout.tsx            -> font, metadata, theme/locale boot script, provider
+  page.tsx              -> the page: hero + about, projects, experience, contact
+  globals.css           -> tokens and all styles
 content/
-  site.ts               → arayüz metinleri, linkler, araçlar
-  projects/
-    secret-map.mdx
-    mamamix.mdx
-    secretmap-dev.mdx
+  site.ts               -> all copy (en/tr), projects, experience, identity
 components/
-  providers/site-state/ → tema + çekmece durumu (localStorage)
-  sections/
-    intro/              → açılış (parallax başlık, İstanbul saati, durum listesi)
-    work/               → işler akışı, ara not araya girer
-    experience/         → deneyim listesi (tarih sütunu + iş)
-    project-case/       → MDX case study kartı
-    interlude/          → "neden indie" ara notu
-    about/              → hakkımda + araçlar
-    contact/            → davet, linkler, mailto formu, footer
-  ui/
-    smooth-scroll/      → Lenis sarmalayıcı
-    reveal-text/        → scroll reveal
-    scroll-progress/    → üstteki ilerleme çizgisi
-    pointer-glow/       → imleci takip eden accent parıltı
-    marquee/            → eğik kayan şerit
-    mdx-body/           → MDX gövdesini sunucuda render eder
-    icons/              → paylaşılan SVG ikon seti
-    icon-links/         → footer'daki ikon şeridi
-    sidebar/            → kimlik, bölüm gezinmesi (1–5), linkler, tema
-    theme-toggle/       → koyu / açık tema anahtarı
-    site-header/        → yalnızca dar ekran: isim + çekmece düğmesi
-    fx-canvas/          → arka plan noktaları + tel kafes gövde (three.js)
-lib/
-  mdx.ts                → MDX okuma/frontmatter yardımcıları
+  providers/site-state/ -> theme + locale state (localStorage)
+  ui/sidebar/           -> profile, section menu (1-4 shortcuts), social links,
+                           TR | EN picker and theme switch
+  ui/project-gallery/   -> project screenshots: thumbnail strip + Dialog lightbox
+  ui/copy-email/        -> copy-to-clipboard button for the e-mail address
+  ui/*.tsx              -> shadcn/ui primitives (button, switch, sheet, dialog,
+                           avatar, badge, separator, tooltip)
+public/
+  shots/<project>/N.webp -> project screenshots (1600px WebP)
+  fatih-genc-cv.pdf     -> CV, opened in a new tab from the sidebar
+  profile.jpg           -> sidebar avatar
 ```
 
-Her bileşen kendi klasöründe `index.tsx` olarak durur; import'lar klasör adıyla
-yapılır (`@/components/sections/intro`).
+## Updating content
 
-## İçerik nasıl güncellenir
-
-- **Case study'ler:** `content/projects/*.mdx`. Frontmatter alanları
-  (`order`, `title`, `meta`, `one`, `stack`, `link`, `href`, `shot`) karta;
-  gövde metni kartın küçük puntolu paragrafına gider.
-- **Sıralama:** `lib/mdx.ts` içindeki `PROJECT_SLUGS`.
-- **Deneyim:** `content/site.ts` içindeki `jobs` dizisi.
-- **Profil fotoğrafı:** `public/profile.jpg` (sidebar'da yuvarlak).
-- **Proje ekran görüntüleri:** `public/shots/` altına koyup MDX frontmatter'a
-  `image: /shots/dosya.png` eklemek yeterli; alan boşsa kart yer tutucu metni
-  gösterir.
-- **CV:** `public/fatih-genc-cv.pdf`. Link `content/site.ts` → `links`
-  içinde; `download` alanı dolu olan link indirme olarak davranır.
-- **Linkler:** iki liste var. `links` footer'daki ikon şeridini,
-  `social` sidebar'daki listeyi besler. İkon adları
-  `components/ui/icons` içindeki setten gelir; erişilebilirlik metinleri
-  `iconLabels` içinde.
-- **Diğer tüm metinler:** `content/site.ts`.
-- **Renkler:** `app/globals.css` içindeki `:root` / `:root[data-theme="light"]`
-  token'ları. Accent tek yerde: `--ac`.
-
-## Yapılacaklar
-
-- Proje kartlarındaki gri alanlara gerçek ekran görüntüleri.
-- App Store ve cal.com linkleri (`content/site.ts` ve MDX'te `href: "#"`).
-- Vercel'e deploy + Analytics'i panelden aktive et.
+- **Copy:** `content/site.ts` -> `messages.en` / `messages.tr`.
+- **Projects:** `content/site.ts` -> `projects`. Descriptions are bilingual; the
+  `shots` array holds the screenshots (`src`, `width`, `height`, `portrait`,
+  bilingual `alt`). To add one, drop a WebP under `public/shots/<project>/` and
+  append it to `shots`.
+- **Experience:** `content/site.ts` -> `experience.en` / `experience.tr`. Leave
+  `end` empty for an ongoing entry ("Present" / "Halen").
+- **Links, e-mail, phone:** `content/site.ts` -> `identity`.
+- **CV:** `public/fatih-genc-cv.pdf`.
+- **Colours:** the `:root` / `:root[data-theme="light"]` tokens in
+  `app/globals.css`, named after shadcn (`--background`, `--primary`,
+  `--muted-foreground`, ...).
+- **New shadcn component:** `npx shadcn@latest add <name>`.
