@@ -1,4 +1,5 @@
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Bricolage_Grotesque } from "next/font/google";
 
 import { ThemeProvider } from "@/components/providers/theme";
@@ -33,7 +34,10 @@ export default function RootShell({
       </head>
       <body>
         <ThemeProvider>{children}</ThemeProvider>
+        {/* Analytics counts visits; Speed Insights reports the Core Web
+            Vitals real visitors actually experience. */}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
