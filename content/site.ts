@@ -93,8 +93,6 @@ export type Messages = {
     h: string;
     intro: string;
     live: string;
-    /** link from a home card to the project page */
-    more: string;
     platform: { web: string; ios: string };
   };
   gallery: {
@@ -177,7 +175,6 @@ export const messages: Record<Locale, Messages> = {
       intro:
         'Four websites and one iOS app, all live, all free; I designed, built and shipped every one of them solo since mid-2026.',
       live: 'Live',
-      more: 'Project page',
       platform: { web: 'Web', ios: 'iOS' },
     },
     gallery: {
@@ -264,7 +261,6 @@ export const messages: Record<Locale, Messages> = {
       intro:
         "Dört web sitesi ve bir iOS uygulaması; hepsi yayında, hepsi ücretsiz, 2026'nın ortalarından beri tek başıma tasarlayıp geliştirdim ve yayına aldım.",
       live: 'Yayında',
-      more: 'Proje sayfası',
       platform: { web: 'Web', ios: 'iOS' },
     },
     gallery: {
@@ -319,76 +315,38 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    id: 'p-secretmap-ios',
-    slug: 'secretmap-ios',
-    name: 'SecretMap',
-    url: 'App Store',
-    href: 'https://apps.apple.com/us/app/secretmap-share-anonymously/id6799620743',
-    platform: 'ios',
-    stack: 'React Native, TypeScript, Supabase',
-    tagline: {
-      en: 'An iOS app where you drop a secret anonymously on the world map. No profile, no followers, no trackers.',
-      tr: 'Dünya haritasına anonim olarak sır bırakabildiğiniz bir iOS uygulaması. Profil yok, takipçi yok, tracker yok.',
-    },
-    description: {
-      en: 'An iOS app where you write a secret anonymously and leave it at the place you are standing. No profile, no followers, no notifications, no ads, no trackers; the only way in is Sign in with Apple. Your location is rounded to within a set number of kilometres before it leaves the phone, so the map only ever says something like "somewhere near Lisbon". There is one way to interact with a secret, and that is to say "SAME".',
-      tr: 'Anonim bir şekilde sır yazıp bulunduğunuz konuma bıraktığınız bir iOS uygulaması. Profil, takipçi, bildirim, reklam ve tracker yok; tek giriş: Sign in with Apple. Konum bilgisi telefondan çıkmadan belli bir KM\'ye yuvarlanır, harita yalnızca "Lizbon yakınlarında bir yer" gibi bir şey söyler. Tek etkileşim yolu var, o da: "BEN DE" demek.',
-    },
-    shots: [
-      {
-        src: '/shots/secret-map-ios/2.webp',
-        width: 736,
-        height: 1600,
-        portrait: true,
-        alt: {
-          en: 'World map with orange clusters showing how many secrets were dropped near each place; no exact locations.',
-          tr: 'Her bölgeye bırakılan sır sayısını turuncu kümelerle gösteren dünya haritası; tam konum yok.',
-        },
-      },
-      {
-        src: '/shots/secret-map-ios/1.webp',
-        width: 736,
-        height: 1600,
-        portrait: true,
-        alt: {
-          en: 'A single secret opened from the map, with the only possible reply: Same.',
-          tr: 'Haritadan açılmış tek bir sır ve verilebilecek tek yanıt: Bende de.',
-        },
-      },
-    ],
-  },
-  {
-    id: 'p-secretmap-web',
-    slug: 'secretmap',
-    name: 'SecretMap Landing',
-    url: 'secretmap.dev',
+    id: 'p-mevzuat',
+    slug: 'mevzuat-kibris',
     platform: 'web',
-    stack: 'Next.js, TypeScript',
+    name: 'Mevzuat Kıbrıs',
+    url: 'mevzuatkibris.com',
+    stack:
+      'Next.js, TypeScript, Tailwind CSS, Supabase, Resend, GitHub Actions',
     tagline: {
-      en: 'The landing site for SecretMap: one screen explaining what the project does, built with Next.js.',
-      tr: "SecretMap'in landing sitesi: projenin ne yaptığını anlatan tek ekran; Next.js ile geliştirildi.",
+      en: '24,000+ KKTC Official Gazette records, split out of PDFs and made full-text searchable in Turkish.',
+      tr: "KKTC Resmî Gazete'den ayrıştırılmış 24.000+ kayıt, Türkçe full-text aranabilir hâlde.",
     },
     description: {
-      en: 'The landing site for the SecretMap app. A page that says what the app was built for and how it is used.',
-      tr: 'SecretMap uygulamasının landing sitesi. Uygulamanın ne için yapıldığını, nasıl kullanıldığını anlatan sayfa.',
+      en: 'The KKTC Official Gazette is published only as PDF. This crawls every issue since 2020, splits it into individual records and makes 24,000+ of them full-text searchable in Turkish. Anyone can follow a topic, institution or company by e-mail or RSS and get notified the moment a new record matches.',
+      tr: "KKTC Resmî Gazete yalnızca PDF olarak yayımlanıyor. Bu site 2020'den bu yana her sayıyı tarar, tek tek kayıtlara böler ve 24.000+ kaydı Türkçe full-text aranabilir hâle getirir. Herkes bir konuyu, kurumu veya şirketi e-posta ya da RSS ile takip edip yeni bir kayıt eşleştiği anda haber alabilir.",
     },
     shots: [
       {
-        src: '/shots/secret-map-landing/1.webp',
-        width: 1600,
-        height: 722,
-        alt: {
-          en: 'Landing page: dark ground and an orange accent.',
-          tr: 'Landing sayfası: koyu zemin ve turuncu vurgu.',
-        },
-      },
-      {
-        src: '/shots/secret-map-landing/2.webp',
+        src: '/shots/mevzuat-kibris/1.webp',
         width: 1600,
         height: 802,
         alt: {
-          en: "Terms of use page split into numbered sections, in the app's own typography.",
-          tr: 'Uygulamanın kendi tipografisiyle numaralı bölümlere ayrılmış kullanım koşulları sayfası.',
+          en: "Search across the Official Gazette, today's new records and topic counts, with an e-mail follow box.",
+          tr: "Resmî Gazete'de arama, bugün eklenen kayıtlar ve konu sayıları; yanında e-posta takip kutusu.",
+        },
+      },
+      {
+        src: '/shots/mevzuat-kibris/2.webp',
+        width: 1600,
+        height: 804,
+        alt: {
+          en: 'A single record page with the original gazette title, issue, institution and a link to the official PDF.',
+          tr: 'Tek bir kayıt sayfası: gazetedeki orijinal başlık, sayı, kurum ve resmî PDF bağlantısı.',
         },
       },
     ],
@@ -475,38 +433,76 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 'p-mevzuat',
-    slug: 'mevzuat-kibris',
-    platform: 'web',
-    name: 'Mevzuat Kıbrıs',
-    url: 'mevzuatkibris.com',
-    stack:
-      'Next.js, TypeScript, Tailwind CSS, Supabase, Resend, GitHub Actions',
+    id: 'p-secretmap-ios',
+    slug: 'secretmap-ios',
+    name: 'SecretMap',
+    url: 'App Store',
+    href: 'https://apps.apple.com/us/app/secretmap-share-anonymously/id6799620743',
+    platform: 'ios',
+    stack: 'React Native, TypeScript, Supabase',
     tagline: {
-      en: '24,000+ KKTC Official Gazette records, split out of PDFs and made full-text searchable in Turkish.',
-      tr: "KKTC Resmî Gazete'den ayrıştırılmış 24.000+ kayıt, Türkçe full-text aranabilir hâlde.",
+      en: 'An iOS app where you drop a secret anonymously on the world map. No profile, no followers, no trackers.',
+      tr: 'Dünya haritasına anonim olarak sır bırakabildiğiniz bir iOS uygulaması. Profil yok, takipçi yok, tracker yok.',
     },
     description: {
-      en: 'The KKTC Official Gazette is published only as PDF. This crawls every issue since 2020, splits it into individual records and makes 24,000+ of them full-text searchable in Turkish. Anyone can follow a topic, institution or company by e-mail or RSS and get notified the moment a new record matches.',
-      tr: "KKTC Resmî Gazete yalnızca PDF olarak yayımlanıyor. Bu site 2020'den bu yana her sayıyı tarar, tek tek kayıtlara böler ve 24.000+ kaydı Türkçe full-text aranabilir hâle getirir. Herkes bir konuyu, kurumu veya şirketi e-posta ya da RSS ile takip edip yeni bir kayıt eşleştiği anda haber alabilir.",
+      en: 'An iOS app where you write a secret anonymously and leave it at the place you are standing. No profile, no followers, no notifications, no ads, no trackers; the only way in is Sign in with Apple. Your location is rounded to within a set number of kilometres before it leaves the phone, so the map only ever says something like "somewhere near Lisbon". There is one way to interact with a secret, and that is to say "SAME".',
+      tr: 'Anonim bir şekilde sır yazıp bulunduğunuz konuma bıraktığınız bir iOS uygulaması. Profil, takipçi, bildirim, reklam ve tracker yok; tek giriş: Sign in with Apple. Konum bilgisi telefondan çıkmadan belli bir KM\'ye yuvarlanır, harita yalnızca "Lizbon yakınlarında bir yer" gibi bir şey söyler. Tek etkileşim yolu var, o da: "BEN DE" demek.',
     },
     shots: [
       {
-        src: '/shots/mevzuat-kibris/1.webp',
-        width: 1600,
-        height: 802,
+        src: '/shots/secret-map-ios/2.webp',
+        width: 736,
+        height: 1600,
+        portrait: true,
         alt: {
-          en: "Search across the Official Gazette, today's new records and topic counts, with an e-mail follow box.",
-          tr: "Resmî Gazete'de arama, bugün eklenen kayıtlar ve konu sayıları; yanında e-posta takip kutusu.",
+          en: 'World map with orange clusters showing how many secrets were dropped near each place; no exact locations.',
+          tr: 'Her bölgeye bırakılan sır sayısını turuncu kümelerle gösteren dünya haritası; tam konum yok.',
         },
       },
       {
-        src: '/shots/mevzuat-kibris/2.webp',
-        width: 1600,
-        height: 804,
+        src: '/shots/secret-map-ios/1.webp',
+        width: 736,
+        height: 1600,
+        portrait: true,
         alt: {
-          en: 'A single record page with the original gazette title, issue, institution and a link to the official PDF.',
-          tr: 'Tek bir kayıt sayfası: gazetedeki orijinal başlık, sayı, kurum ve resmî PDF bağlantısı.',
+          en: 'A single secret opened from the map, with the only possible reply: Same.',
+          tr: 'Haritadan açılmış tek bir sır ve verilebilecek tek yanıt: Bende de.',
+        },
+      },
+    ],
+  },
+  {
+    id: 'p-secretmap-web',
+    slug: 'secretmap',
+    name: 'SecretMap Landing',
+    url: 'secretmap.dev',
+    platform: 'web',
+    stack: 'Next.js, TypeScript',
+    tagline: {
+      en: 'The landing site for SecretMap: one screen explaining what the project does, built with Next.js.',
+      tr: "SecretMap'in landing sitesi: projenin ne yaptığını anlatan tek ekran; Next.js ile geliştirildi.",
+    },
+    description: {
+      en: 'The landing site for the SecretMap app. A page that says what the app was built for and how it is used.',
+      tr: 'SecretMap uygulamasının landing sitesi. Uygulamanın ne için yapıldığını, nasıl kullanıldığını anlatan sayfa.',
+    },
+    shots: [
+      {
+        src: '/shots/secret-map-landing/1.webp',
+        width: 1600,
+        height: 722,
+        alt: {
+          en: 'Landing page: dark ground and an orange accent.',
+          tr: 'Landing sayfası: koyu zemin ve turuncu vurgu.',
+        },
+      },
+      {
+        src: '/shots/secret-map-landing/2.webp',
+        width: 1600,
+        height: 802,
+        alt: {
+          en: "Terms of use page split into numbered sections, in the app's own typography.",
+          tr: 'Uygulamanın kendi tipografisiyle numaralı bölümlere ayrılmış kullanım koşulları sayfası.',
         },
       },
     ],

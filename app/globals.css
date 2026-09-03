@@ -764,23 +764,6 @@
   text-decoration: none;
 }
 
-.project-more {
-  margin-top: 18px;
-  font-size: 15px;
-}
-
-.project-more a {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted-foreground);
-  text-decoration-color: var(--border);
-}
-
-.project-more a:hover {
-  color: var(--primary);
-}
-
 /* ---------------------------------------------------------------
    project page
    --------------------------------------------------------------- */

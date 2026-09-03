@@ -1,4 +1,4 @@
-import { IconArrowRight, IconExternalLink } from "@tabler/icons-react";
+import { IconExternalLink } from "@tabler/icons-react";
 import Link from "next/link";
 
 import TechBadges from "@/components/sections/tech-badges";
@@ -51,15 +51,6 @@ export default function Projects({ locale, t }: { locale: Locale; t: Messages })
                   locale={locale}
                   copy={t.gallery}
                 />
-                <p className="project-more">
-                  <Link href={page}>
-                    <span>
-                      {t.projects.more}
-                      <span className="sr-only">: {p.name}</span>
-                    </span>
-                    <IconArrowRight aria-hidden="true" className="size-4" />
-                  </Link>
-                </p>
               </article>
             </li>
           );
