@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // BUILD_DIR ile ayrı çıktı klasörü: dev sunucusu açıkken build almak
-  // .next'i ezmesin diye.
+  // BUILD_DIR selects a separate output folder so a production build does not
+  // clobber .next while the dev server is running.
   distDir: process.env.BUILD_DIR || ".next",
 };
 
