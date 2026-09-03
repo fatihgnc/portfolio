@@ -892,3 +892,113 @@
   color: var(--muted-foreground);
   text-wrap: pretty;
 }
+
+/* ---------------------------------------------------------------
+   Scroll-driven depth.
+
+   CSS only: there is no scroll listener, so this costs nothing at
+   interaction time and cannot show up in INP. Gated twice — on
+   support, so browsers without scroll timelines (Firefox stable, for
+   now) get the page exactly as it was, and on reduced motion.
+
+   Nothing animates from opacity 0. A renderer that samples the page
+   at scroll position 0 — Googlebot included — still sees every word,
+   which is the whole point of the markup underneath.
+   --------------------------------------------------------------- */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* The dot grid moves to its own fixed layer so it can lag behind
+       the content sitting on top of it. */
+    body {
+      background-image: none;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -15% 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
+      background-size: 22px 22px;
+      animation: dot-drift linear both;
+      animation-timeline: scroll(root block);
+    }
+
+    .page,
+    .site-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* The hero leaves in four layers at four speeds. */
+    .hero-name,
+    .hero-role,
+    .hero-location,
+    .hero-positioning {
+      animation: hero-leave linear both;
+      animation-timeline: scroll(root block);
+      animation-range: 0 92vh;
+      will-change: transform;
+    }
+
+    .hero-name {
+      --leave: -68px;
+    }
+    .hero-role {
+      --leave: -46px;
+    }
+    .hero-location {
+      --leave: -38px;
+    }
+    .hero-positioning {
+      --leave: -18px;
+    }
+
+    /* Everything in a list rises as it enters the viewport. */
+    .project-list > li,
+    .experience-list > li,
+    .other-list > li {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    .shot-thumb {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 70%;
+    }
+
+    .project-title,
+    .h2 {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+}
+
+@keyframes dot-drift {
+  to {
+    transform: translateY(-140px);
+  }
+}
+
+@keyframes hero-leave {
+  to {
+    transform: translateY(var(--leave, -40px));
+    opacity: 0.18;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(22px);
+    opacity: 0.55;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
