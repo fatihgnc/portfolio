@@ -897,105 +897,96 @@
    Scroll-driven depth.
 
    CSS only: there is no scroll listener, so this costs nothing at
-   interaction time and cannot show up in INP. Gated twice — on
-   support, so browsers without scroll timelines (Firefox stable, for
-   now) get the page exactly as it was, and on reduced motion.
+   interaction time and cannot show up in INP. Only transform, scale,
+   translate and opacity animate, so there is no layout work per frame.
 
-   Nothing animates from opacity 0. A renderer that samples the page
-   at scroll position 0 — Googlebot included — still sees every word,
-   which is the whole point of the markup underneath.
+   Two gates. @supports means a browser without scroll timelines
+   renders the page exactly as it is without this block. Reduced
+   motion turns all of it off.
+
+   Nothing animates from opacity 0, and the ranges are short enough
+   that a renderer sampling at scroll 0 sees a settled page.
    --------------------------------------------------------------- */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
-    /* The dot grid moves to its own fixed layer so it can lag behind
-       the content sitting on top of it. */
-    body {
-      background-image: none;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -15% 0;
-      z-index: 0;
-      pointer-events: none;
-      background-image: radial-gradient(var(--dot) 1px, transparent 1.2px);
-      background-size: 22px 22px;
-      animation: dot-drift linear both;
-      animation-timeline: scroll(root block);
-    }
-
-    .page,
-    .site-footer {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* The hero leaves in four layers at four speeds. */
+    /* The hero leaves in four layers at four speeds. The range is the
+       distance the hero is actually on screen for; any longer and the
+       whole move happens after it has already scrolled away. */
     .hero-name,
     .hero-role,
     .hero-location,
     .hero-positioning {
       animation: hero-leave linear both;
       animation-timeline: scroll(root block);
-      animation-range: 0 92vh;
-      will-change: transform;
+      animation-range: 0 40vh;
+      will-change: transform, opacity;
     }
 
     .hero-name {
-      --leave: -68px;
+      --leave: -110px;
     }
     .hero-role {
-      --leave: -46px;
+      --leave: -80px;
     }
     .hero-location {
-      --leave: -38px;
+      --leave: -64px;
     }
     .hero-positioning {
-      --leave: -18px;
+      --leave: -28px;
     }
 
-    /* Everything in a list rises as it enters the viewport. */
+    /* Screenshots pan inside their own frame. The thumb already clips
+       and the image already covers it, so the only cost is the extra
+       crop the scale-up needs to keep the frame filled.
+
+       The timeline has to be named and declared on the thumb: the
+       thumb clips, which makes it a scroll container, so a bare view()
+       on the image would measure the image against the 220px frame it
+       already fills and never move. Declared here it is measured
+       against the page instead. */
+    .shot-thumb {
+      view-timeline: --shot block;
+    }
+
+    .shot-thumb img {
+      scale: 1.18;
+      animation: shot-pan linear both;
+      animation-timeline: --shot;
+    }
+
+    /* Headings, cards and rows rise as they come in. */
     .project-list > li,
     .experience-list > li,
-    .other-list > li {
-      animation: rise linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 55%;
-    }
-
-    .shot-thumb {
-      animation: rise linear both;
-      animation-timeline: view();
-      animation-range: entry 5% entry 70%;
-    }
-
+    .other-list > li,
     .project-title,
     .h2 {
       animation: rise linear both;
       animation-timeline: view();
-      animation-range: entry 0% entry 45%;
+      animation-range: entry 5% entry 45%;
     }
-  }
-}
-
-@keyframes dot-drift {
-  to {
-    transform: translateY(-140px);
   }
 }
 
 @keyframes hero-leave {
   to {
-    transform: translateY(var(--leave, -40px));
-    opacity: 0.18;
+    transform: translateY(var(--leave, -60px));
+    opacity: 0.25;
+  }
+}
+
+@keyframes shot-pan {
+  from {
+    translate: 0 -7%;
+  }
+  to {
+    translate: 0 7%;
   }
 }
 
 @keyframes rise {
   from {
-    transform: translateY(22px);
-    opacity: 0.55;
+    transform: translateY(44px);
+    opacity: 0.5;
   }
   to {
     transform: translateY(0);
